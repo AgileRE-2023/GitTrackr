@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'trackr_app/stat.css'%}">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
+<link href='https://fonts.googleapis.com/css?family=Mada' rel='stylesheet'>
+
+
+<div class="header">
+    <img src="{% static 'trackr_app/images/back.svg'%}" alt="" id="back_header">
+    <img src="{% static 'trackr_app/images/logo.png'%}" alt="" id="logo_header">
+</div>
+<div class="header-stat">
+    Name of Project Contribution
+    <div class="month">
+        February
+        <img src="{% static 'trackr_app/images/down.svg'%}" alt="" id="down_header">
+    </div>
+</div>
+<div class="stat-repo">
+    <canvas id="repo" width="1169px" height="480px">
+
+    </canvas>
+</div>
+<div class="history-repo">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ipsum fuga consequuntur ducimus modi iusto, repudiandae est libero voluptatum. Ex cupiditate corrupti at expedita ipsam eaque animi labore dolorum aut.
+</div>
+<script src="{% static 'trackr_app/chart.js'%}"></script>
