@@ -10,9 +10,58 @@
 </head>
 
 <body>
-    <h1>Login Page With Google</h1>
+    <!-- Navbar Start -->
+    <div
+        class="absolute top-1/2 left-1/2 h-full w-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] blur-2xl from-cyan-50 to-transparent transform -translate-x-1/2 -translate-y-1/2 z-0">
+    </div>
+    <nav class="flex flex-row justify-between items-center shadow-lg pt-4 px-40 py-4 h-20 fixed w-full z-20 bg-white">
+        <div>
+            <img src="{% static 'images/LogoGT.png' %}" alt="" class="h-12">
+        </div>
+        <div class="text-md font-bold">
+            DOCS
+        </div>
+        <button class="rounded-3xl border-solid border border-black bg-black text-white w-36 h-11">
+            <div class=" font-semibold text-lg">
+                LOGIN
+            </div>
+        </button>
+    </nav>
+    
+    <!-- Navbar End -->
+
+    <!-- Content Start -->
+    <div class="flex flex-row justify-center ">
+        <div class="mt-36 flex justify-center items-center flex-col z-10">
+            <div class="font-bold text-6xl z-10">
+                Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
+                    &lt;/GitHub&gt;,</span> <br> Compare with Ease
+            </div>
+            <div class="mt-16 font-bold text-4xl z-10">
+                Welcome Back
+            </div>
+            <div class="mt-1 text-lg text-black font-extralight z-10">
+                Sign in to your GitTrackr account
+            </div>
+            <button
+                class="mt-12 flex items-center rounded-xl border-solid border-black border-2 bg-white z-10 px-8 h-14 w-96"
+                type="button">
+                <img class="h-10 w-10 left-1" src="{% static 'images/google_icon.png' %}" alt="">
+                <div class="ml-14 text-black font-normal text-lg pb-1">
+                    Sign In With Google
+                </div>
+            </button>
+            <div class="mt-8 text-base font-light text-grey-500 text-center">
+                By clicking Sign In above, you acknowledge that you have <br> 
+                read and agree to GitTrackr <span class="underline"><a href="#">Terms</a></span> and <span class="underline"><a href="#">Privacy Policy</a></span>
+            </div>
+        </div>
+    </div>
+    <!-- Content End -->
+
     <script>
-        
+
     </script>
 </body>
+
 </html>
