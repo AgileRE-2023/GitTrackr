@@ -138,3 +138,9 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+apps/accounts/__pycache__/*.pyc
+apps/comparison/__pycache__/*.pyc
+apps/utilities/__pycache__/*.pyc
+gittrackr/*.pyc
+theme/static/css/dist/styles.css
