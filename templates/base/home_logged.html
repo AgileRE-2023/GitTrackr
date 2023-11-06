@@ -13,7 +13,8 @@
 
 <body>
   <!-- Navbar Start -->
-  <nav class="flex flex-row justify-between shadow-lg pt-2 px-40">
+  <div class="absolute h-80 w-3/4 rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1"></div>
+  <nav class="flex flex-row justify-between shadow-lg pt-2 px-40 h-20 fixed w-full z-10 bg-white">
     <div class="">
       <img src="{% static 'images/LogoGT.png' %}" alt="" class="h-12">
     </div>
@@ -27,7 +28,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
           </svg>
       </button>
-      <div  class="absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mb-1 ">
+      <div  class="absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mb-1 " id="dropdownMenu">
         <a href="#" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> History</a>
         <a href="#" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> Logout</a>
       </div>
@@ -36,13 +37,43 @@
   <!-- Navbar End -->
 
   <!-- Content Start -->
+  <div class="flex flex-row justify-center ">
+    <div class="my-64 flex justify-center items-center flex-col">
+        <div class="font-bold text-6xl">
+            Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
+                &lt;/GitHub&gt;,</span> <br> Compare with Ease
+        </div>
+        <div class="text-center font-medium mt-6 text-base">
+            GitTrackr is Your GitHub Analytics Sidekick for In-Depth <br>
+            Repository Insights
+        </div>
+        <form action="">
+          <div class="flex flex-row rounded-full mt-4 border-solid border-black border-2 bg-white z-10 px-2 py-3">
+            <input type="text" placeholder="Add folder name.." class="h-5 mt-2 border-none placeholder-black pr-56  focus:outline-none focus:ring focus:border-none no-underline ">
+            <button class="w-30 h-10 flex flex-row bg-[#455A64] rounded-2xl justify-center items-center px-5" type="button">
+                <div class=" text-white font-bold text-base pb-1">
+                    Create
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="25" viewBox="0 0 28 25" fill="none">
+                    <path d="M17.4894 18.1163L23.1421 13.048C23.245 12.9515 23.3257 12.8379 23.3795 12.7134C23.4926 12.4666 23.4926 12.1898 23.3795 11.943C23.3257 11.8186 23.245 11.7049 23.1421 11.6085L17.4894 6.54015C17.384 6.44564 17.2588 6.37066 17.1211 6.31951C16.9834 6.26836 16.8358 6.24203 16.6867 6.24203C16.3856 6.24203 16.0969 6.34927 15.884 6.54015C15.6711 6.73103 15.5515 6.98992 15.5515 7.25986C15.5515 7.5298 15.6711 7.78869 15.884 7.97957L19.6148 11.3146L11.034 11.3146C10.7342 11.3146 10.4466 11.4214 10.2346 11.6115C10.0226 11.8016 9.90347 12.0594 9.90347 12.3282C9.90347 12.5971 10.0226 12.8549 10.2346 13.045C10.4466 13.2351 10.7342 13.3419 11.034 13.3419L19.6148 13.3419L15.884 16.6769C15.7781 16.7712 15.694 16.8833 15.6366 17.0068C15.5792 17.1303 15.5496 17.2628 15.5496 17.3966C15.5496 17.5304 15.5792 17.6629 15.6366 17.7865C15.694 17.91 15.7781 18.0221 15.884 18.1163C15.9891 18.2113 16.1142 18.2868 16.2519 18.3382C16.3897 18.3897 16.5375 18.4162 16.6867 18.4162C16.836 18.4162 16.9837 18.3897 17.1215 18.3382C17.2593 18.2868 17.3843 18.2113 17.4894 18.1163Z" fill="white"/>
+                  </svg>
+                </button>
+            </div>
+        </form>
+        
+            
+    </div>
+    <div class=" my-32 ">
+        <img src="{% static 'images/LandingImage.png' %}" alt="">
 
+    </div>
+</div>
   <!-- Content End -->
 
   <script >
     document.addEventListener("DOMContentLoaded", function () {
       const dropdownButton = document.querySelector(".group");
-      const dropdownMenu = document.querySelector(".absolute");
+      const dropdownMenu = document.getElementById("dropdownMenu");
 
       dropdownButton.addEventListener("click", function () {
         dropdownMenu.classList.toggle("hidden");
