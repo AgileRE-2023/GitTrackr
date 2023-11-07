@@ -791,6 +791,7 @@ select {
   z-index: 20;
 }
 
+
 .z-50 {
   z-index: 50;
 }
@@ -816,6 +817,7 @@ select {
   margin-left: 7rem;
   margin-right: 7rem;
 }
+
 
 .mx-4 {
   margin-left: 1rem;
@@ -971,6 +973,7 @@ select {
 .h-screen {
   height: 100vh;
 }
+
 
 .w-1\/2 {
   width: 50%;
@@ -1163,7 +1166,6 @@ select {
 .border-t-2 {
   border-top-width: 2px;
 }
-
 .border-solid {
   border-style: solid;
 }
