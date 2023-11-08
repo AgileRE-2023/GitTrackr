@@ -40,7 +40,8 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd" #masing masing direktori node.js #masing masing direktori node.js
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd" #masing masing direktori node.js
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
