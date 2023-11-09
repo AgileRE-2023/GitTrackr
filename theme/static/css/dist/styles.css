@@ -6,7 +6,12 @@
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
-
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
 *,
 ::before,
 ::after {
@@ -791,7 +796,6 @@ select {
   z-index: 20;
 }
 
-
 .z-50 {
   z-index: 50;
 }
@@ -817,7 +821,6 @@ select {
   margin-left: 7rem;
   margin-right: 7rem;
 }
-
 
 .mx-4 {
   margin-left: 1rem;
@@ -866,6 +869,10 @@ select {
   margin-left: 0.5rem;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -905,10 +912,6 @@ select {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mr-1 {
-  margin-right: 0.25rem;
 }
 
 .block {
@@ -986,7 +989,6 @@ select {
 .h-screen {
   height: 100vh;
 }
-
 
 .w-1\/2 {
   width: 50%;
@@ -1131,6 +1133,10 @@ select {
   border-radius: 1.5rem;
 }
 
+.rounded-\[1\.25rem\] {
+  border-radius: 1.25rem;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -1145,10 +1151,6 @@ select {
 
 .rounded-xl {
   border-radius: 0.75rem;
-}
-
-.rounded-\[1\.25rem\] {
-  border-radius: 1.25rem;
 }
 
 .rounded-t-lg {
@@ -1187,6 +1189,7 @@ select {
 .border-t-2 {
   border-top-width: 2px;
 }
+
 .border-solid {
   border-style: solid;
 }
