@@ -1,0 +1,16 @@
+{% load static %}
+<nav class="flex flex-row justify-between items-center shadow-lg pt-4 px-20 py-4 h-20 fixed w-full z-20 bg-white">
+    <a href="{% url 'landingPage' %}">
+        <img src="{% static 'images/LogoGT.png' %}" alt="" class="h-12 ">
+    </a>
+    <a href="#" class="text-md font-bold">
+        DOCS
+    </a>
+    <a href="{% url 'login' %}"><button
+            class="rounded-3xl border-solid border border-black bg-white text-black w-36 h-11 hover:bg-black hover:text-white">
+            <div class=" font-semibold text-lg">
+                LOGIN
+            </div>
+        </button>
+    </a>
+</nav>

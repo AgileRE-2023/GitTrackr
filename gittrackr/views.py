@@ -6,3 +6,4 @@ def index(request):
 
 def indexLogged(request):
     return render(request, "base/home_logged.html")
+
