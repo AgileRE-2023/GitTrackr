@@ -23,6 +23,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'gittrackr',
+    'master',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,7 +35,6 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'social_django',
-    'gittrackr',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -84,8 +85,12 @@ WSGI_APPLICATION = 'gittrackr.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'GitTrackr',
+        'USER': 'root',
+        'PASSWORD': 'najnad1805',
+        'PORT': 3306,
+        'HOST': '127.0.0.1',
     }
 }
 
