@@ -32,12 +32,14 @@
         GitTrackr is Your GitHub Analytics Sidekick for In-Depth <br>
         Repository Insights
       </div>
-      <form action="">
+      <form method="post" action="{% url 'add_folder' %}">
         <div class="flex flex-row rounded-full mt-4 border-solid border-black border-2 bg-white z-10 px-2 py-3">
-          <input type="text" placeholder="Add folder name.."
-            class="h-5 mt-2 border-none placeholder-black pr-56  focus:outline-none focus:ring focus:border-none no-underline ">
+          <!-- <input type="text" placeholder="Add folder name.."
+            class="h-5 mt-2 border-none placeholder-black pr-56  focus:outline-none focus:ring focus:border-none no-underline "> -->
+            {% csrf_token %}
+            {{ form.as_p }}
           <button class="w-30 h-10 flex flex-row bg-[#455A64] rounded-[1.25rem] justify-center items-center px-5 mr-1"
-            type="button">
+            type="submit">
             <div class=" text-white font-bold text-base pb-1">
               Create
             </div>

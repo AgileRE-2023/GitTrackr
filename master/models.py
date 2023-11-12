@@ -13,8 +13,7 @@ class Users(models.Model):
 class Folders(models.Model):
     FolderID = models.AutoField(primary_key=True)
     Folder_Name = models.CharField(max_length=255, unique=True)
-    Created_At = models.DateTimeField()
-    UserID = models.ForeignKey(Users, on_delete=models.CASCADE)
+    Created_At = models.DateTimeField(auto_now_add=True)
 
 class Repository(models.Model):
     RepositoryID = models.AutoField(primary_key=True)
