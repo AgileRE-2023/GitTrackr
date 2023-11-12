@@ -14,6 +14,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -88,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GitTrackr',
         'USER': 'root',
-        'PASSWORD': 'najnad1805',
+        'PASSWORD': 'Satrya29',
         'PORT': 3306,
         'HOST': '127.0.0.1',
     }
