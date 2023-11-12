@@ -1,0 +1,11 @@
+<!-- add_repository.html -->
+
+
+{% block content %}
+  <h2>Add Repository</h2>
+  <form method="post" action="{% url 'search_repository' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search Repository</button>
+  </form>
+{% endblock %}
