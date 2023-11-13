@@ -4,7 +4,7 @@ from .forms import AddRepositoryForm
 from django.contrib.auth.decorators import login_required
 import requests
 from django.conf import settings
-from master.models import Repository, Users
+from master.models import Repository
 
 # Create your views here.
 

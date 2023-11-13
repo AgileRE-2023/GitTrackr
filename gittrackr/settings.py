@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GitTrackr',
         'USER': 'root',
-        'PASSWORD': 'David123',
+        'PASSWORD': 'Air123',
         'PORT': 3306,
         'HOST': '127.0.0.1',
     }
