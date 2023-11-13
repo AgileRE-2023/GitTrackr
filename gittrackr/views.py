@@ -3,7 +3,7 @@ from .forms import CreateFolderForm
 from apps.utilities.forms import AddRepositoryForm
 from django.contrib.auth.decorators import login_required
 import requests
-from django.conf import settings
+from social_django.models import UserSocialAuth
 from master.models import Folders
 
 # Create your views here.
@@ -21,9 +21,9 @@ def add_folder(request):
         folder_name = request.POST.get('folder_name')
 
         # # Gunakan user yang sudah login
-        # user = request.user
+        user = request.user
 
         # Simpan repository ke dalam database
-        folders = Folders(Folder_Name=folder_name)
+        folders = Folders(Folder_Name=folder_name, UserID=user)
         folders.save()
     return render(request, "utilities/add_repo.html", {'form': form})
