@@ -26,4 +26,4 @@ def add_folder(request):
         # Simpan repository ke dalam database
         folders = Folders(Folder_Name=folder_name)
         folders.save()
-    return render(request, "utilities/add_repo.html", {'form': form})
+    return render(request, "utilities/add_repository.html", {'form': form})
