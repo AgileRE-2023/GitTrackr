@@ -1,6 +1,9 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import pymysql
+pymysql.version_info = (1,4,6,'final',0)
+pymysql.install_as_MySQLdb()
 
 load_dotenv()
 
@@ -90,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GitTrackr',
         'USER': 'root',
-        'PASSWORD': 'David123',
+        'PASSWORD': 'Rayhan123_',
         'PORT': 3306,
         'HOST': '127.0.0.1',
     }

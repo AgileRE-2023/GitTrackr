@@ -19,9 +19,9 @@
   <!-- Navbar End -->
   <!-- Content Start -->
 
-  <div class="mt-12 mx-auto w-4/5">
-    <div class="text-poppins text-gray-500 font-semibold text-sm">
-      <a href="#" class="text-sm font-normal text-gray-700 hover:text-gray-900"><i
+  <div class=" mx-auto w-4/5">
+    <div class=" text-gray-500 font-semibold text-sm">
+      <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900"><i
           class="fa fa-arrow-left text-base"></i> back </a>
       <div class="text-gray-700 font-bold text-xl mt-4">
         GitTrackr
@@ -32,110 +32,186 @@
       <div class="bg-gray-300 h-px my-7 w-full"></div>
     </div>
   </div>
-
-  <!-- Sidebar Start -->
-
-  <div style="margin-top: 39px; margin-left: 145px; display: flex;">
-    <div style="width: 235px;">
-      <div style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word;">
-        About
-      </div>
-      <div
-        style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 500; word-wrap: break-word; margin-top: 20px;">
-        A Github Programming Contribution Measurement Tool 🚀
-      </div>
-      <div style="width: 100%; height: 1px; border: 1px #A3A3A3 solid; margin-top: 17px;"></div>
-      <div
-        style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word; margin-top: 15px; margin-bottom: 17px;">
-        Language
-      </div>
-      <div style="display: flex; align-items: center; margin-bottom: 7px; justify-content: space-between;">
-        <div style="display: flex; align-items: center;">
-          <img style="width: 27px; height: 27px; margin-right: 13px;" src="{% static 'images/css.png' %}" />
-          <div
-            style="color: black; font-size: 18px; font-family: 'Montserrat', sans-serif; font-weight: 600; word-wrap: break-word">
-            CSS
+  <div class="flex flex-row">
+     <!-- Sidebar Start -->
+    <div class="sidebar mr-6">
+      <div class="flex flex-col ml-32">
+        <div class="font-semibold text-xl mb-5 ">
+          About
+        </div>
+        <div class="text-gray-500 text-sm">
+          A Github Programming <br> Contribution Measurement <br>Tool 🚀 
+        </div>
+        <hr class="mt-5">
+        <div class="font-semibold text-xl mb-5 mt-4">
+          Languages
+        </div>
+        <div class="flex flex-col">
+          <div class="flex flex- mb-2 mr-6">
+            <img class="mr-2 "src="{% static 'images/css.png' %}" alt="">
+            <div class="font-semibold mr-14">
+              CSS
+            </div>
+            <div class="text-gray-500 font-semibold">
+              20%
+            </div>
+          </div>
+          <div class="flex flex- mb-2 mr-6">
+            <img class="mr-2 "src="{% static 'images/html.png' %}" alt="">
+            <div class="font-semibold mr-10">
+              HTML
+            </div>
+            <div class="text-gray-500 font-semibold">
+              30%
+            </div>
+          </div>
+          <div class="flex flex- mb-2 mr-6">
+            <img class="mr-2 "src="{% static 'images/js.png' %}" alt="">
+            <div class="font-semibold mr-3">
+              JavaScript
+            </div>
+            <div class="text-gray-500 font-semibold">
+              10%
+            </div>
+          </div>
+          <div class="flex flex- mb-2 mr-6">
+            <img class="mr-2 w-6 h-6 "src="{% static 'images/python.png' %}" alt="">
+            <div class="font-semibold mr-8">
+              Python
+            </div>
+            <div class="text-gray-500 font-semibold">
+              40%
+            </div>
           </div>
         </div>
-        <div style="text-align: right;">20%</div>
-      </div>
-      <div style="display: flex; align-items: center; margin-bottom: 7px; justify-content: space-between;">
-        <div style="display: flex; align-items: center;">
-          <img style="width: 27px; height: 27px; margin-right: 13px;" src="{% static 'images/html.png' %}" />
-          <div
-            style="color: black; font-size: 18px; font-family: 'Montserrat', sans-serif; font-weight: 600; word-wrap: break-word">
-            HTML
-          </div>
+        <hr class="mt-5">
+        <div class="font-semibold text-xl  mt-4">
+          File Size
         </div>
-        <div style="text-align: right;">30%</div>
-      </div>
-      <div style="display: flex; align-items: center; margin-bottom: 7px; justify-content: space-between;">
-        <div style="display: flex; align-items: center;">
-          <img style="width: 27px; height: 27px; margin-right: 13px;" src="{% static 'images/js.png' %}" />
-          <div
-            style="color: black; font-size: 18px; font-family: 'Montserrat', sans-serif; font-weight: 600; word-wrap: break-word">
-            JavaScript
-          </div>
+        <div class="font-normal ">
+          Size
         </div>
-        <div style="text-align: right;">10%</div>
-      </div>
-      <div style="display: flex; align-items: center; margin-bottom: 7px; justify-content: space-between;">
-        <div style="display: flex; align-items: center;">
-          <img style="width: 27px; height: 27px; margin-right: 13px;" src="{% static 'images/python.png' %}" />
-          <div
-            style="color: black; font-size: 18px; font-family: 'Montserrat', sans-serif; font-weight: 600; word-wrap: break-word">
-            Python
-          </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Date Created
         </div>
-        <div style="text-align: right;">40%</div>
-      </div>
-      <div style="width: 100%; height: 1px; border: 1px #A3A3A3 solid; margin-top: 19px; margin-bottom: 15px;"></div>
-      <div style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word; color: black;">
-        File Size
-      </div>
-      <div style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 400; word-wrap: break-word;">
-        Size
-      </div>
-      <div style="width: 100%; height: 1px; border: 1px #A3A3A3 solid; margin-top: 19px; margin-bottom: 15px;"></div>
-      <div style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word; color: black;">
-        Date Created
-      </div>
-      <div style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 400; word-wrap: break-word;">
-        Size
-      </div>
-      <div style="width: 100%; height: 1px; border: 1px #A3A3A3 solid; margin-top: 19px; margin-bottom: 15px;"></div>
-      <div style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word; color: black;">
-        Topics
-      </div>
-      <div style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 400; word-wrap: break-word;">
-        Size
-      </div>
-      <div style="width: 100%; height: 1px; border: 1px #A3A3A3 solid; margin-top: 19px; margin-bottom: 15px;"></div>
-      <div style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word; color: black;">
-        Branch
-      </div>
-      <div style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 400; word-wrap: break-word;">
-        Size
-      </div>
-      <div style="width: 100%; height: 1px; border: 1px #A3A3A3 solid; margin-top: 19px; margin-bottom: 15px;"></div>
-      <div style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word; color: black;">
-        Contributors
-      </div>
-      <div style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 400; word-wrap: break-word;">
-        Size
-      </div>
-      <div style="width: 100%; height: 1px; border: 1px #A3A3A3 solid; margin-top: 19px; margin-bottom: 15px;"></div>
-      <div style="font-family: 'poppins'; font-size: 20px; font-weight: 600; word-wrap: break-word; color: black;">
-        Stars
-      </div>
-      <div
-        style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 400; word-wrap: break-word; margin-bottom: 49px;">
-        Size
+        <div class="font-normal ">
+          Size
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Topics
+        </div>
+        <div class="font-normal ">
+          Size
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Branch
+        </div>
+        <div class="font-normal ">
+          Size
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Contributors
+        </div>
+        <div class="font-normal ">
+          Size
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Stars
+        </div>
+        <div class="font-normal ">
+          Size
+        </div>
+        <hr class="mt-5"> 
       </div>
     </div>
     <!-- Sidebar End -->
+    <div class="content w-full mr-32 ">
+     
+      <div class="flex flex-row justify-end mb-6">
+        <div class="bg-black text-white rounded items-center  px-5 font-semibold py-2">
+          Developers Activity
+        </div>
+    </div>
+     <!-- Graph Start -->
+    <div class="border-gray-400 border-2 rounded-xl p-6">
+      <div class="flex flex-row justify-between mb-11">
+        <div class="flex flex-col">
+          <div class="drop2">
+            <button class=" flex flex-row  px-5 py-1 border-gray-400 border-2 rounded-xl w-fit">
+              <div class="font-bold text-sm mt-1">
+                Commit
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                <path d="M7.56119 11.6105L15.1224 19.3508L22.6836 11.6105" stroke="#363062" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div  class="menu2 absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mt-1 " id="dropdownMenu">
+              <div  class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> idk</div>
+              <div class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> idk</div>
+            </div>
+          </div>
+          <div class="text-gray-500 font-semibold text-xs">
+            Lorem ipsum dolor sit amet, consectetur
+          </div>
+        </div>
+          <div class="kosong">
+          
+          </div>
+          <div class="drop relative">
+            <button class=" flex flex-row  px-5 py-1 border-gray-400 border-2 rounded-full">
+              <div class="font-bold text-sm mt-1">
+                Monthly (2020)
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                <path d="M7.56119 11.6105L15.1224 19.3508L22.6836 11.6105" stroke="#363062" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div  class="menu absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mt-1 " id="dropdownMenu">
+              <div  class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2021</div>
+              <div class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2023</div>
+            </div>
+          </div>
+          </div>
+          <div class="flex flex-row justify-between mb-10">
+              <div class="text-base font-bold">
+                Last Week <span class="text-green-500">10</span>
+              </div>
+            <div class="kosong">
 
-    <div style="width: 100%; height: 100%; position: relative">
+            </div>
+            <div class="flex flex-row">
+              <div class="text-base font-bold flex flex-row">
+                10 <span class="text-green-500">1%</span> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32" fill="none">
+                  <rect x="-0.5" y="-0.5" width="29.9612" height="29.2448" transform="matrix(-4.27e-08 -1 -1 4.47468e-08 30.0015 30.7673)" stroke="#A3A3A3"/>
+                  <path d="M8.31802 20.1569L15.8792 12.4166L23.4404 20.1569" fill="#37D159"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+        <canvas id="myChart" class="rounded">
+          <div class="bar" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></div>
+          <div class="bar" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></div>
+        </canvas>
+    </div>
+      <!-- Graph End  -->
+        </div>
+      </div>
+  
+    
+
+ 
+
+  
+    
+
+    <!-- <div style="width: 100%; height: 100%; position: relative">
       <a href="#">
         <div
           style="width: 234px; height: 47px; right: 144px; top: 0px; position: absolute; background: black; border-radius: 10px; border: 1px #A3A3A3 solid; padding-top: 10px; padding-left: 23px;">
@@ -145,10 +221,10 @@
           </div>
         </div>
       </a>
-    </div>
+    </div> -->
 
-    <!-- Graph Start -->
-    <div style="margin-top: 47px; left: 409px; position: absolute;">
+   
+    <!-- <div style="margin-top: 47px; left: 409px; position: absolute;">
       <div
         style="width: 887px; height: 765px; border-radius: 14px; border: 1px #A3A3A3 solid; margin-top: 24px; margin-bottom: 56px; padding-top: 27px; padding-right: 52px; padding-bottom: 65px;">
         <div style="display: flex; align-items: center;">
@@ -208,8 +284,8 @@
           <div class="bar" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></div>
         </canvas>
       </div>
-    </div>
-    <!-- Graph End  -->
+    </div> -->
+  
   </div>
   <!-- Content End -->
 
@@ -220,6 +296,22 @@
     document.addEventListener("DOMContentLoaded", function () {
       const dropdownButton = document.querySelector(".group");
       const dropdownMenu = document.querySelector(".absolute");
+
+      dropdownButton.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("hidden");
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const dropdownButton = document.querySelector(".drop");
+      const dropdownMenu = document.querySelector(".menu");
+
+      dropdownButton.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("hidden");
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const dropdownButton = document.querySelector(".drop2");
+      const dropdownMenu = document.querySelector(".menu2");
 
       dropdownButton.addEventListener("click", function () {
         dropdownMenu.classList.toggle("hidden");
