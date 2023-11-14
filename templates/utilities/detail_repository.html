@@ -18,20 +18,22 @@
   {% endblock %}
   <!-- Navbar End -->
   <!-- Content Start -->
-
-  <div class=" mx-auto w-4/5">
-    <div class=" text-gray-500 font-semibold text-sm">
-      <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900"><i
-          class="fa fa-arrow-left text-base"></i> back </a>
-      <div class="text-gray-700 font-bold text-xl mt-4">
-        GitTrackr
+  <div class="absolute">
+    <div class=" mt-36 mx-auto w-4/5">
+      <div class=" text-gray-500 font-semibold text-sm">
+        <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900"><i
+            class="fa fa-arrow-left text-base"></i> back </a>
+        <div class="text-gray-700 font-bold text-xl mt-4">
+          GitTrackr
+        </div>
+        <div class="text-black font-normal text-sm mt-2">
+          own by PPL GACOR
+        </div>
+        <div class="bg-gray-300 h-px my-7 w-full"></div>
       </div>
-      <div class="text-black font-normal text-sm mt-2">
-        own by PPL GACOR
-      </div>
-      <div class="bg-gray-300 h-px my-7 w-full"></div>
     </div>
-  </div>
+  
+  
   <div class="flex flex-row">
      <!-- Sidebar Start -->
     <div class="sidebar mr-6">
@@ -132,11 +134,11 @@
     <!-- Sidebar End -->
     <div class="content w-full mr-32 ">
      
-      <div class="flex flex-row justify-end mb-6">
+      <a  href="{% url 'developer_statistic' %}" class="flex flex-row justify-end mb-6">
         <div class="bg-black text-white rounded items-center  px-5 font-semibold py-2">
           Developers Activity
         </div>
-    </div>
+      </a>
      <!-- Graph Start -->
     <div class="border-gray-400 border-2 rounded-xl p-6">
       <div class="flex flex-row justify-between mb-11">
@@ -204,7 +206,7 @@
         </div>
       </div>
   <!-- Content End -->
-
+</div>
 
 
 
