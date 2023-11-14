@@ -12,6 +12,7 @@ class Repository(models.Model):
     RepositoryID = models.AutoField(primary_key=True)
     Repository_Name = models.CharField(max_length=255, unique=True)
     Url = models.TextField()
+    Folder_ID = models.ForeignKey(Folders, on_delete=models.CASCADE, null=True, blank=True)
 
 class History(models.Model):
     HistoryID = models.AutoField(primary_key=True)

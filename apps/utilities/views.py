@@ -4,7 +4,7 @@ from .forms import AddRepositoryForm
 from django.contrib.auth.decorators import login_required
 import requests
 from django.conf import settings
-from master.models import Repository
+from master.models import Repository, Folders
 
 # views.py
 from django.http import JsonResponse
@@ -20,14 +20,7 @@ def history(request):
 
 def add_repository(request):
     form = AddRepositoryForm()
-    return render(request, 'utilities/add_repo.html', {'form': form})
-
-def add_repositorylama(request):
-    form = AddRepositoryForm()
     return render(request, 'utilities/add_repository.html', {'form': form})
-
-def dashboard(request):
-    return render(request, 'utilities/dashboard.html')
 
 @login_required
 def search_repository(request):
@@ -56,14 +49,11 @@ def save_repository(request):
     if request.method == 'POST':
         repository_name = request.POST.get('repository_name')
 
-        # Gunakan user yang sudah login
-        # user = request.user
-
         # Simpan repository ke dalam database
         repository = Repository(Repository_Name=repository_name)
         repository.save()
 
-    return redirect('add_repositorylama')
+    return redirect('add_repository')
 
 def five_repository(request):
     saved_repositories = Repository.objects.all()[:5]  # Retrieve the first 5 repositories
