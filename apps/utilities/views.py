@@ -4,7 +4,11 @@ from .forms import AddRepositoryForm
 from django.contrib.auth.decorators import login_required
 import requests
 from django.conf import settings
-from master.models import Repository, Users
+from master.models import Repository, Folders
+
+# views.py
+from django.http import JsonResponse
+import json
 
 # Create your views here.
 
@@ -16,10 +20,7 @@ def history(request):
 
 def add_repository(request):
     form = AddRepositoryForm()
-    return render(request, 'utilities/add_repo.html', {'form': form})
-
-def dashboard(request):
-    return render(request, 'utilities/dashboard.html')
+    return render(request, 'utilities/add_repository.html', {'form': form})
 
 @login_required
 def search_repository(request):
@@ -37,22 +38,23 @@ def search_repository(request):
             if response.status_code == 200:
                 data = response.json()
                 repositories = data.get('items', [])
-                return render(request, 'utilities/repository_search_results.html', {'repositories': repositories})
+                return render(request, 'utilities/add_repository.html', {'repositories': repositories})
             else:
                 print(f'Error {response.status_code}: {response.text}')
 
-    return redirect('add_repository')
+    return redirect('add_repositorylama')
 
 @login_required
 def save_repository(request):
     if request.method == 'POST':
         repository_name = request.POST.get('repository_name')
 
-        # Gunakan user yang sudah login
-        user = request.user
-
         # Simpan repository ke dalam database
         repository = Repository(Repository_Name=repository_name)
         repository.save()
 
-    return redirect('dashboard')
+    return redirect('add_repository')
+
+def five_repository(request):
+    saved_repositories = Repository.objects.all()[:5]  # Retrieve the first 5 repositories
+    return render(request, 'add_repository.html', {'saved_repositories': saved_repositories})

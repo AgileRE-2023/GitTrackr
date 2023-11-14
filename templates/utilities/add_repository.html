@@ -20,10 +20,10 @@
     <!-- Navbar End -->
 
     <!-- Content Start -->
-    <div class="relative flex flex-row z-10 py-40 justify-center items-center">
-        <div class="bg-white mx-28 border-2 rounded-xl">
+    <div class="relative flex flex-row z-10 py-40 justify-center ">
+        <div class="bg-white mx-28 border-2 rounded-xl h-fit">
             <div class="border-b-2 px-4 py-4">
-                <h1 class="text-black text-xl font-bold font-['Inter']">Kelas PPL I2</h1>
+                <h1 class="text-black text-xl font-bold font-['Inter']">{{ folders.folder_name }}</h1>
             </div>
             <div class="flex items-center px-4 py-4">
                 <svg width="44" height="53" viewBox="0 0 54 63" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,24 +40,29 @@
                 <p class="px-2 text-center text-black text-xl font-semibold font-['Montserrat']">Add repository</p>
             </div>
             <!-- Input Repository -->
-            <div class="py-4">
-                <input type="text" placeholder="ex. DjangoEcommerce" id="txt" oninput="getValue()"
-                    class="w-96 mx-4 border-2 rounded-xl">
-                <div class="flex bg-white shadow-lg mx-4 justify-between items-center" id="clickableDiv">
-                    <p id="result" class="mx-4 text-black text-md font-normal font-['Montserrat']"></p>
-                    <svg id="mySvg" width="18" height="19" viewBox="0 0 18 19" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" class="mx-4 my-4" style="display: none;">
-                        <path
-                            d="M17.1128 10.9382H9.86697V18.962H7.45168V10.9382H0.205811V8.26362H7.45168V0.239868H9.86697V8.26362H17.1128V10.9382Z"
-                            fill="black" />
-                    </svg>
+            <!-- <input type="text" placeholder="ex. DjangoEcommerce" id="txt" oninput="getValue()" class="w-96 mx-4 border-2 rounded-xl"> -->
+            <div class="py-4 px-2 w-[450px]">
+                <form method="post" action="{% url 'search_repository' %}">
+                    {% csrf_token %}
+                    {{ form.repository_name }}
+                    <input type="submit" value="Submit" class="m-4 py-2 px-4 border border-black rounded-xl hover:bg-gray-100 hover:border-gray-500">
+                </form>
+            </div>
+
+            <!-- maks.5 repo blm jadi -->
+            <div class="border-t-2 my-4 px-4 justify-center items-center">
+                <p class="my-4 mx-2 text-black text-xs font-extralight font-['Montserrat']">maks 5 repository</p>
+                <div id="permanentValuesContainer" class="grid gap-2 grid-cols-2 col-auto row-auto auto-cols-max auto-rows-max">
+                    {% for repository in save_repository %}
+                        <div>
+                            <p>{{ repository.Repository_Name }}</p>
+                            <!-- Add other details as needed -->
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="border-t-2 my-4 px-4 justify-center items-center">
-                <p class="my-4 mx-2 text-black text-xs font-extralight font-['Montserrat']">maks. 5 repository</p>
-                <div id="permanentValuesContainer"
-                    class="grid gap-2 grid-cols-2 col-auto row-auto auto-cols-max auto-rows-max"></div>
-            </div>
+            <!-- maks repo blm jadi -->
+
             <!-- Input Repository -->
             <div class="flex px-8 py-4 border-t-2 justify-between">
                 <button type="button" class="bg-white border py-2 px-6 rounded-2xl border-black">
@@ -66,25 +71,37 @@
                     </p>
                 </button>
                 <button type="button" class="bg-black border py-2 px-4 rounded-2xl border-black">
-                    <p class="text-center text-white text-lg font-semibold font-['Montserrat']">
+                    <a href="{% url 'compare_repository' %}" class="text-center text-white text-lg font-semibold font-['Montserrat']">
                         Compare
-                    </p>
+                    </a>
                 </button>
             </div>
         </div>
-        <div class="items-center">
+        <!-- <div class="items-center">
             <div class="font-bold text-6xl">
                 Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
                     &lt;/GitHub&gt;,</span> <br> Compare with Ease
             </div>
-        </div>
-        <div class="flex">
+        </div> -->
+        <div>
+            <ul>
+                {% for repository in repositories %}
+                    <li class="py-2 w-fit">
+                        <div class="bg-white shadow-lg rounded-lg p-2">
+                        <strong class="text-xl m-4 py-1 px-2">{{ repository.full_name }}</strong>
+                        <form method="post" action="{% url 'save_repository' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="repository_name" value="{{ repository.full_name }}">
+                            <button type="submit" class="mx-4 my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500">Add to My Repositories</button>
+                        </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <!-- Content End -->
-    <div
-        class="absolute h-96 w-1/2 rounded-lg bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-400 to-transparent blur-3xl z-0 translate-x-1/2 translate-y-1/2 right-1 bottom-1">
-    </div>
+    <div class="absolute h-96 w-1/2 max-w-screen-md rounded-lg bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-400 to-transparent blur-3xl z-0 translate-x-2/4 right-1/4 translate-y-1/2 z-0 bottom-0"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -120,6 +137,22 @@
         document.getElementById('clickableDiv').addEventListener('click', function () {
             showPermanentValue();
         });
+
+        function deletePermanentValue(valueElement, containerId) {
+            valueElement.parentNode.remove();
+            var index = permanentValues.indexOf(valueElement.textContent);
+            if (index > -1) {
+                permanentValues.splice(index, 1);
+            }
+            containerCount--;
+
+            if (containerCount < 5) {
+                document.getElementById('clickableDiv').addEventListener('click', showPermanentValue);
+            }
+        }
+
+
+        // ... (your existing code)
 
         function showPermanentValue() {
             if (containerCount < 5) {
@@ -158,21 +191,48 @@
                 }
             }
             clearInputValue();
+
+            // Setelah menyimpan repository, tangani respons JSON untuk memperbarui tampilan
+            $.ajax({
+                url: '{% url "save_repository" %}',  // Use the correct URL for saving repository
+                method: 'POST',
+                data: {'repository_name': input},
+                dataType: 'json',
+                success: function (data) {
+                    // Update tampilan dengan daftar repository yang akan disimpan
+                    updatePermanentValues(data.saved_repositories);
+                },
+                error: function () {
+                    console.log('Gagal menyimpan repository.');
+                }
+            });
+            clearInputValue();
         }
 
-        function deletePermanentValue(valueElement, containerId) {
-            valueElement.parentNode.remove();
-            var index = permanentValues.indexOf(valueElement.textContent);
-            if (index > -1) {
-                permanentValues.splice(index, 1);
-            }
-            containerCount--;
+        function updatePermanentValues(savedRepositories) {
+            var permanentValuesContainer = $('#permanentValuesContainer');
+            permanentValuesContainer.empty();  // Hapus semua elemen sebelumnya
 
-            if (containerCount < 5) {
-                document.getElementById('clickableDiv').addEventListener('click', showPermanentValue);
+            for (const savedRepository of savedRepositories) {
+                const permanentValue = $('<p>').text(savedRepository);
+
+                const deleteButton = $('<div>').html(`<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.5563 1.75736L7.31371 6L11.5563 10.2426L10.1421 11.6569L5.89949 7.41421L1.65685 11.6569L0.242641 10.2426L4.48528 6L0.242641 1.75736L1.65685 0.343146L5.89949 4.58579L10.1421 0.343146L11.5563 1.75736Z" fill="black"/>
+                </svg>`);
+                deleteButton.on('click', function () {
+                    deletePermanentValue(permanentValue, permanentValuesContainer.attr('id'));
+                });
+
+                // Adding styles for SVG
+                permanentValuesContainer.css('width', '190px');
+                deleteButton.css('display', 'flex');
+                deleteButton.css('align-items', 'start');
+                deleteButton.css('justify-content', 'space-between');
+
+                permanentValuesContainer.append(permanentValue);
+                permanentValuesContainer.append(deleteButton);
             }
         }
-
     </script>
 </body>
 
