@@ -77,12 +77,6 @@
                 </button>
             </div>
         </div>
-        <!-- <div class="items-center">
-            <div class="font-bold text-6xl">
-                Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
-                    &lt;/GitHub&gt;,</span> <br> Compare with Ease
-            </div>
-        </div> -->
         <div>
             <ul>
                 {% for repository in repositories %}
@@ -92,6 +86,7 @@
                         <form method="post" action="{% url 'save_repository' %}">
                             {% csrf_token %}
                             <input type="hidden" name="repository_name" value="{{ repository.full_name }}">
+                            <input type="hidden" name="repository_url" value="{{ repository.html_url }}">
                             <button type="submit" class="mx-4 my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500">Add to My Repositories</button>
                         </form>
                         </div>

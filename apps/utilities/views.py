@@ -42,18 +42,24 @@ def search_repository(request):
             else:
                 print(f'Error {response.status_code}: {response.text}')
 
-    return redirect('add_repositorylama')
+    return redirect('add_repository')
 
 @login_required
 def save_repository(request):
     if request.method == 'POST':
-        repository_name = request.POST.get('repository_name')
+        full_repository_name = request.POST.get('repository_name')
+        repository_url = request.POST.get('repository_url')
+        folder_id = request.session.get('current_folder_id')  # dapatkan FolderID dari sesi
+
+        # Pisahkan full_repository_name menjadi owner dan repository_name
+        owner, repository_name = full_repository_name.split('/')
 
         # Simpan repository ke dalam database
-        repository = Repository(Repository_Name=repository_name)
+        repository = Repository(Owner=owner, Repository_Name=repository_name, Url=repository_url,Folder_ID_id=folder_id)
         repository.save()
 
     return redirect('add_repository')
+
 
 def five_repository(request):
     saved_repositories = Repository.objects.all()[:5]  # Retrieve the first 5 repositories
