@@ -15,7 +15,7 @@ def indexLogged(request):
 
     return render(request, "base/home_logged.html", {'form': form})
 
-def add_folder(request):
+def create_folder(request):
     form = AddRepositoryForm()
     if request.method == 'POST':
         folder_name = request.POST.get('folder_name')
@@ -30,4 +30,5 @@ def add_folder(request):
         # Simpan FolderID ke dalam sesi
         request.session['current_folder_id'] = folders.FolderID
 
-    return render(request, "utilities/add_repository.html", {'form': form})
+        # Arahkan pengguna ke halaman 'add_repository' untuk folder baru
+        return redirect('add_repository_with_folder', folder_id=folders.FolderID)

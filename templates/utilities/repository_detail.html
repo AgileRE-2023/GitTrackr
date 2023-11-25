@@ -24,10 +24,10 @@
         <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900"><i
             class="fa fa-arrow-left text-base"></i> back </a>
         <div class="text-gray-700 font-bold text-xl mt-4">
-          GitTrackr
+          {{ details.Repository_Name }}
         </div>
         <div class="text-black font-normal text-sm mt-2">
-          own by PPL GACOR
+          Owned by: {{ details.Owner_Name }}
         </div>
         <div class="bg-gray-300 h-px my-7 w-full"></div>
       </div>
@@ -42,11 +42,11 @@
           About
         </div>
         <div class="text-gray-500 text-sm">
-          A Github Programming <br> Contribution Measurement <br>Tool 🚀 
+          {{ details.About }}
         </div>
         <hr class="mt-5">
         <div class="font-semibold text-xl mb-5 mt-4">
-          Languages
+          {{ details.Languages }}
         </div>
         <div class="flex flex-col">
           <div class="flex flex- mb-2 mr-6">
@@ -91,42 +91,42 @@
           File Size
         </div>
         <div class="font-normal ">
-          Size
+          {{ details.File_Size }} KB
         </div>
         <hr class="mt-5"> 
         <div class="font-semibold text-xl  mt-4">
           Date Created
         </div>
         <div class="font-normal ">
-          Size
+          {{ details.Date_Created }}
         </div>
         <hr class="mt-5"> 
         <div class="font-semibold text-xl  mt-4">
           Topics
         </div>
         <div class="font-normal ">
-          Size
+          {% for topic in details.Topics %}{{ topic }} {% endfor %}
         </div>
         <hr class="mt-5"> 
         <div class="font-semibold text-xl  mt-4">
           Branch
         </div>
         <div class="font-normal ">
-          Size
+          {{ details.Branch }}
         </div>
         <hr class="mt-5"> 
         <div class="font-semibold text-xl  mt-4">
           Contributors
         </div>
         <div class="font-normal ">
-          Size
+          {% for contributor in details.Contributors %}{{ contributor }} {% endfor %}
         </div>
         <hr class="mt-5"> 
         <div class="font-semibold text-xl  mt-4">
           Stars
         </div>
         <div class="font-normal ">
-          Size
+          {{ details.Stars }}
         </div>
         <hr class="mt-5"> 
       </div>
@@ -134,7 +134,7 @@
     <!-- Sidebar End -->
     <div class="content w-full mr-32 ">
      
-      <a  href="{% url 'developer_statistic' %}" class="flex flex-row justify-end mb-6">
+      <a  href="{% url 'developer_statistic' repository_id %}" class="flex flex-row justify-end mb-6">
         <div class="bg-black text-white rounded items-center  px-5 font-semibold py-2">
           Developers Activity
         </div>

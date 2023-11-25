@@ -10,9 +10,6 @@
 </head>
 
 <body class="overflow-x-hidden">
-    <div
-        class="absolute h-96 w-1/2 rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0 -translate-x-1/4 -translate-y-1/3 top-1/4 left-1">
-    </div>
     <!-- Navbar Start -->
     {% block section %}
     {% include "component/navbar_logged.html" %}
@@ -23,7 +20,7 @@
     <div class="relative flex flex-row z-10 py-40 justify-center ">
         <div class="bg-white mx-28 border-2 rounded-xl h-fit">
             <div class="border-b-2 px-4 py-4">
-                <h1 class="text-black text-xl font-bold font-['Inter']">{{ folders.folder_name }}</h1>
+                <h1 class="text-black text-xl font-bold font-['Inter']">{{ folder.Folder_Name }}</h1>
             </div>
             <div class="flex items-center px-4 py-4">
                 <svg width="44" height="53" viewBox="0 0 54 63" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +37,6 @@
                 <p class="px-2 text-center text-black text-xl font-semibold font-['Montserrat']">Add repository</p>
             </div>
             <!-- Input Repository -->
-            <!-- <input type="text" placeholder="ex. DjangoEcommerce" id="txt" oninput="getValue()" class="w-96 mx-4 border-2 rounded-xl"> -->
             <div class="py-4 px-2 w-[450px]">
                 <form method="post" action="{% url 'search_repository' %}">
                     {% csrf_token %}
@@ -71,7 +67,7 @@
                     </p>
                 </button>
                 <button type="button" class="bg-black border py-2 px-4 rounded-2xl border-black">
-                    <a href="{% url 'compare_repository' %}" class="text-center text-white text-lg font-semibold font-['Montserrat']">
+                    <a href="{% url 'compare_repositories' folder.FolderID %}" class="text-center text-white text-lg font-semibold font-['Montserrat']">
                         Compare
                     </a>
                 </button>
@@ -94,10 +90,17 @@
                 {% endfor %}
             </ul>
         </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </div>
-    <!-- Content End -->
-    <div class="absolute h-96 w-1/2 max-w-screen-md rounded-lg bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-400 to-transparent blur-3xl z-0 translate-x-2/4 right-1/4 translate-y-1/2 z-0 bottom-0"></div>
 
+    
+    <!-- Content End -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const dropdownButton = document.querySelector(".group");
@@ -145,9 +148,6 @@
                 document.getElementById('clickableDiv').addEventListener('click', showPermanentValue);
             }
         }
-
-
-        // ... (your existing code)
 
         function showPermanentValue() {
             if (containerCount < 5) {

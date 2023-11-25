@@ -58,7 +58,7 @@
                                             d="M10.5238 10.381L15.2857 15.1429M15.2857 15.1429L20.0476 10.381M15.2857 15.1429V0.857142M1 5.61905L5.7619 0.857142M5.7619 0.857142L10.5238 5.61905M5.7619 0.857142L5.7619 15.1429"
                                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Name</p>
+                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Developer Name</p>
                                 </div>
                             </th>
                             <th class="text-center border border-gray-300 border-t-0 ">
@@ -70,17 +70,6 @@
                                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                     <p class="text-neutral-500 text-xl font-medium font-['Inter']">Commit</p>
-                                </div>
-                            </th>
-                            <th class="text-center border border-gray-300 border-t-0">
-                                <div class="flex items-center justify-center py-2 px-2">
-                                    <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
-                                        <path
-                                            d="M10.5238 10.381L15.2857 15.1429M15.2857 15.1429L20.0476 10.381M15.2857 15.1429V0.857142M1 5.61905L5.7619 0.857142M5.7619 0.857142L10.5238 5.61905M5.7619 0.857142L5.7619 15.1429"
-                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Pullreq</p>
                                 </div>
                             </th>
                             <th class="text-center border border-gray-300 border-t-0">
@@ -119,105 +108,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for stat in stats %}
                         <tr class="text-center">
                             <td
                                 class="px-2 py-4 border-t-0 border-l-0 border border-gray-300 text-neutral-400 font-medium">
                                 1
                             </td>
                             <td class="px-4 py-4 border border-gray-300 text-left font-medium">
-                                David Chandra
+                                {{ stat.Developer_Name }}
                             </td>
                             <td class="px-2 py-4 border border-gray-300 font-medium">
-                                12
+                                {{ stat.Commit }}
                             </td>
                             <td class="px-2 py-4 border border-gray-300 font-medium">
-                                4
+                                {{ stat.Additions }}
                             </td>
                             <td class="px-2 py-4 border border-gray-300 font-medium">
-                                4.500
+                                {{ stat.Deletions }}
                             </td>
                             <td class="px-2 py-4 border border-gray-300 font-medium">
-                                1.200
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-r-0 font-medium">
-                                1
+                                {{ stat.Open_Issues }}
                             </td>
                         </tr>
-                        <tr class="text-center">
-                            <td
-                                class="px-2 py-4 border-t-0 border-l-0 border border-gray-300 text-neutral-400 font-medium">
-                                1
-                            </td>
-                            <td class="px-4 py-4 border border-gray-300 text-left font-medium">
-                                David Chandra
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                12
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                4
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                4.500
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                1.200
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-r-0 font-medium">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td
-                                class="px-2 py-4 border-t-0 border-l-0 border border-gray-300 text-neutral-400 font-medium">
-                                1
-                            </td>
-                            <td class="px-4 py-4 border border-gray-300 text-left font-medium">
-                                David Chandra
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                12
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                4
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                4.500
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 font-medium">
-                                1.200
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-r-0 font-medium">
-                                1
-                            </td>
-                        </tr>
-                        <!-- Add more <tr> elements here as needed -->
-                        <!-- Bottom Table don't use it to add more <tr> elements -->
-                        <tr class="text-center">
-                            <td
-                                class="px-2 py-4 border-t-0 border-l-0 border border-gray-300 border-b-0 text-neutral-400 font-medium">
-                                1
-                            </td>
-                            <td class="px-4 py-4 border border-gray-300 border-b-0 text-left font-medium">
-                                David Chandra
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-b-0 font-medium">
-                                12
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-b-0 font-medium">
-                                4
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-b-0 font-medium">
-                                4.500
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-b-0 font-medium">
-                                1.200
-                            </td>
-                            <td class="px-2 py-4 border border-gray-300 border-r-0 border-b-0 font-medium">
-                                1
-                            </td>
-                        </tr>
-                        <!-- Bottom Table don't use it to add more <tr> elements -->
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
