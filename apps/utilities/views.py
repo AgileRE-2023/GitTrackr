@@ -71,16 +71,22 @@ def search_repository(request):
                 form = AddRepositoryForm()
                 data = response.json()
                 repositories = data.get('items', [])
+
+                # Split full_name into owner and repository_name
+                for repository in repositories:
+                    repository['owner'], repository['repository_name'] = repository['full_name'].split('/')
+
                 folders = Folders.objects.all()
                 
                 folder_id = request.session.get('current_folder_id')
                 folder = Folders.objects.get(FolderID=folder_id)
                 
-                return render(request, 'utilities/add_repository.html', {'form': form,'repositories': repositories, 'folders': folders, 'folder': folder})
+                return render(request, 'utilities/add_repository.html', {'form': form, 'repositories': repositories, 'folders': folders, 'folder': folder})
             else:
                 print(f'Error {response.status_code}: {response.text}')
 
     return redirect('add_repository')
+
 
 @login_required
 def save_repository(request):

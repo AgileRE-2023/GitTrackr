@@ -18,7 +18,7 @@
 
     <!-- Content Start -->
     <div class="relative flex flex-row z-10 py-40 justify-center ">
-        <div class="bg-white mx-28 border-2 rounded-xl h-fit">
+        <div class="bg-white mx-20 border-2 rounded-xl h-fit">
             <div class="border-b-2 px-4 py-4">
                 <h1 class="text-black text-xl font-bold font-['Inter']">{{ folder.Folder_Name }}</h1>
             </div>
@@ -37,7 +37,7 @@
                 <p class="px-2 text-center text-black text-xl font-semibold font-['Montserrat']">Add repository</p>
             </div>
             <!-- Input Repository -->
-            <div class="py-4 px-2 w-[450px]">
+            <div class="py-4 px-4 w-[450px]">
                 <form method="post" action="{% url 'search_repository' %}">
                     {% csrf_token %}
                     {{ form.repository_name }}
@@ -74,17 +74,19 @@
             </div>
         </div>
         <div>
-            <ul>
+            <ul class="grid grid-cols-3 gap-2 mr-20">
                 {% for repository in repositories %}
-                    <li class="py-2 w-fit">
+                    <li class="py-2 mx-2">
                         <div class="bg-white shadow-lg rounded-lg p-2">
-                        <strong class="text-xl m-4 py-1 px-2">{{ repository.full_name }}</strong>
-                        <form method="post" action="{% url 'save_repository' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="repository_name" value="{{ repository.full_name }}">
-                            <input type="hidden" name="repository_url" value="{{ repository.html_url }}">
-                            <button type="submit" class="mx-4 my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500">Add to My Repositories</button>
-                        </form>
+                            <strong class="text-md py-1 px-2">{{ repository.repository_name }}</strong><br>
+                            <strong class="text-xs py-1 px-2">Owner:</strong><br>
+                            <strong class="text-xs py-1 px-2">{{ repository.owner }}</strong>
+                            <form method="post" action="{% url 'save_repository' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="repository_name" value="{{ repository.repository_name }}">
+                                <input type="hidden" name="repository_url" value="{{ repository.html_url }}">
+                                <button type="submit" class="my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500">Add to My Repositories</button>
+                            </form>
                         </div>
                     </li>
                 {% endfor %}

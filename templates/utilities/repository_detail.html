@@ -19,7 +19,7 @@
   <!-- Navbar End -->
   <!-- Content Start -->
   <div class="absolute">
-    <div class=" mt-36 mx-auto w-4/5">
+    <div class=" mt-36 mx-32">
       <div class=" text-gray-500 font-semibold text-sm">
         <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900"><i
             class="fa fa-arrow-left text-base"></i> back </a>
@@ -133,12 +133,13 @@
     </div>
     <!-- Sidebar End -->
     <div class="content w-full mr-32 ">
-     
-      <a  href="{% url 'developer_statistic' repository_id %}" class="flex flex-row justify-end mb-6">
-        <div class="bg-black text-white rounded items-center  px-5 font-semibold py-2">
-          Developers Activity
-        </div>
-      </a>
+      <div class="flex justify-end mb-6">
+        <a  href="{% url 'developer_statistic' repository_id %}">
+          <p class="bg-black text-white rounded items-center px-5 font-semibold py-2">
+            Developers Activity
+          </p>
+        </a>
+      </div>
      <!-- Graph Start -->
     <div class="border-gray-400 border-2 rounded-xl p-6">
       <div class="flex flex-row justify-between mb-11">
