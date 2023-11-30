@@ -18,9 +18,9 @@
 
     <!-- Content Start -->
     <div class="relative flex flex-row z-10 py-40 justify-center ">
-        <div class="bg-white mx-20 border-2 rounded-xl h-fit">
+        <div class="bg-white mx-28 border-2 rounded-xl h-fit">
             <div class="border-b-2 px-4 py-4">
-                <h1 class="text-black text-xl font-bold font-['Inter']">{{ folder.Folder_Name }}</h1>
+                <h1 class="text-black text-xl font-bold">{{ folder.Folder_Name }}'s Folder</h1>
             </div>
             <div class="flex items-center px-4 py-4">
                 <svg width="44" height="53" viewBox="0 0 54 63" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,10 +34,10 @@
                         d="M14.098 44.5753C12.9236 44.5753 11.7973 45.1271 10.9669 46.1094C10.1364 47.0917 9.66992 48.4239 9.66992 49.813C9.66992 51.2022 10.1364 52.5344 10.9669 53.5167C11.7973 54.4989 12.9236 55.0508 14.098 55.0508H26.275"
                         stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <p class="px-2 text-center text-black text-xl font-semibold font-['Montserrat']">Add repository</p>
+                <p class="px-2 text-center text-black text-xl font-semibold">Add repository</p>
             </div>
             <!-- Input Repository -->
-            <div class="py-4 px-4 w-[450px]">
+            <div class="py-4 px-2 w-[450px]">
                 <form method="post" action="{% url 'search_repository' %}">
                     {% csrf_token %}
                     {{ form.repository_name }}
@@ -62,30 +62,31 @@
             <!-- Input Repository -->
             <div class="flex px-8 py-4 border-t-2 justify-between">
                 <button type="button" class="bg-white border py-2 px-6 rounded-2xl border-black">
-                    <p class="text-center text-black text-lg font-semibold font-['Montserrat']">
+                    <p class="text-center text-black text-lg font-semibold ">
                         Cancel
                     </p>
                 </button>
                 <button type="button" class="bg-black border py-2 px-4 rounded-2xl border-black">
-                    <a href="{% url 'compare_repositories' folder.FolderID %}" class="text-center text-white text-lg font-semibold font-['Montserrat']">
+                    <a href="{% url 'compare_repositories' folder.FolderID %}" class="text-center text-white text-lg font-semibold">
                         Compare
                     </a>
                 </button>
             </div>
         </div>
         <div>
-            <ul class="grid grid-cols-3 gap-2 mr-20">
+            <ul class="grid grid-cols-2">
                 {% for repository in repositories %}
                     <li class="py-2 mx-2">
                         <div class="bg-white shadow-lg rounded-lg p-2">
                             <strong class="text-md py-1 px-2">{{ repository.repository_name }}</strong><br>
                             <strong class="text-xs py-1 px-2">Owner:</strong><br>
-                            <strong class="text-xs py-1 px-2">{{ repository.owner }}</strong>
+                            <strong class="text-xs py-1 px-2">{{ repository.repository_owner }}</strong>
                             <form method="post" action="{% url 'save_repository' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="repository_name" value="{{ repository.repository_name }}">
+                                <input type="hidden" name="repository_owner" value="{{ repository.repository_owner }}">
                                 <input type="hidden" name="repository_url" value="{{ repository.html_url }}">
-                                <button type="submit" class="my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500">Add to My Repositories</button>
+                                <button type="submit" class="my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500 add-to-folder-button">Add to My Folder</button>
                             </form>
                         </div>
                     </li>
@@ -133,7 +134,6 @@
             }
         }
 
-
         document.getElementById('clickableDiv').addEventListener('click', function () {
             showPermanentValue();
         });
@@ -176,7 +176,6 @@
                 deleteButton.style.display = "flex";
                 deleteButton.style.alignItems = "start";
                 deleteButton.style.justifyContent = "space-between";
-
 
                 permanentValuesContainer.appendChild(permanentValue);
                 permanentValuesContainer.appendChild(deleteButton);

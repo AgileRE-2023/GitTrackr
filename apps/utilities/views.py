@@ -60,10 +60,10 @@ def search_repository(request):
     if request.method == 'POST':
         form = AddRepositoryForm(request.POST)
         if form.is_valid():
-            repository_name = form.cleaned_data['repository_name']
+            full_repository_name = form.cleaned_data['repository_name']
 
             headers = {'Authorization': f'token {settings.GITHUB_TOKEN}'}
-            url = f'https://api.github.com/search/repositories?q={repository_name}'
+            url = f'https://api.github.com/search/repositories?q={full_repository_name}'
 
             response = requests.get(url, headers=headers)
 
@@ -74,28 +74,26 @@ def search_repository(request):
 
                 # Split full_name into owner and repository_name
                 for repository in repositories:
-                    repository['owner'], repository['repository_name'] = repository['full_name'].split('/')
+                    repository['repository_owner'], repository['repository_name'] = repository['full_name'].split('/')
 
                 folders = Folders.objects.all()
-                
+
                 folder_id = request.session.get('current_folder_id')
                 folder = Folders.objects.get(FolderID=folder_id)
-                
+
                 return render(request, 'utilities/add_repository.html', {'form': form, 'repositories': repositories, 'folders': folders, 'folder': folder})
             else:
                 print(f'Error {response.status_code}: {response.text}')
 
     return redirect('add_repository')
 
-
 @login_required
 def save_repository(request):
     if request.method == 'POST':
-        full_repository_name = request.POST.get('repository_name')
+        repository_name = request.POST.get('repository_name')
+        owner = request.POST.get('repository_owner')
         repository_url = request.POST.get('repository_url')
         folder_id = request.session.get('current_folder_id')
-
-        owner, repository_name = full_repository_name.split('/')
 
         if Repository.objects.filter(Repository_Name=repository_name, Folder_ID_id=folder_id, Url=repository_url).exists():
             messages.error(request, 'Repositori ini sudah ada di folder ini.')
