@@ -24,7 +24,7 @@
         
     </div>
     <div class="py-4 px-28">
-        <h1 class="text-black text-2xl font-medium font-['Montserrat'] py-2">
+        <h1 class="text-black text-2xl font-medium py-2 ml-2">
             Recently
         </h1>
         <div class="flex">
@@ -33,17 +33,17 @@
                 <a href="{% url 'add_repository_with_folder' folder_id=folder.FolderID %}">
                     <div class="flex flex-col justify-between">
                         <div class="flex items-center">
-                            <h1 class="text-black text-xl font-medium font-['Inter']">Repo name: <b>{{ folder.Folder_Name }}</b> </h1>
+                            <h1 class="text-black text-xl font-medium">Repo name: <b>{{ folder.Folder_Name }}</b> </h1>
                         </div>
                         <div class="flex items-center">
                             <p>Created at: <b>{{ folder.Created_At }}</b> </p>
                         </div>
                     </div>
                     <div class="">
-                        <p class="text-black text-xl font-bold font-['Inter'] leading-9 py-2">
+                        <p class="text-black text-xl font-bold leading-9 py-2">
                             Repositories List:
                         </p>
-                        <ul class="list-disc text-black text-xs font-normal font-['Inter'] px-5">
+                        <ul class="list-disc text-black text-xs font-normal px-5">
                             {% for repository in folder.repository_set.all %}
                             <li>
                                 {{ repository.Owner }} / {{ repository.Repository_Name }}

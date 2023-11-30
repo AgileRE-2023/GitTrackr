@@ -38,8 +38,8 @@
         </div>
         <div class="mx-28 my-10 shadow shadow-xl rounded-lg">
             <div class="px-4 bg-sky-100 rounded-t-lg">
-                <h1 class="text-neutral-600 text-xl font-semibold font-['Inter']">Comparison</h1>
-                <p class="text-neutral-400 text-base font-normal font-['Inter']">Total Comparison per Contributors</p>
+                <h1 class="text-neutral-600 text-xl font-semibold py-4">Comparison</h1>
+                <!-- <p class="text-neutral-400 text-base font-normal ">Total Comparison per Contributors</p> -->
             </div>
             <div class="py-6 px-4">
                 <table class="w-full table-auto">
@@ -50,8 +50,8 @@
                                     #
                                 </p>
                             </th>
-                            <th class="text-center border border-gray-300 border-t-0">
-                                <div class="flex items-center py-2 px-4 w-80">
+                            <th class="text-center border border-gray-300 border-t-0" data-sort="Developer_Name">
+                                <div class="flex items-center py-2 px-4 w-80 cursor-pointer">
                                     <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
                                         xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
                                         <path
@@ -61,8 +61,8 @@
                                     <p class="text-neutral-500 text-xl font-medium font-['Inter']">Developer Name</p>
                                 </div>
                             </th>
-                            <th class="text-center border border-gray-300 border-t-0 ">
-                                <div class="flex items-center justify-center py-2 px-2">
+                            <th class="text-center border border-gray-300 border-t-0 " data-sort="Commit">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
                                     <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
                                         xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
                                         <path
@@ -72,8 +72,8 @@
                                     <p class="text-neutral-500 text-xl font-medium font-['Inter']">Commit</p>
                                 </div>
                             </th>
-                            <th class="text-center border border-gray-300 border-t-0">
-                                <div class="flex items-center justify-center py-2 px-2">
+                            <th class="text-center border border-gray-300 border-t-0" data-sort="Additions">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
                                     <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
                                         xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
                                         <path
@@ -83,8 +83,8 @@
                                     <p class="text-neutral-500 text-xl font-medium font-['Inter']">Additions</p>
                                 </div>
                             </th>
-                            <th class="text-center border border-gray-300 border-t-0">
-                                <div class="flex items-center justify-center py-2 px-2">
+                            <th class="text-center border border-gray-300 border-t-0" data-sort="Deletions">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
                                     <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
                                         xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
                                         <path
@@ -94,15 +94,59 @@
                                     <p class="text-neutral-500 text-xl font-medium font-['Inter']">Deletions</p>
                                 </div>
                             </th>
-                            <th class="text-center border border-gray-300 border-t-0 border-r-0">
-                                <div class="flex items-center justify-center py-2 px-2">
+                            <th class="text-center border border-gray-300 border-t-0 border-r-0" data-sort="Pull_Request">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
                                     <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
                                         xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
                                         <path
                                             d="M10.5238 10.381L15.2857 15.1429M15.2857 15.1429L20.0476 10.381M15.2857 15.1429V0.857142M1 5.61905L5.7619 0.857142M5.7619 0.857142L10.5238 5.61905M5.7619 0.857142L5.7619 15.1429"
                                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Open Issue</p>
+                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Pull Request</p>
+                                </div>
+                            </th>
+                            <th class="text-center border border-gray-300 border-t-0 border-r-0" data-sort="Issues">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
+                                    <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
+                                        <path
+                                            d="M10.5238 10.381L15.2857 15.1429M15.2857 15.1429L20.0476 10.381M15.2857 15.1429V0.857142M1 5.61905L5.7619 0.857142M5.7619 0.857142L10.5238 5.61905M5.7619 0.857142L5.7619 15.1429"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Issues</p>
+                                </div>
+                            </th>
+                            <th class="text-center border border-gray-300 border-t-0 border-r-0" data-sort="First_Contribution">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
+                                    <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
+                                        <path
+                                            d="M10.5238 10.381L15.2857 15.1429M15.2857 15.1429L20.0476 10.381M15.2857 15.1429V0.857142M1 5.61905L5.7619 0.857142M5.7619 0.857142L10.5238 5.61905M5.7619 0.857142L5.7619 15.1429"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">First Contrib</p>
+                                </div>
+                            </th>
+                            <th class="text-center border border-gray-300 border-t-0 border-r-0" data-sort="Last_Contribution">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
+                                    <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
+                                        <path
+                                            d="M10.5238 10.381L15.2857 15.1429M15.2857 15.1429L20.0476 10.381M15.2857 15.1429V0.857142M1 5.61905L5.7619 0.857142M5.7619 0.857142L10.5238 5.61905M5.7619 0.857142L5.7619 15.1429"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Last Contrib</p>
+                                </div>
+                            </th>
+                            <th class="text-center border border-gray-300 border-t-0 border-r-0" data-sort="Average_Time_Between_Commits">
+                                <div class="flex items-center justify-center py-2 px-2 cursor-pointer">
+                                    <svg width="21" height="16" viewBox="0 0 21 16" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2">
+                                        <path
+                                            d="M10.5238 10.381L15.2857 15.1429M15.2857 15.1429L20.0476 10.381M15.2857 15.1429V0.857142M1 5.61905L5.7619 0.857142M5.7619 0.857142L10.5238 5.61905M5.7619 0.857142L5.7619 15.1429"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <p class="text-neutral-500 text-xl font-medium font-['Inter']">Avg Commit Time</p>
                                 </div>
                             </th>
                         </tr>
@@ -127,7 +171,19 @@
                                 {{ stat.Deletions }}
                             </td>
                             <td class="px-2 py-4 border border-gray-300 font-medium">
-                                {{ stat.Open_Issues }}
+                                {{ stat.Pull_Requests }}
+                            </td>
+                            <td class="px-2 py-4 border border-gray-300 font-medium">
+                                {{ stat.Issues }}
+                            </td>
+                            <td class="px-2 py-4 border border-gray-300 font-medium">
+                                {{ stat.First_Contribution }}
+                            </td>
+                            <td class="px-2 py-4 border border-gray-300 font-medium">
+                                {{ stat.Last_Contribution }}
+                            </td>
+                            <td class="px-2 py-4 border border-gray-300 font-medium">
+                                {{ stat.Average_Time_Between_Commits }}
                             </td>
                         </tr>
                         {% endfor %}
@@ -147,6 +203,42 @@
                 dropdownMenu.classList.toggle("hidden");
             });
         });
+
+        document.querySelectorAll('th[data-sort]').forEach(header => {
+            header.addEventListener('click', () => {
+                const table = header.closest('table');
+                const index = Array.prototype.indexOf.call(header.parentNode.children, header);
+                const order = header.getAttribute('data-order') || 'desc';
+                const newOrder = order === 'desc' ? 'asc' : 'desc';
+                const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+                // Menghapus kelas dan atribut urutan sortir saat ini
+                table.querySelectorAll('th[data-order]').forEach(th => {
+                    th.classList.remove('ascending', 'descending');
+                    th.removeAttribute('data-order');
+                });
+
+                // Menambahkan kelas dan atribut urutan sortir baru
+                header.classList.add(newOrder);
+                header.setAttribute('data-order', newOrder);
+
+                // Mengurutkan baris tabel
+                const sortedRows = rows.sort((a, b) => {
+                    const aValue = a.children[index].textContent;
+                    const bValue = b.children[index].textContent;
+
+                    if (!isNaN(aValue) && !isNaN(bValue)) {
+                        return newOrder === 'desc' ? bValue - aValue : aValue - bValue;
+                    } else {
+                        return newOrder === 'desc' ? bValue.localeCompare(aValue) : aValue.localeCompare(bValue);
+                    }
+                });
+
+                // Menambahkan baris tabel yang sudah diurutkan ke tbody
+                table.querySelector('tbody').append(...sortedRows);
+            });
+        });
+
     </script>
 </body>
 
