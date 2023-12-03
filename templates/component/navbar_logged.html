@@ -1,0 +1,21 @@
+{% load static %}
+<nav class="flex flex-row justify-between items-center shadow-lg pt-4 px-20 py-4 h-20 fixed w-full z-20 bg-white">
+    <a href="{% url 'loggedHomepage' %}">
+        <img src="{% static 'images/LogoGT.png' %}" alt="" class="h-12 ">
+    </a>
+    <a href="#" class="text-md font-bold">
+        DOCS
+    </a>
+    <div class="group relative">
+      <button  class="font-medium text-md font-sans flex justify-center  mt-4 h-12">
+        Hello, {{ user.first_name }}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.    5" stroke="currentColor" class="w-4 h-4 mt-1 ms-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+      </button>
+      <div  class="absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mb-1 " id="dropdownMenu">
+        <a href="{% url 'history' %}" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> History</a>
+        <a href="{% url 'logout' %}" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> Logout</a>
+      </div>
+    </div>
+  </nav>
