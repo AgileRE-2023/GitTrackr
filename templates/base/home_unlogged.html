@@ -18,20 +18,33 @@
     <!-- Navbar End -->
     {% block content %} 
     <!-- Content Start -->
-    <div
-        class="absolute h-80 w-3/4 rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1">
+    <div class="sm:hidden flex my-4 flex-row flex-col justify-center">
+        <img class="w-36 mx-auto" src="{% static 'images/LogoGT.png' %}" alt="logoGittrackr">
     </div>
-    <div class="flex flex-row justify-center">
-        <div class="my-64 flex justify-center items-center flex-col">
-            <div class="font-bold text-6xl z-10">
+    <!-- > 640px -->
+    <div
+        class="sm:block hidden absolute h-80 w-3/4 rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1">
+    </div>
+    <!-- > 640px -->
+    <!-- < 640px -->
+    <div
+        class="sm:hidden absolute my-20 h-96 w-full rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0">
+    </div>
+    <!-- < 640px -->
+    <div class="sm:flex grid flex-row justify-center">
+        <div class="sm:my-32 my-4 px-16 sm:hidden z-10">
+            <img class="mx-auto" src="{% static 'images/LandingImage.png' %}" alt="">
+        </div>
+        <div class="sm:my-64 flex justify-center items-center flex-col">
+            <div class="font-bold sm:text-6xl xs:text-3xl z-10 relative">
                 Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
                     &lt;/GitHub&gt;,</span> <br> Compare with Ease
             </div>
-            <div class="text-center font-medium mt-6 text-base">
+            <div class="relative z-10 text-center sm:font-medium mt-6 text-[10px] sm:text-base">
                 GitTrackr is Your GitHub Analytics Sidekick for In-Depth <br>
                 Repository Insights
             </div>
-            <form action="">
+            <form action="" class="sm:block hidden">
                 <div class="flex flex-row rounded-full mt-4 border-solid border-black border-2 bg-white z-10 px-2 py-3">
                     <input type="text" placeholder="Add folder name.."
                         class="h-5 mt-2 border-none placeholder-black pr-56  focus:outline-none focus:ring focus:border-none no-underline ">
@@ -49,12 +62,23 @@
                     </button>
                 </div>
             </form>
-
+            <div class="relative sm:hidden flex bg-slate-600 px-4 py-2 rounded-full my-10 z-10 border-2 border-bg-slate-600 hover:border-black hover:bg-white text-white hover:text-black">
+                <button class="font-bold">Get started</button>
+                <svg class="fill-white hover:fill-gray-500" width="43" height="25" viewBox="0 0 43 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1275_23)">
+                    <path d="M26.9405 18.2502L35.7553 13.1593C35.9158 13.0625 36.0417 12.9483 36.1256 12.8233C36.3019 12.5754 36.3019 12.2974 36.1256 12.0495C36.0417 11.9245 35.9158 11.8103 35.7553 11.7135L26.9405 6.62256C26.7762 6.52763 26.581 6.45232 26.3662 6.40094C26.1515 6.34956 25.9213 6.32312 25.6888 6.32312C25.2193 6.32312 24.7691 6.43083 24.4371 6.62256C24.1052 6.81429 23.9187 7.07432 23.9187 7.34547C23.9187 7.61661 24.1052 7.87665 24.4371 8.06838L30.2549 11.4182L16.874 11.4182C16.4064 11.4182 15.958 11.5255 15.6274 11.7164C15.2968 11.9074 15.111 12.1663 15.111 12.4364C15.111 12.7064 15.2968 12.9654 15.6274 13.1563C15.958 13.3473 16.4064 13.4546 16.874 13.4546L30.2549 13.4546L24.4371 16.8044C24.2719 16.899 24.1407 17.0116 24.0512 17.1357C23.9617 17.2598 23.9156 17.3929 23.9156 17.5273C23.9156 17.6617 23.9617 17.7948 24.0512 17.9189C24.1407 18.0429 24.2719 18.1555 24.4371 18.2502C24.601 18.3456 24.796 18.4214 25.0108 18.4731C25.2257 18.5248 25.4561 18.5514 25.6888 18.5514C25.9216 18.5514 26.152 18.5248 26.3668 18.4731C26.5817 18.4214 26.7766 18.3456 26.9405 18.2502Z" fill="white"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_1275_23">
+                    <rect x="42.311" y="0.218201" width="24.4364" height="42.3111" transform="rotate(90 42.311 0.218201)" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>                    
+            </div>
 
         </div>
-        <div class=" my-32 ">
+        <div class=" my-32 hidden sm:block">
             <img src="{% static 'images/LandingImage.png' %}" alt="">
-
         </div>
     </div>
     {% endblock %} 
