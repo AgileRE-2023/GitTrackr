@@ -799,6 +799,11 @@ select {
   margin: 1rem;
 }
 
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -858,6 +863,10 @@ select {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
 }
+
+.my-40 {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
 
 .my-5 {
   margin-top: 1.25rem;
@@ -1078,6 +1087,10 @@ select {
   width: 450px;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1178,6 +1191,21 @@ select {
   gap: 1.25rem;
 }
 
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(243 244 246 / var(--tw-divide-opacity));
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+  
 .overflow-x-auto {
   overflow-x: auto;
 }
@@ -1356,6 +1384,10 @@ select {
   padding: 1.5rem;
 }
 
+.p-40 {
+  padding: 10rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1421,8 +1453,17 @@ select {
   padding-bottom: 1.5rem;
 }
 
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .pr-32 {
@@ -1443,6 +1484,14 @@ select {
 
 .pt-\[50px\] {
   padding-top: 50px;
+}
+
+.pt-40 {
+  padding-top: 10rem;
+}
+
+.pt-32 {
+  padding-top: 8rem;
 }
 
 .text-left {
@@ -1471,6 +1520,10 @@ select {
 
 .font-serif {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.font-\[\'Poppins\'\] {
+  font-family: 'Poppins';
 }
 
 .text-2xl {
