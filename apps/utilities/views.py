@@ -87,6 +87,7 @@ def search_repository(request):
 
     return redirect('add_repository')
 
+
 @login_required
 def save_repository(request):
     if request.method == 'POST':

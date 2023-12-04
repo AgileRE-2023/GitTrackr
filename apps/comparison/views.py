@@ -8,8 +8,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse
 
-from master.models import Repository, Folders
-
 import datetime
 import requests
 import json
@@ -107,3 +105,7 @@ def developer_statistic(request, repository_id):
 
     return render(request, 'comparison/developer_statistic.html', {'stats': stats})
 
+@login_required
+def compare(request):
+    folders = Folders.objects.filter(UserID=request.user)
+    return render(request, 'comparison/compare_repository.html', {'folders': folders})
