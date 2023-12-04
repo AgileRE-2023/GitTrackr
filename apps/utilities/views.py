@@ -105,10 +105,10 @@ def search_repository(request):
     if request.method == 'POST':
         form = AddRepositoryForm(request.POST)
         if form.is_valid():
-            full_repository_name = form.cleaned_data['repository_name']
+            repository_name = form.cleaned_data['repository_name']
 
             headers = {'Authorization': f'token {settings.GITHUB_TOKEN}'}
-            url = f'https://api.github.com/search/repositories?q={full_repository_name}'
+            url = f'https://api.github.com/search/repositories?q={repository_name}'
 
             response = requests.get(url, headers=headers)
 
@@ -116,17 +116,12 @@ def search_repository(request):
                 form = AddRepositoryForm()
                 data = response.json()
                 repositories = data.get('items', [])
-
-                # Split full_name into owner and repository_name
-                for repository in repositories:
-                    repository['repository_owner'], repository['repository_name'] = repository['full_name'].split('/')
-
                 folders = Folders.objects.all()
-
+                
                 folder_id = request.session.get('current_folder_id')
                 folder = Folders.objects.get(FolderID=folder_id)
-
-                return render(request, 'utilities/add_repository.html', {'form': form, 'repositories': repositories, 'folders': folders, 'folder': folder})
+                
+                return render(request, 'utilities/add_repository.html', {'form': form,'repositories': repositories, 'folders': folders, 'folder': folder})
             else:
                 print(f'Error {response.status_code}: {response.text}')
 
@@ -135,19 +130,19 @@ def search_repository(request):
 @login_required
 def save_repository(request):
     if request.method == 'POST':
-        repository_name = request.POST.get('repository_name')
-        owner = request.POST.get('repository_owner')
+        full_repository_name = request.POST.get('repository_name')
         repository_url = request.POST.get('repository_url')
-        folder_id = request.session.get('current_folder_id')
+        folder_id = request.session.get('current_folder_id')  # dapatkan FolderID dari sesi
 
-        if Repository.objects.filter(Repository_Name=repository_name, Folder_ID_id=folder_id, Url=repository_url).exists():
-            messages.error(request, 'Repositori ini sudah ada di folder ini.')
-            return redirect('add_repository_with_folder', folder_id=folder_id)
+        # Pisahkan full_repository_name menjadi owner dan repository_name
+        owner, repository_name = full_repository_name.split('/')
 
-        repository = Repository(Owner=owner, Repository_Name=repository_name, Url=repository_url, Folder_ID_id=folder_id)
+        # Simpan repository ke dalam database
+        repository = Repository(Owner=owner, Repository_Name=repository_name, Url=repository_url,Folder_ID_id=folder_id)
         repository.save()
 
     return redirect('add_repository_with_folder', folder_id=folder_id)
+
 
 def five_repository(request):
     saved_repositories = Repository.objects.all()[:5]  # Retrieve the first 5 repositories

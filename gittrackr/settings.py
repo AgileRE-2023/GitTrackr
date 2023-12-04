@@ -1,6 +1,10 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import pymysql
+
+pymysql.version_info = (1,4,6,'final',0)
+pymysql.install_as_MySQLdb
 
 load_dotenv()
 
@@ -45,7 +49,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd" #masing masing direktori node.js
+NPM_BIN_PATH = "/usr/local/bin/npm" #masing masing direktori node.js
 
 
 MIDDLEWARE = [
@@ -90,8 +94,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GitTrackr',
         'USER': 'root',
-        'PASSWORD': 'JohanRN@70',
-        'PORT': 3306,
+        'PASSWORD': '',
+        'PORT': 3307,
         'HOST': '127.0.0.1',
     }
 }
