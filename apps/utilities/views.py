@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse
+from datetime import datetime, timedelta
 from github import Github
 
 from .forms import AddRepositoryForm
@@ -34,10 +35,54 @@ def repository_detail(request, repository_id):
         'Branch': github_repo.default_branch,
         'Contributors': [contributor.login for contributor in github_repo.get_contributors()],
         'Stars': github_repo.stargazers_count,
+        'CountCommit': json.dumps(get_github_data(github_repo)),
+        'CountPullreq': json.dumps(count_pull_requests(github_repo)),
     }
 
     return render(request, 'utilities/repository_detail.html', {'details': details, 'repository_id': repository_id})
+def get_github_data(repo):
+    # Buat kamus untuk menyimpan jumlah commit per bulan
+    commit_count_data = {}
 
+    # Loop melalui semua commit
+    for commit in repo.get_commits():
+        timestamp = commit.commit.author.date.timestamp()
+        commit_date = datetime.fromtimestamp(timestamp)
+        month_year = commit_date.strftime('%Y-%m')
+        contributor = commit.commit.author.name
+
+        # Tambahkan data ke kamus
+        if month_year not in commit_count_data:
+            commit_count_data[month_year] = {'total': 0, 'contributors': {}}
+
+        commit_count_data[month_year]['total'] += 1
+
+        if contributor not in commit_count_data[month_year]['contributors']:
+            commit_count_data[month_year]['contributors'][contributor] = 1
+        else:
+            commit_count_data[month_year]['contributors'][contributor] += 1
+        
+    return commit_count_data
+def count_pull_requests(repo):
+    pull_requests = repo.get_pulls(state='all')  # Ambil semua pull request, termasuk yang ditutup
+    pull_request_count_data = {}
+
+    for pull_request in pull_requests:
+        timestamp = pull_request.created_at.timestamp()
+        pull_request_date = datetime.fromtimestamp(timestamp)
+        month_year = pull_request_date.strftime('%Y-%m')
+        contributor = pull_request.user.login
+
+        if month_year not in pull_request_count_data:
+            pull_request_count_data[month_year] = {'total': 0, 'contributors': {}}
+        pull_request_count_data[month_year]['total'] += 1
+
+        if contributor not in pull_request_count_data[month_year]['contributors']:
+            pull_request_count_data[month_year]['contributors'][contributor] = 1
+        else:
+            pull_request_count_data[month_year]['contributors'][contributor] += 1
+
+    return pull_request_count_data
 @login_required
 def history(request):
     folders = Folders.objects.filter(UserID=request.user)
