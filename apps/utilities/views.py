@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse
+from datetime import datetime, timedelta
 from github import Github
 
 from .forms import AddRepositoryForm
@@ -34,10 +35,54 @@ def repository_detail(request, repository_id):
         'Branch': github_repo.default_branch,
         'Contributors': [contributor.login for contributor in github_repo.get_contributors()],
         'Stars': github_repo.stargazers_count,
+        'CountCommit': json.dumps(get_github_data(github_repo)),
+        'CountPullreq': json.dumps(count_pull_requests(github_repo)),
     }
 
     return render(request, 'utilities/repository_detail.html', {'details': details, 'repository_id': repository_id})
+def get_github_data(repo):
+    # Buat kamus untuk menyimpan jumlah commit per bulan
+    commit_count_data = {}
 
+    # Loop melalui semua commit
+    for commit in repo.get_commits():
+        timestamp = commit.commit.author.date.timestamp()
+        commit_date = datetime.fromtimestamp(timestamp)
+        month_year = commit_date.strftime('%Y-%m')
+        contributor = commit.commit.author.name
+
+        # Tambahkan data ke kamus
+        if month_year not in commit_count_data:
+            commit_count_data[month_year] = {'total': 0, 'contributors': {}}
+
+        commit_count_data[month_year]['total'] += 1
+
+        if contributor not in commit_count_data[month_year]['contributors']:
+            commit_count_data[month_year]['contributors'][contributor] = 1
+        else:
+            commit_count_data[month_year]['contributors'][contributor] += 1
+        
+    return commit_count_data
+def count_pull_requests(repo):
+    pull_requests = repo.get_pulls(state='all')  # Ambil semua pull request, termasuk yang ditutup
+    pull_request_count_data = {}
+
+    for pull_request in pull_requests:
+        timestamp = pull_request.created_at.timestamp()
+        pull_request_date = datetime.fromtimestamp(timestamp)
+        month_year = pull_request_date.strftime('%Y-%m')
+        contributor = pull_request.user.login
+
+        if month_year not in pull_request_count_data:
+            pull_request_count_data[month_year] = {'total': 0, 'contributors': {}}
+        pull_request_count_data[month_year]['total'] += 1
+
+        if contributor not in pull_request_count_data[month_year]['contributors']:
+            pull_request_count_data[month_year]['contributors'][contributor] = 1
+        else:
+            pull_request_count_data[month_year]['contributors'][contributor] += 1
+
+    return pull_request_count_data
 @login_required
 def history(request):
     folders = Folders.objects.filter(UserID=request.user)
@@ -60,10 +105,10 @@ def search_repository(request):
     if request.method == 'POST':
         form = AddRepositoryForm(request.POST)
         if form.is_valid():
-            full_repository_name = form.cleaned_data['repository_name']
+            repository_name = form.cleaned_data['repository_name']
 
             headers = {'Authorization': f'token {settings.GITHUB_TOKEN}'}
-            url = f'https://api.github.com/search/repositories?q={full_repository_name}'
+            url = f'https://api.github.com/search/repositories?q={repository_name}'
 
             response = requests.get(url, headers=headers)
 
@@ -71,17 +116,12 @@ def search_repository(request):
                 form = AddRepositoryForm()
                 data = response.json()
                 repositories = data.get('items', [])
-
-                # Split full_name into owner and repository_name
-                for repository in repositories:
-                    repository['repository_owner'], repository['repository_name'] = repository['full_name'].split('/')
-
                 folders = Folders.objects.all()
-
+                
                 folder_id = request.session.get('current_folder_id')
                 folder = Folders.objects.get(FolderID=folder_id)
-
-                return render(request, 'utilities/add_repository.html', {'form': form, 'repositories': repositories, 'folders': folders, 'folder': folder})
+                
+                return render(request, 'utilities/add_repository.html', {'form': form,'repositories': repositories, 'folders': folders, 'folder': folder})
             else:
                 print(f'Error {response.status_code}: {response.text}')
 
@@ -90,19 +130,19 @@ def search_repository(request):
 @login_required
 def save_repository(request):
     if request.method == 'POST':
-        repository_name = request.POST.get('repository_name')
-        owner = request.POST.get('repository_owner')
+        full_repository_name = request.POST.get('repository_name')
         repository_url = request.POST.get('repository_url')
-        folder_id = request.session.get('current_folder_id')
+        folder_id = request.session.get('current_folder_id')  # dapatkan FolderID dari sesi
 
-        if Repository.objects.filter(Repository_Name=repository_name, Folder_ID_id=folder_id, Url=repository_url).exists():
-            messages.error(request, 'Repositori ini sudah ada di folder ini.')
-            return redirect('add_repository_with_folder', folder_id=folder_id)
+        # Pisahkan full_repository_name menjadi owner dan repository_name
+        owner, repository_name = full_repository_name.split('/')
 
-        repository = Repository(Owner=owner, Repository_Name=repository_name, Url=repository_url, Folder_ID_id=folder_id)
+        # Simpan repository ke dalam database
+        repository = Repository(Owner=owner, Repository_Name=repository_name, Url=repository_url,Folder_ID_id=folder_id)
         repository.save()
 
     return redirect('add_repository_with_folder', folder_id=folder_id)
+
 
 def five_repository(request):
     saved_repositories = Repository.objects.all()[:5]  # Retrieve the first 5 repositories
