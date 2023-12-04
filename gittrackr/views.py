@@ -15,15 +15,20 @@ def indexLogged(request):
 
     return render(request, "base/home_logged.html", {'form': form})
 
-def add_folder(request):
+def create_folder(request):
     form = AddRepositoryForm()
     if request.method == 'POST':
         folder_name = request.POST.get('folder_name')
 
-        # # Gunakan user yang sudah login
+        # Gunakan user yang sudah login
         user = request.user
 
         # Simpan repository ke dalam database
-        folders = Folders(Folder_Name=folder_name, UserID=user)
+        folders = Folders.objects.create(Folder_Name=folder_name, UserID=user)
         folders.save()
-    return render(request, "utilities/add_repository.html", {'form': form})
+
+        # Simpan FolderID ke dalam sesi
+        request.session['current_folder_id'] = folders.FolderID
+
+        # Arahkan pengguna ke halaman 'add_repository' untuk folder baru
+        return redirect('add_repository_with_folder', folder_id=folders.FolderID)
