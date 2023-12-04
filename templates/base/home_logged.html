@@ -4,71 +4,71 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" /> -->
-  <title>Landing Page</title>
-  {% tailwind_css %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    {% tailwind_css %}
 </head>
 
 <body>
-  <!-- Navbar Start -->
-  {% block section %}
-  {% include "component/navbar_logged.html" %}
-  {% endblock %}
-  <!-- Navbar End -->
-
-  <!-- Content Start -->
-  <div
-    class="absolute h-80 w-3/4 rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1">
-  </div>
-  <div class="flex flex-row justify-center ">
-    <div class="my-64 flex justify-center items-center flex-col">
-      <div class="font-bold text-6xl z-10">
-        Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
-          &lt;/GitHub&gt;,</span> <br> Compare with Ease
-      </div>
-      <div class="text-center font-medium mt-6 text-base">
-        GitTrackr is Your GitHub Analytics Sidekick for In-Depth <br>
-        Repository Insights
-      </div>
-      <form method="post" action="{% url 'create_folder' %}">
-        <div class="flex flex-row rounded-full mt-4 border-solid border-black border-2 bg-white z-10 px-2 py-3 justify-center items-center gap-5">
-          <!-- <div type="text" placeholder="Add folder name.." class="h-5 mt-2 border-none placeholder-black pr-56  focus:outline-none focus:ring focus:border-none no-underline ">
-          </div> -->
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button class="w-30 h-10 flex flex-row bg-[#455A64] rounded-[1.25rem] justify-center items-center px-5 mr-1"
-            type="submit">
-            <div class=" text-white font-bold text-base pb-1">
-              Create
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="25" viewBox="0 0 28 25" fill="none">
-              <path
-                d="M17.4894 18.1163L23.1421 13.048C23.245 12.9515 23.3257 12.8379 23.3795 12.7134C23.4926 12.4666 23.4926 12.1898 23.3795 11.943C23.3257 11.8186 23.245 11.7049 23.1421 11.6085L17.4894 6.54015C17.384 6.44564 17.2588 6.37066 17.1211 6.31951C16.9834 6.26836 16.8358 6.24203 16.6867 6.24203C16.3856 6.24203 16.0969 6.34927 15.884 6.54015C15.6711 6.73103 15.5515 6.98992 15.5515 7.25986C15.5515 7.5298 15.6711 7.78869 15.884 7.97957L19.6148 11.3146L11.034 11.3146C10.7342 11.3146 10.4466 11.4214 10.2346 11.6115C10.0226 11.8016 9.90347 12.0594 9.90347 12.3282C9.90347 12.5971 10.0226 12.8549 10.2346 13.045C10.4466 13.2351 10.7342 13.3419 11.034 13.3419L19.6148 13.3419L15.884 16.6769C15.7781 16.7712 15.694 16.8833 15.6366 17.0068C15.5792 17.1303 15.5496 17.2628 15.5496 17.3966C15.5496 17.5304 15.5792 17.6629 15.6366 17.7865C15.694 17.91 15.7781 18.0221 15.884 18.1163C15.9891 18.2113 16.1142 18.2868 16.2519 18.3382C16.3897 18.3897 16.5375 18.4162 16.6867 18.4162C16.836 18.4162 16.9837 18.3897 17.1215 18.3382C17.2593 18.2868 17.3843 18.2113 17.4894 18.1163Z"
-                fill="white" />
-            </svg>
-          </button>
+    <!-- Navbar Start -->
+    {% block section %}
+    {% include "component/navbar_logged.html" %} 
+    {% endblock %}
+    <!-- Navbar End -->
+    {% block content %} 
+    <!-- Content Start -->
+    <div class="sm:hidden flex my-4 flex-row flex-col justify-center">
+        <img class="w-36 mx-auto" src="{% static 'images/LogoGT.png' %}" alt="logoGittrackr">
+    </div>
+    <!-- > 640px -->
+    <div
+        class="sm:block hidden absolute h-80 w-3/4 rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1">
+    </div>
+    <!-- > 640px -->
+    <!-- < 640px -->
+    <div
+        class="sm:hidden absolute my-20 h-96 w-full rounded-sm bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-200 to-transparent blur-3xl z-0">
+    </div>
+    <!-- < 640px -->
+    <div class="sm:flex grid flex-row justify-center">
+        <div class="sm:my-32 my-4 px-16 sm:hidden z-10">
+            <img class="mx-auto" src="{% static 'images/LandingImage.png' %}" alt="">
         </div>
-      </form>
+        <div class="sm:my-64 flex justify-center items-center flex-col">
+            <div class="font-bold sm:text-4xl lg:text-6xl xs:text-3xl z-10 relative">
+                Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
+                    &lt;/GitHub&gt;,</span> <br> Compare with Ease
+            </div>
+            <div class="relative z-10 text-center sm:font-medium mt-6 text-[10px] sm:text-base">
+                GitTrackr is Your GitHub Analytics Sidekick for In-Depth <br>
+                Repository Insights
+            </div>
+            <form class="relative w-full" method="post" action="{% url 'create_folder' %}">
+              <div class="relative sm:w-full w-fit mx-auto flex flex-row rounded-lg sm:rounded-full mt-4 border-solid border-black border-2 bg-white z-10 px-2 py-1 sm:py-3 justify-between items-center gap-5">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="relative w-auto h-10 flex flex-row bg-[#455A64] rounded-lg sm:rounded-[1.25rem] justify-center items-center px-5 mr-1"
+                  type="submit">
+                  <div class=" text-white font-bold text-xs sm:text-base pb-1">
+                    Create
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="25" viewBox="0 0 28 25" fill="none">
+                    <path
+                      d="M17.4894 18.1163L23.1421 13.048C23.245 12.9515 23.3257 12.8379 23.3795 12.7134C23.4926 12.4666 23.4926 12.1898 23.3795 11.943C23.3257 11.8186 23.245 11.7049 23.1421 11.6085L17.4894 6.54015C17.384 6.44564 17.2588 6.37066 17.1211 6.31951C16.9834 6.26836 16.8358 6.24203 16.6867 6.24203C16.3856 6.24203 16.0969 6.34927 15.884 6.54015C15.6711 6.73103 15.5515 6.98992 15.5515 7.25986C15.5515 7.5298 15.6711 7.78869 15.884 7.97957L19.6148 11.3146L11.034 11.3146C10.7342 11.3146 10.4466 11.4214 10.2346 11.6115C10.0226 11.8016 9.90347 12.0594 9.90347 12.3282C9.90347 12.5971 10.0226 12.8549 10.2346 13.045C10.4466 13.2351 10.7342 13.3419 11.034 13.3419L19.6148 13.3419L15.884 16.6769C15.7781 16.7712 15.694 16.8833 15.6366 17.0068C15.5792 17.1303 15.5496 17.2628 15.5496 17.3966C15.5496 17.5304 15.5792 17.6629 15.6366 17.7865C15.694 17.91 15.7781 18.0221 15.884 18.1163C15.9891 18.2113 16.1142 18.2868 16.2519 18.3382C16.3897 18.3897 16.5375 18.4162 16.6867 18.4162C16.836 18.4162 16.9837 18.3897 17.1215 18.3382C17.2593 18.2868 17.3843 18.2113 17.4894 18.1163Z"
+                      fill="white" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+        </div>
+        <div class=" my-32 hidden sm:block">
+            <img src="{% static 'images/LandingImage.png' %}" alt="">
+        </div>
     </div>
-    <div class=" my-32 ">
-      <img src="{% static 'images/LandingImage.png' %}" alt="">
+    {% endblock %} 
+    <!-- Content End -->
 
-    </div>
-  </div>
-  <!-- Content End -->
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const dropdownButton = document.querySelector(".group");
-      const dropdownMenu = document.getElementById("dropdownMenu");
-
-      dropdownButton.addEventListener("click", function () {
-        dropdownMenu.classList.toggle("hidden");
-      });
-    });
-  </script>
 </body>
 
 </html>
