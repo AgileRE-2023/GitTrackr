@@ -15,35 +15,40 @@
     {% include "component/navbar_unlog.html" %}
     {% endblock %}
     <!-- Navbar End -->
-    <!-- Content Start -->
+     <!-- Content Start -->
+     <div class="sm:hidden flex my-4 flex-row flex-col justify-center">
+        <img class="w-36 mx-auto" src="{% static 'images/LogoGT.png' %}" alt="logoGittrackr">
+    </div>
     <div
         class="absolute top-1/2 left-1/2 h-full w-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] blur-2xl from-cyan-50 to-transparent transform -translate-x-1/2 -translate-y-1/2 z-0">
     </div>
-    <div class="flex flex-row justify-center ">
-        <div class="mt-36 flex justify-center items-center flex-col z-10">
-            <div class="font-bold text-6xl z-10">
-                Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
-                    &lt;/GitHub&gt;,</span> <br> Compare with Ease
-            </div>
-            <div class="mt-16 font-bold text-4xl z-10">
+    <div class="sm:py-64 flex justify-center items-center flex-col">
+        <div class="font-bold sm:text-4xl lg:text-6xl xs:text-3xl pt-10 z-10 relative">
+            Discover <span class="bg-gradient-to-r from-cyan-400 to-sky-600 bg-clip-text text-transparent ">
+                &lt;/GitHub&gt;,</span> <br> Compare with Ease
+        </div>
+            <div class="mt-16 font-semibold text-xl z-10">
                 Welcome Back
             </div>
-            <div class="mt-1 text-lg text-black font-extralight z-10">
-                Sign in to your GitTrackr account
+            <div class="mt-1 text-lg text-black font-extralight z-10 text-center">
+                Sign in to your <br> GitTrackr account
             </div>
-            <a href="{% url 'social:begin' 'google-oauth2' %}"><button
-                    class="mt-12 flex items-center rounded-xl border-solid border-black border-2 bg-white z-10 px-8 h-14 w-96"
+            
+            <a class="relative z-10 mx-auto" href="{% url 'social:begin' 'google-oauth2' %}">
+                <button
+                    class="mt-12 flex justify-center items-center w-fit items-center rounded-xl border-solid border-black border-2 bg-white z-10 px-8 h-14 w-96"
                     type="button">
                     <img class="h-10 w-10 left-1" src="{% static 'images/google_icon.png' %}" alt="">
-                    <div class="ml-14 text-black font-normal text-lg pb-1">
+                    <div class="mx-10 text-black font-normal text-lg pb-1">
                         Sign In With Google
                     </div>
                 </button></a>
-            <div class="mt-8 text-base font-light text-grey-500 text-center">
-                By clicking Sign In above, you acknowledge that you have <br>
-                read and agree to GitTrackr <span class="underline"><a href="#">Terms</a></span> and <span
-                    class="underline"><a href="#">Privacy Policy</a></span>
-            </div>
+                <div class="relative z-10 mt-8 text-xs sm:text-base font-light text-grey-500 text-center">
+                    By clicking Sign In above, you acknowledge that you have <br>
+                    read and agree to GitTrackr <span class="underline"><a href="#">Terms</a></span> and <span
+                        class="underline"><a href="#">Privacy Policy</a></span>
+                </div>
+        
         </div>
     </div>
     <!-- Content End -->
