@@ -799,6 +799,11 @@ select {
   margin: 1rem;
 }
 
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -809,19 +814,24 @@ select {
   margin-right: 7rem;
 }
 
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
-
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .my-32 {
@@ -834,6 +844,11 @@ select {
   margin-bottom: 1rem;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .my-64 {
   margin-top: 16rem;
   margin-bottom: 16rem;
@@ -842,6 +857,11 @@ select {
 .my-7 {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
+}
+
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
 }
 
 .mb-1 {
@@ -1070,6 +1090,10 @@ select {
   width: 450px;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1167,6 +1191,25 @@ select {
 
 .gap-5 {
   gap: 1.25rem;
+}
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(243 244 246 / var(--tw-divide-opacity));
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
 }
 
 .overflow-x-hidden {
@@ -1383,6 +1426,11 @@ select {
   padding-bottom: 0.25rem;
 }
 
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1412,6 +1460,10 @@ select {
   padding-bottom: 0.25rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
 .pr-32 {
   padding-right: 8rem;
 }
@@ -1420,12 +1472,16 @@ select {
   padding-right: 14rem;
 }
 
+.pt-32 {
+  padding-top: 8rem;
+}
+
 .pt-4 {
   padding-top: 1rem;
 }
 
-.pt-\[50px\] {
-  padding-top: 50px;
+.pt-\[100px\] {
+  padding-top: 100px;
 }
 
 .text-left {
@@ -1442,6 +1498,10 @@ select {
 
 .font-\[\'Montserrat\'\] {
   font-family: 'Montserrat';
+}
+
+.font-\[\'Poppins\'\] {
+  font-family: 'Poppins';
 }
 
 .font-sans {
@@ -1680,6 +1740,7 @@ select {
   }
 }
 
+
 @media (min-width: 640px) {
   .sm\:visible {
     visibility: visible;
@@ -1752,6 +1813,29 @@ select {
   }
 
   .sm\:text-xl {
+=======
+@media (min-width: 1024px) {
+  .lg\:mx-28 {
+    margin-left: 7rem;
+    margin-right: 7rem;
+  }
+
+  .lg\:my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .lg\:my-6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
