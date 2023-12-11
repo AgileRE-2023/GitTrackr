@@ -17,33 +17,41 @@
     <!-- Navbar End -->
 
     <!-- Content Start -->
-    <div class="flex justify-end pr-32 ">
-        <input type="text" class="w-96 border border-gray-300 rounded-lg p-2" placeholder="Search..">
+    <div class="relative flex pt-36 sm:pt-40 justify-between sm:px-32 px-4 items-center">
+        <a href="" class="w-fit flex rounded-lg shadow-xl bg-white px-4 py-2 items-center">
+            <button type="button" class="text-xs">Add New Folder</button>
+            <svg class="mx-2" width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.0352 7.99805H8.03516V13.998H6.03516V7.99805H0.0351562V5.99805H6.03516V-0.00195312H8.03516V5.99805H14.0352V7.99805Z" fill="black"/>
+                </svg>
+        </a>
+        <div class="flex items-center border border-gray-300 rounded-lg px-2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.5 14H14.71L14.43 13.73C15.4439 12.554 16.0011 11.0527 16 9.5C16 8.21442 15.6188 6.95772 14.9046 5.8888C14.1903 4.81988 13.1752 3.98676 11.9874 3.49479C10.7997 3.00282 9.49279 2.87409 8.23192 3.1249C6.97104 3.3757 5.81285 3.99477 4.90381 4.90381C3.99477 5.81285 3.3757 6.97104 3.1249 8.23192C2.87409 9.49279 3.00282 10.7997 3.49479 11.9874C3.98676 13.1752 4.81988 14.1903 5.8888 14.9046C6.95772 15.6188 8.21442 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#545454"/>
+                </svg>
+            <input type="text" class="w-fit lg:w-96 text-xs sm:text-base border-none focus:outline-none no-underline focus:border-none" placeholder="Search..">
+        </div>
     </div>
-    <div class="py-4 mt-12 px-28">
-        
-    </div>
-    <div class="py-4 px-28">
+    <div class="py-4 sm:px-28 px-4">
         <h1 class="text-black text-2xl font-medium py-2 ml-2">
             Recently
         </h1>
-        <div class="flex">
+        <div class="grid lg:grid-cols-4 grid-cols-2 gap-2 xl:gap-10">
             {% for folder in folders %}
-            <div class="bg-sky-100 px-4 py-2 w-full rounded-xl shadow-lg m-2">
+            <div class="bg-sky-100 px-3 sm:px-4 py-2 w-fit rounded-xl shadow-lg">
                 <a href="{% url 'add_repository_with_folder' folder_id=folder.FolderID %}">
                     <div class="flex flex-col justify-between">
                         <div class="flex items-center">
-                            <h1 class="text-black text-xl font-medium">Repo name: <b>{{ folder.Folder_Name }}</b> </h1>
+                            <h1 class="text-black text-md sm:text-base lg:text-xl font-medium">Repo name: <b>{{ folder.Folder_Name }}</b> </h1>
                         </div>
-                        <div class="flex items-center">
-                            <p>Created at: <b>{{ folder.Created_At }}</b> </p>
+                        <div class="flex items-center text-xs sm:text-base lg:text-lg">
+                            <p>Created at: <br> <b>{{ folder.Created_At }}</b> </p>
                         </div>
                     </div>
                     <div class="">
-                        <p class="text-black text-xl font-bold leading-9 py-2">
+                        <p class="text-black text-md sm:text-base lg:text-xl font-bold leading-9 py-2">
                             Repositories List:
                         </p>
-                        <ul class="list-disc text-black text-xs font-normal px-5">
+                        <ul class="list-disc text-black text-xs font-normal px-4 sm:px-5">
                             {% for repository in folder.repository_set.all %}
                             <li>
                                 {{ repository.Owner }} / {{ repository.Repository_Name }}
