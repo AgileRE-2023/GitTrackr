@@ -9,6 +9,32 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>Detail Repository</title>
   {% tailwind_css %}
+  <style>
+    #loadingSpinner {
+        z-index: 10;
+    }
+    .spinner {
+        border: 4px solid rgba(255, 9, 9, 0.587);
+        border-radius: 50%;
+        border-top: 4px solid #fff;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 1s linear infinite; /* Safari */
+        animation: spin 1s linear infinite;
+        position: fixed;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
 </head>
 
 <body>
@@ -17,12 +43,32 @@
   {% include "component/navbar_logged.html" %}
   {% endblock %}
   <!-- Navbar End -->
+  <div id="loadingSpinner" class="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center hidden ">
+    <div class="spinner"></div>
+  </div>
   <!-- Content Start -->
   <div class="absolute">
-    <div class=" mt-36 mx-auto w-4/5 sm:mx-auto">
+    <div class=" mt-24 mx-32">
       <div class=" text-gray-500 font-semibold text-sm">
-        <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900 hidden sm:block"><i
-            class="fa fa-arrow-left text-base"></i> back </a>
+        <button class="flex items-center back-button">
+          <svg
+            width="15"
+            height="16"
+            viewBox="0 0 15 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.60901 0.543593L0.356415 6.78845C0.242567 6.90723 0.153324 7.04729 0.0938059 7.20061C-0.0312686 7.50468 -0.0312686 7.84575 0.0938059 8.14982C0.153324 8.30314 0.242567 8.4432 0.356415 8.56198L6.60901 14.8068C6.72561 14.9233 6.86403 15.0157 7.01637 15.0787C7.16871 15.1417 7.33199 15.1741 7.49688 15.1741C7.8299 15.1741 8.14927 15.042 8.38475 14.8068C8.62023 14.5717 8.75252 14.2527 8.75252 13.9201C8.75252 13.5875 8.62023 13.2685 8.38475 13.0333L4.25804 8.92418H13.7495C14.0811 8.92418 14.3992 8.7926 14.6337 8.55837C14.8682 8.32414 15 8.00646 15 7.67521C15 7.34397 14.8682 7.02629 14.6337 6.79206C14.3992 6.55783 14.0811 6.42624 13.7495 6.42624L4.25804 6.42624L8.38475 2.31713C8.50196 2.20102 8.59499 2.06289 8.65848 1.91069C8.72197 1.75849 8.75465 1.59524 8.75465 1.43036C8.75465 1.26548 8.72197 1.10223 8.65848 0.950037C8.59499 0.797838 8.50196 0.659702 8.38475 0.543593C8.2685 0.42653 8.13019 0.333611 7.9778 0.270203C7.82542 0.206794 7.66197 0.17415 7.49688 0.17415C7.3318 0.17415 7.16835 0.206794 7.01596 0.270203C6.86357 0.333611 6.72527 0.42653 6.60901 0.543593Z"
+              fill="#A3A3A3"
+            />
+          </svg>
+          <div
+            class="text-neutral-400 text-base font-medium p-2"
+            >
+            back
+          </div>
+        </button>
         <div class="text-gray-700 font-bold text-xl mt-4">
           {{ details.Repository_Name }}
         </div>
@@ -34,10 +80,10 @@
     </div>
   
   
-  <div class="flex flex-col-reverse sm:flex-row">
+  <div class="flex flex-row">
      <!-- Sidebar Start -->
-    <div class="sidebar mt-6 sm:mt-0">
-      <div class="flex flex-col ml-7 sm:ml-32 mr-7 sm:mr-6 mx-auto">
+    <div class="sidebar mr-6">
+      <div class="flex flex-col ml-32">
         <div class="font-semibold text-xl mb-5 ">
           About
         </div>
@@ -45,101 +91,61 @@
           {{ details.About }}
         </div>
         <hr class="mt-5">
-          <div class="flex flex-row sm:flex-col justify-between sm:justify-normal">
-            <div class="flex flex-col sm:flex-none">
-              <div class="font-semibold text-sm sm:text-xl mb-5 mt-4">
-                {{ details.Languages }}
-              </div>
-              <div class="flex flex-col">
-                <div class="flex flex- mb-2 mr-6">
-                  <img class="mr-2 "src="{% static 'images/css.png' %}" alt="">
-                  <div class="font-semibold mr-14">
-                    CSS
-                  </div>
-                  <div class="text-gray-500 font-semibold">
-                    20%
-                  </div>
-                </div>
-                <div class="flex flex- mb-2 mr-6">
-                  <img class="mr-2 "src="{% static 'images/html.png' %}" alt="">
-                  <div class="font-semibold mr-10">
-                    HTML
-                  </div>
-                  <div class="text-gray-500 font-semibold">
-                    30%
-                  </div>
-                </div>
-                <div class="flex flex- mb-2 mr-6">
-                  <img class="mr-2 "src="{% static 'images/js.png' %}" alt="">
-                  <div class="font-semibold mr-3">
-                    JavaScript
-                  </div>
-                  <div class="text-gray-500 font-semibold">
-                    10%
-                  </div>
-                </div>
-                <div class="flex flex- mb-2 mr-6">
-                  <img class="mr-2 w-6 h-6 "src="{% static 'images/python.png' %}" alt="">
-                  <div class="font-semibold mr-8">
-                    Python
-                  </div>
-                  <div class="text-gray-500 font-semibold">
-                    40%
-                  </div>
-                </div>
-              </div>
-              <hr class="mt-5">
-              <div class="font-semibold text-xl  mt-4">
-                File Size
-              </div>
-              <div class="font-normal ">
-                {{ details.File_Size }} KB
-              </div>
-              <hr class="mt-5"> 
-              <div class="font-semibold text-xl  mt-4">
-                Date Created
-              </div>
-              <div class="font-normal ">
-                {{ details.Date_Created }}
-              </div>
-              <hr class="mt-5">
-            </div>
-            <div class="flex flex-col sm:flex-none">
-              <div class="font-semibold text-xl  mt-4">
-                Topics
-              </div>
-              <div class="font-normal ">
-                {% for topic in details.Topics %}{{ topic }} {% endfor %}
-              </div>
-              <hr class="mt-5"> 
-              <div class="font-semibold text-xl  mt-4">
-                Branch
-              </div>
-              <div class="font-normal ">
-                {{ details.Branch }}
-              </div>
-              <hr class="mt-5"> 
-              <div class="font-semibold text-xl  mt-4">
-                Contributors
-              </div>
-              <div class="font-normal ">
-                {% for contributor in details.Contributors %}{{ contributor }} {% endfor %}
-              </div>
-              <hr class="mt-5"> 
-              <div class="font-semibold text-xl  mt-4">
-                Stars
-              </div>
-              <div class="font-normal ">
-                {{ details.Stars }}
-              </div>
-              <hr class="mt-5">
-            </div>
-          </div>
+        <div class="font-semibold text-xl mb-5 mt-4">
+          <ul>
+            {% for lang, percentage in details.Languages.items %}
+                <li>{{ lang }}: {{ percentage }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <hr class="mt-5">
+        <div class="font-semibold text-xl  mt-4">
+          File Size
+        </div>
+        <div class="font-normal ">
+          {{ details.File_Size }} KB
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Date Created
+        </div>
+        <div class="font-normal ">
+          {{ details.Date_Created }}
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Topics
+        </div>
+        <div class="font-normal ">
+          {% for topic in details.Topics %}{{ topic }} {% endfor %}
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Branch
+        </div>
+        <div class="font-normal ">
+          {{ details.Branch }}
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Contributors
+        </div>
+        <div class="font-normal ">
+          {% for contributor in details.Contributors %}{{ contributor }} {% endfor %}
+        </div>
+        <hr class="mt-5"> 
+        <div class="font-semibold text-xl  mt-4">
+          Stars
+        </div>
+        <div class="font-normal ">
+          {{ details.Stars }}
+        </div>
+        <hr class="mt-5"> 
       </div>
     </div>
     <!-- Sidebar End -->
-    <div class="content w-4/5 sm:w-full mx-auto  sm:mr-32  sm:ml-3 ">
-     
+    
+    <div class="content w-full mr-32 ">
       <a  href="{% url 'developer_statistic' repository_id %}" class="flex flex-row justify-end mb-6">
         <div class="bg-black text-white rounded items-center  px-5 font-semibold py-2">
           Developers Activity
@@ -169,7 +175,7 @@
           </div>
           <div class="drop relative">
             <button class=" flex flex-row  px-5 py-1 border-gray-400 border-2 rounded-full">
-              <div id="selectedYear" class="font-bold text-xs sm:text-sm mt-1">
+              <div id="selectedYear" class="font-bold text-sm mt-1">
                 Monthly (2023)
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
@@ -222,6 +228,23 @@
         dropdownMenu.classList.toggle("hidden");
       });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+            const compareButton = document.querySelector('a[href*="developer_statistic"]');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            compareButton.addEventListener('click', function() {
+                loadingSpinner.classList.remove('hidden');
+            });
+        });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const backButton = document.querySelector('.back-button');
+        backButton.addEventListener('click', function() {
+            window.history.back();
+        });
+    });
+
     document.addEventListener("DOMContentLoaded", function () {
       const dropdownButton = document.querySelector(".drop");
       const dropdownMenu = document.querySelector(".menu");

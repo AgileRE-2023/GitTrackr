@@ -90,16 +90,40 @@ def history(request):
     return render(request, 'utilities/history.html', {'folders': folders})
 
 @login_required
+def delete_folder(request, folder_id):
+    folder = Folders.objects.get(FolderID=folder_id, UserID=request.user)
+    folder.delete()
+
+
+    return redirect('history')
+
+@login_required
 def add_repository(request, folder_id=None):
     if folder_id is not None:
         request.session['current_folder_id'] = folder_id
 
     folder_id = request.session.get('current_folder_id')
     folder = Folders.objects.get(FolderID=folder_id)
+    
+    # Mengambil semua repositori dalam folder ini
+    saved_repositories = Repository.objects.filter(Folder_ID=folder)
 
     form = AddRepositoryForm()
     folders = Folders.objects.all()
-    return render(request, 'utilities/add_repository.html', {'form': form, 'folder': folder, 'folders': folders})
+    return render(request, 'utilities/add_repository.html', {'form': form, 'folder': folder, 'folders': folders, 'save_repository': saved_repositories})
+
+@login_required
+def delete_repository(request, repository_id):
+    try:
+        repository = Repository.objects.get(RepositoryID=repository_id)
+        folder_id = repository.Folder_ID_id  # Simpan ID folder untuk redirect
+        repository.delete()
+        messages.success(request, "Repository berhasil dihapus.")
+    except Repository.DoesNotExist:
+        messages.error(request, "Repository tidak ditemukan.")
+
+    return redirect('add_repository_with_folder', folder_id=folder_id)
+
 
 @login_required
 def search_repository(request):
@@ -110,8 +134,13 @@ def search_repository(request):
 
             headers = {'Authorization': f'token {settings.GITHUB_TOKEN}'}
             url = f'https://api.github.com/search/repositories?q={full_repository_name}'
-
             response = requests.get(url, headers=headers)
+
+            folder_id = request.session.get('current_folder_id')
+            folder = Folders.objects.get(FolderID=folder_id)
+
+            # Menambahkan saved_repositories ke konteks
+            saved_repositories = Repository.objects.filter(Folder_ID=folder)
 
             if response.status_code == 200:
                 form = AddRepositoryForm()
@@ -121,14 +150,9 @@ def search_repository(request):
                 for repository in repositories:
                     repository['repository_owner'], repository['repository_name'] = repository['full_name'].split('/')
 
-                folders = Folders.objects.all()
-
-                folder_id = request.session.get('current_folder_id')
-                folder = Folders.objects.get(FolderID=folder_id)
-
-                return render(request, 'utilities/add_repository.html', {'form': form, 'repositories': repositories, 'folders': folders, 'folder': folder})
+                return render(request, 'utilities/add_repository.html', {'form': form, 'repositories': repositories, 'folder': folder, 'save_repository': saved_repositories})
             else:
-                print(f'Error {response.status_code}: {response.text}')
+                messages.error(request, f'Error {response.status_code}: {response.text}')
 
     return redirect('add_repository')
 
@@ -148,8 +172,3 @@ def save_repository(request):
         repository.save()
 
     return redirect('add_repository_with_folder', folder_id=folder_id)
-
-
-def five_repository(request):
-    saved_repositories = Repository.objects.all()[:5]
-    return render(request, 'add_repository.html', {'saved_repositories': saved_repositories})

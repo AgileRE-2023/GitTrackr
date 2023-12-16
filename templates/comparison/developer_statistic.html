@@ -17,8 +17,8 @@
 
     <!-- Content Start -->
     <div class="bg-white">
-      <div class="mx-6 my-3 pt-[100px] lg:mx-28 lg:my-6">
-        <button class="flex items-center">
+      <div class="mx-6 pt-[100px] lg:mx-28">
+        <button class="flex items-center back-button">
           <svg
             width="15"
             height="16"
@@ -32,17 +32,17 @@
             />
           </svg>
           <div
-            class="text-neutral-400 text-base font-medium font-['Inter'] p-2"
+            class="text-neutral-400 text-base font-medium p-2"
             >
             back
           </div>
         </button>
         <div class="grid gap-0">
-          <h2 class="text-black text-base font-bold font-['Poppins'] lg:text-2xl">
-            GitTrackr
+          <h2 class="text-black text-base font-bold lg:text-2xl">
+            {{ repository_name }}
           </h2>
-          <p class="text-black text-xs font-normal font-['Montserrat'] lg: text-base">
-            own by PPL GACOR
+          <p class="text-black text-xs font-normal lg: text-base">
+            owned by {{ owner_name }}
           </p>
         </div>
       </div>
@@ -57,15 +57,8 @@
           <table class="w-full table-auto">
             <thead class="">
               <tr class="text-neutral-500 text-xl items-center m-2 text-center">
-                <th class="border-t-0 border-l-0 border border-gray-300">
-                  <p
-                    class="text-neutral-500 text-base font-medium font-['Inter'] lg:text-xl"
-                  >
-                    #
-                  </p>
-                </th>
                 <th
-                  class="text-center border border-gray-300 border-t-0"
+                  class="text-center border border-gray-300 border-t-0 border-l-0"
                   data-sort="Developer_Name"
                 >
                   <div class="flex items-center py-2 px-4 w-80 cursor-pointer">
@@ -327,12 +320,7 @@
               {% for stat in stats %}
               <tr class="text-center">
                 <td
-                  class="px-4 py-4 border-t-0 border-l-0 border border-gray-300 text-neutral-400 font-medium"
-                >
-                  1
-                </td>
-                <td
-                  class="px-4 py-4 border border-gray-300 text-left font-medium"
+                  class="px-4 py-4 border border-l-0 border-gray-300 text-left font-medium"
                 >
                   {{ stat.Developer_Name }}
                 </td>
@@ -358,7 +346,7 @@
                   {{ stat.Last_Contribution }}
                 </td>
                 <td class="px-2 py-4 border-t-0 border-r-0 border border-gray-300 font-medium">
-                  {{ stat.Average_Time_Between_Commits }}
+                  {{ stat.Average_Time_Between_Commits }} hours
                 </td>
               </tr>
               {% endfor %}
@@ -376,6 +364,13 @@
 
         dropdownButton.addEventListener("click", function () {
           dropdownMenu.classList.toggle("hidden");
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const backButton = document.querySelector('.back-button');
+        backButton.addEventListener('click', function() {
+            window.history.back();
         });
       });
 

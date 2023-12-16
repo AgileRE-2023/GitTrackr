@@ -96,6 +96,14 @@ DATABASES = {
     }
 }
 
+BEHAVE = {
+    'DEFAULT_TAGS': '@django',
+    'SHOW_SNIPPET': True,
+    'SHOW_SKIPPED': True,
+    'SHOW_TIMING': True,
+    'ENABLE_ASSERTIONS': True,
+    'STEPS_DIR' : 'tests/acceptance/steps'
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -138,7 +146,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Scoail Auth
+#Social Auth
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',

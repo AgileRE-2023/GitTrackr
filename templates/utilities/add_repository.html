@@ -7,6 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Repository</title>
     {% tailwind_css %}
+    <style>
+        #loadingSpinner {
+            z-index: 10;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 9, 9, 0.587);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+            position: fixed;
+        }
+    
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+    
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 
 <body class="overflow-x-hidden">
@@ -15,7 +41,12 @@
     {% include "component/navbar_logged.html" %}
     {% endblock %}
 
-    <div class="relative flex flex-row z-10 py-40 justify-center">
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center hidden ">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="relative flex flex-row py-40 justify-center">
 
         <div class="bg-white mx-28 border-2 rounded-xl h-fit">
             <div class="border-b-2 px-4 py-4">
@@ -51,14 +82,19 @@
 
             <!-- Maximum 5 Repositories Display -->
             <div class="border-t-2 my-4 px-4 justify-center items-center">
-                <p class="my-4 mx-2 text-black text-xs font-extralight font-['Montserrat']">Maximum 5 repositories</p>
-                <div id="permanentValuesContainer"
-                    class="grid gap-2 grid-cols-2 col-auto row-auto auto-cols-max auto-rows-max">
+                <p class="my-4 text-black text-xs font-extralight font-['Montserrat']">Repositori dalam Folder:</p>
+                <div id="repositoryContainer" class="grid gap-2 grid-cols-2 col-auto row-auto auto-cols-max auto-rows-max">
                     {% for repository in save_repository %}
-                    <div>
+                    <div class="flex justify-between items-center">
                         <p>{{ repository.Repository_Name }}</p>
-                        <!-- Add other details as needed -->
+                        <!-- Formulir untuk menghapus repositori -->
+                        <form method="post" action="{% url 'delete_repository' repository.RepositoryID %}">
+                            {% csrf_token %}
+                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-full">x</button>
+                        </form>
                     </div>
+                    {% empty %}
+                    <p>Tidak ada repositori dalam folder ini.</p>
                     {% endfor %}
                 </div>
             </div>
@@ -111,6 +147,24 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="{% static 'js/add_repository.js' %}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+                const dropdownButton = document.querySelector(".group");
+                const dropdownMenu = document.querySelector(".absolute");
+
+                dropdownButton.addEventListener("click", function () {
+                    dropdownMenu.classList.toggle("hidden");
+                });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const compareButton = document.querySelector('a[href*="compare_repositories"]');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            compareButton.addEventListener('click', function() {
+                loadingSpinner.classList.remove('hidden');
+            });
+        });
+    </script>
 </body>
 </html>

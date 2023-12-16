@@ -19,15 +19,8 @@ def create_folder(request):
     form = AddRepositoryForm()
     if request.method == 'POST':
         folder_name = request.POST.get('folder_name')
-
-        # Gunakan user yang sudah login
         user = request.user
-
-        # Simpan repository ke dalam database
         folders = Folders.objects.create(Folder_Name=folder_name, UserID=user)
         folders.save()
-
-        # Simpan FolderID ke dalam sesi
         request.session['current_folder_id'] = folders.FolderID
-
-    return render(request, "utilities/add_repository.html", {'form': form})
+        return redirect('add_repository_with_folder', folder_id=folders.FolderID)
