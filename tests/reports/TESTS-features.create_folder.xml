@@ -1,0 +1,28 @@
+<testsuite name="features.create_folder.Create Folder" tests="1" errors="1" failures="0" skipped="0" time="0.00159" timestamp="2023-12-16T21:39:47.631256" hostname="SatryaNararya"><testcase classname="features.create_folder.Create Folder" name="Successfully creating a new folder" status="failed" time="0.00159"><error type="NameError" message="name 'User' is not defined">
+<![CDATA[
+Failing step: Given I am on the landing page as a logged-in user ... failed in 0.002s
+Location: tests/acceptance/features/create_folder.feature:7
+Traceback (most recent call last):
+  File "C:\Users\Satrya\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Satrya\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\create_folder_steps.py", line 11, in step_impl
+    user = User.objects.create_user('testuser', 'test@example.com', 'password')
+           ^^^^
+NameError: name 'User' is not defined
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Successfully creating a new folder
+    Given I am on the landing page as a logged-in user ... failed in 0.002s
+    When I enter "My New Folder" into the folder name field ... skipped in 0.000s
+    And I click the "Create" button ... skipped in 0.000s
+    Then a new folder is created and saved in the database ... skipped in 0.000s
+    And I am redirected to the add repository page ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>

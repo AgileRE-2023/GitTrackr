@@ -1,16 +1,7 @@
-import os
-import django
 from behave import given, when, then
-from django.contrib.auth.models import User
-from master.models import Folders
+# from django.contrib.auth.models import User
 from django.test import Client
 from django.urls import reverse
-from selenium import webdriver
-from selenium.webdriver.chrome.options import options
-from selenium.webdriver.common.by import By
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gittrackr.settings')
-django.setup()
 
 @given('I am on the landing page as a logged-in user')
 def step_impl(context):
