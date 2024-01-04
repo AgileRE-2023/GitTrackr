@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'social_django',
+    'behave_django'
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -90,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GitTrackr',
         'USER': 'root',
-        'PASSWORD': 'Satrya29',
+        'PASSWORD': 'Air123',
         'PORT': 3306,
         'HOST': '127.0.0.1',
     }

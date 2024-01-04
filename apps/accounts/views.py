@@ -4,5 +4,5 @@ from django.shortcuts import render
 def login(request):
     return render(request, "accounts/login.html")
     
-def logout(request):
-    logout(request)
+# def logout(request):
+#     logout(request)
