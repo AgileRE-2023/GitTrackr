@@ -1,6 +1,6 @@
-<testsuite name="features.create_folder.Create Folder" tests="2" errors="2" failures="0" skipped="0" time="0.010041" timestamp="2024-01-05T20:31:43.152913" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.create_folder.Create Folder" name="Successfully creating a new folder" status="failed" time="0.005503"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<testsuite name="features.create_folder.Create Folder" tests="2" errors="2" failures="0" skipped="0" time="0.007619" timestamp="2024-01-05T21:26:36.644312" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.create_folder.Create Folder" name="Successfully creating a new folder" status="failed" time="0.004138"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
-Failing step: Given I am logged in and on the page homepage GitTrackr ... failed in 0.006s
+Failing step: Given I am logged in and on the page homepage GitTrackr ... failed in 0.004s
 Location: tests/acceptance/features/create_folder.feature:7
 Traceback (most recent call last):
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
@@ -20,7 +20,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\create_folder.py", line 15, in step_impl
+  File "tests\acceptance\steps\create_folder.py", line 13, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
@@ -34,7 +34,7 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 <![CDATA[
 @scenario.begin
   Scenario: Successfully creating a new folder
-    Given I am logged in and on the page homepage GitTrackr ... failed in 0.006s
+    Given I am logged in and on the page homepage GitTrackr ... failed in 0.004s
     When I enter TestingBDD into the folder name field ... skipped in 0.000s
     And I click the Create button ... skipped in 0.000s
     Then a new folder named TestingBDD should be created and saved in the database ... skipped in 0.000s
@@ -43,9 +43,9 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="features.create_folder.Create Folder" name="Failed to create a new folder due to duplicate name" status="failed" time="0.004537"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+</system-out></testcase><testcase classname="features.create_folder.Create Folder" name="Failed to create a new folder due to duplicate name" status="failed" time="0.003482"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
-Failing step: Given I am logged in and on the page homepage GitTrackr ... failed in 0.005s
+Failing step: Given I am logged in and on the page homepage GitTrackr ... failed in 0.003s
 Location: tests/acceptance/features/create_folder.feature:14
 Traceback (most recent call last):
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
@@ -65,7 +65,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\create_folder.py", line 15, in step_impl
+  File "tests\acceptance\steps\create_folder.py", line 13, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
@@ -79,7 +79,7 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 <![CDATA[
 @scenario.begin
   Scenario: Failed to create a new folder due to duplicate name
-    Given I am logged in and on the page homepage GitTrackr ... failed in 0.005s
+    Given I am logged in and on the page homepage GitTrackr ... failed in 0.003s
     When I enter a duplicate folder name into the folder name field ... skipped in 0.000s
     And I click the Create button ... skipped in 0.000s
     Then the response should contain "Folder creation failed: Duplicate name" ... skipped in 0.000s

@@ -1,4 +1,4 @@
-<testsuite name="features.compare_repo.Compare Repositories" tests="2" errors="2" failures="0" skipped="0" time="0.007865" timestamp="2024-01-05T20:31:43.129870" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.compare_repo.Compare Repositories" name="Successfully Compare Repositories" status="failed" time="0.003318"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<testsuite name="features.compare_repo.Compare Repositories" tests="2" errors="2" failures="0" skipped="0" time="0.008005" timestamp="2024-01-05T21:26:36.619892" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.compare_repo.Compare Repositories" name="Successfully Compare Repositories" status="failed" time="0.003129"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
 Failing step: Given I am on TestingBDD folder page ... failed in 0.003s
 Location: tests/acceptance/features/compare_repo.feature:7
@@ -20,7 +20,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\add_repo.py", line 10, in step_impl
+  File "tests\acceptance\steps\add_repo.py", line 12, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
@@ -42,7 +42,7 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="features.compare_repo.Compare Repositories" name="Failed to Compare Repositories" status="failed" time="0.004547"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+</system-out></testcase><testcase classname="features.compare_repo.Compare Repositories" name="Failed to Compare Repositories" status="failed" time="0.004876"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
 Failing step: Given I am on TestingBDD folder page ... failed in 0.005s
 Location: tests/acceptance/features/compare_repo.feature:13
@@ -64,7 +64,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\add_repo.py", line 10, in step_impl
+  File "tests\acceptance\steps\add_repo.py", line 12, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__

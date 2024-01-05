@@ -6,7 +6,14 @@ from django.test import Client
 
 @when('I press My Username on the navigation bar')
 def step_impl(context):
-    # Assuming the username link has an ID like 'usernameLink'
+    context.client = Client()
+    context.browser = webdriver.Chrome()
+    
+    # Login using the provided test account
+    context.client.login(username='testbdd@gmail.com', password='testbdd')
+    
+    # Navigate to the homepage
+    context.browser.get('http://127.0.0.1:8000/logged/')
     username_link = context.browser.find_element(By.XPATH,'/html/body/nav/div/button')
     username_link.click()
 

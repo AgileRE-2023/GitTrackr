@@ -1,5 +1,3 @@
-# features/steps/folder_steps.py
-
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By

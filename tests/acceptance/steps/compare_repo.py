@@ -49,11 +49,11 @@ def step_impl(context):
     # Check if the browser is redirected to the correct URL
     assert context.browser.current_url == compare_repo_url
 
-@given('folder "{folder_name}" has less than two repositories')
-def step_impl(context, folder_name):
-    # Retrieve the folder based on the given name
+@given('folder TestingBDD has less than two repositories')
+def step_impl(context):
+    # Retrieve the folder based on the name 'TestingBDD'
     try:
-        folder = Folders.objects.get(name=folder_name)
+        folder = Folders.objects.get(Folder_Name='TestingBDD')
     except Folders.DoesNotExist:
         # Handle the case where the folder doesn't exist
         context.folder_exists = False
@@ -65,7 +65,6 @@ def step_impl(context, folder_name):
     # Store the result in the context
     context.folder_exists = True
     context.less_than_two_repos = repository_count < 2
-
 
 @then('I should see an error message Failed to Retrieve Data from GitHub API')
 def step_impl(context):

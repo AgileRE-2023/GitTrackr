@@ -1,6 +1,6 @@
-<testsuite name="features.show_repo.Show Repository Details" tests="3" errors="3" failures="0" skipped="0" time="0.011247" timestamp="2024-01-05T20:31:43.264556" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.show_repo.Show Repository Details" name="Show Repository Detail Successfully" status="failed" time="0.00511"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<testsuite name="features.show_repo.Show Repository Details" tests="3" errors="3" failures="0" skipped="0" time="0.009788" timestamp="2024-01-05T21:26:36.768684" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.show_repo.Show Repository Details" name="Show Repository Detail Successfully" status="failed" time="0.003776"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
-Failing step: Given I am on the Compare Repository page ... failed in 0.005s
+Failing step: Given I am on the Compare Repository page ... failed in 0.004s
 Location: tests/acceptance/features/show_repo.feature:7
 Traceback (most recent call last):
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
@@ -34,14 +34,14 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 <![CDATA[
 @scenario.begin
   Scenario: Show Repository Detail Successfully
-    Given I am on the Compare Repository page ... failed in 0.005s
+    Given I am on the Compare Repository page ... failed in 0.004s
     When I press the "i" button next to a repository ... skipped in 0.000s
     Then I should be redirected to show detailed repository page ... skipped in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="features.show_repo.Show Repository Details" name="Explore Repository Detail Statistics" status="failed" time="0.003067"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+</system-out></testcase><testcase classname="features.show_repo.Show Repository Details" name="Explore Repository Detail Statistics" status="failed" time="0.003"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
 Failing step: Given I am on the Compare Repository page ... failed in 0.003s
 Location: tests/acceptance/features/show_repo.feature:12
@@ -87,7 +87,7 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="features.show_repo.Show Repository Details" name="Show Repository Detail Failed" status="failed" time="0.00307"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+</system-out></testcase><testcase classname="features.show_repo.Show Repository Details" name="Show Repository Detail Failed" status="failed" time="0.003013"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
 Failing step: Given I am on the Compare Repository page ... failed in 0.003s
 Location: tests/acceptance/features/show_repo.feature:20
