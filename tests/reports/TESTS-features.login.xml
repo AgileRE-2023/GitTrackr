@@ -1,4 +1,4 @@
-<testsuite name="features.login.Login using Google Account" tests="2" errors="2" failures="0" skipped="0" time="0.008603" timestamp="2024-01-05T20:31:43.233943" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.login.Login using Google Account" name="Successfully logging in using GitTrackr Account" status="failed" time="0.005326"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<testsuite name="features.login.Login using Google Account" tests="2" errors="2" failures="0" skipped="0" time="0.007262" timestamp="2024-01-05T21:26:36.729275" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.login.Login using Google Account" name="Successfully logging in using GitTrackr Account" status="failed" time="0.004684"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
 Failing step: Given I am on the GitTrackr homepage ... failed in 0.005s
 Location: tests/acceptance/features/login.feature:7
@@ -20,7 +20,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\login.py", line 13, in step_impl
+  File "tests\acceptance\steps\login.py", line 12, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
@@ -47,7 +47,7 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="features.login.Login using Google Account" name="Failed login attempt using GitTrackr Account" status="failed" time="0.003277"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+</system-out></testcase><testcase classname="features.login.Login using Google Account" name="Failed login attempt using GitTrackr Account" status="failed" time="0.002577"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
 Failing step: Given I am on the GitTrackr homepage ... failed in 0.003s
 Location: tests/acceptance/features/login.feature:18
@@ -69,7 +69,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\login.py", line 13, in step_impl
+  File "tests\acceptance\steps\login.py", line 12, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__

@@ -1,6 +1,5 @@
 from behave import *
 from selenium import webdriver
-from msedge.selenium_tools import Edge, EdgeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from django.test import Client

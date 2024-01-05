@@ -1,7 +1,7 @@
-<testsuite name="features.dev_stat.Show Developer Statistics" tests="2" errors="2" failures="0" skipped="0" time="0.006651" timestamp="2024-01-05T21:26:36.684342" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.dev_stat.Show Developer Statistics" name="Show Developer Statistic Successfully" status="failed" time="0.003653"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<testsuite name="features.delete_repo.Delete Repository" tests="2" errors="2" failures="0" skipped="0" time="0.008087" timestamp="2024-01-05T21:26:36.668882" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.delete_repo.Delete Repository" name="Success Delete Repository" status="failed" time="0.003568"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
-Failing step: Given I am on the show detailed repository page ... failed in 0.004s
-Location: tests/acceptance/features/dev_stat.feature:7
+Failing step: Given GitTrackr repository is added to TestingBDD folder ... failed in 0.004s
+Location: tests/acceptance/features/delete_repo.feature:7
 Traceback (most recent call last):
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
     self.process = subprocess.Popen(cmd, env=self.env,
@@ -20,7 +20,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\dev_stat.py", line 11, in step_impl
+  File "tests\acceptance\steps\delete_repo.py", line 13, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
@@ -33,18 +33,19 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 </error><system-out>
 <![CDATA[
 @scenario.begin
-  Scenario: Show Developer Statistic Successfully
-    Given I am on the show detailed repository page ... failed in 0.004s
-    When I press the Developer Activity button ... skipped in 0.000s
-    Then I should be redirected to the developer statistic page ... skipped in 0.000s
+  Scenario: Success Delete Repository
+    Given GitTrackr repository is added to TestingBDD folder ... failed in 0.004s
+    And I am on TestingBDD folder page ... skipped in 0.000s
+    When I press X button next to GitTrackr ... skipped in 0.000s
+    Then GitTrackr should be removed from TestingBDD in the database ... skipped in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="features.dev_stat.Show Developer Statistics" name="Show Developer Statistic Failed" status="failed" time="0.002999"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+</system-out></testcase><testcase classname="features.delete_repo.Delete Repository" name="Failed Delete Repository" status="failed" time="0.004519"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
 <![CDATA[
-Failing step: Given I am on the show detailed repository page ... failed in 0.003s
-Location: tests/acceptance/features/dev_stat.feature:12
+Failing step: Given GitTrackr repository is added to TestingBDD folder ... failed in 0.005s
+Location: tests/acceptance/features/delete_repo.feature:13
 Traceback (most recent call last):
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
     self.process = subprocess.Popen(cmd, env=self.env,
@@ -63,7 +64,7 @@ Traceback (most recent call last):
     match.run(runner.context)
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
     self.func(context, *args, **kwargs)
-  File "tests\acceptance\steps\dev_stat.py", line 11, in step_impl
+  File "tests\acceptance\steps\delete_repo.py", line 13, in step_impl
     context.browser = webdriver.Chrome()
                       ^^^^^^^^^^^^^^^^^^
   File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
@@ -76,11 +77,11 @@ selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executabl
 </error><system-out>
 <![CDATA[
 @scenario.begin
-  Scenario: Show Developer Statistic Failed
-    Given I am on the show detailed repository page ... failed in 0.003s
-    When I press the Developer Activity button ... skipped in 0.000s
-    Then the response status code should be "Failed to Retrieve Data from GitHub API" ... skipped in 0.000s
-    And I should still be on the show detailed repository page ... skipped in 0.000s
+  Scenario: Failed Delete Repository
+    Given GitTrackr repository is added to TestingBDD folder ... failed in 0.005s
+    And I am on TestingBDD folder page ... skipped in 0.000s
+    When I press X button next to GitTrackr ... skipped in 0.000s
+    Then system displays the message Error Failed to Delete Repository ... skipped in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------

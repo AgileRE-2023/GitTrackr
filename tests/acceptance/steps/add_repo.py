@@ -3,6 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from master.models import Folders, Repository
 from django.test import Client
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 @given('I am on TestingBDD folder page')
 def step_impl(context):
@@ -52,19 +54,16 @@ def step_impl(context):
     repository = Repository.objects.get(Repository_Name='GitTrackr', folder=folder)
     assert repository is not None
 
-@given('GitTrackr repository is added to TestingBDD folder')
+@then('system will display Error This repository already exists in this folder')
 def step_impl(context):
-    folder = Folders.objects.get(Folder_Name='TestingBDD')
-    repository = Repository.objects.create(Repository_Name='GitTrackr', folder=folder)
+    # Wait for the alert to be present
+    WebDriverWait(context.browser, 10).until(EC.alert_is_present())
 
-@when('I press X button next to GitTrackr')
-def step_impl(context):
-    # Assuming there is a delete button next to the repository in the list
-    delete_button = context.browser.find_element(By.XPATH, '//*[@id="repositoryContainer"]/div/form/button')
-    delete_button.click()
+    # Switch to the alert
+    alert = context.browser.switch_to.alert
 
-@then('GitTrackr should be removed from TestingBDD in the database')
-def step_impl(context):
-    # Verify that GitTrackr is removed from the TestingBDD folder in the database
-    folder = Folders.objects.get(Folder_Name='TestingBDD')
-    assert not Repository.objects.filter(Repository_Name='GitTrackr', folder=folder).exists()
+    # Verify the alert text
+    assert "Error This repository already exists in this folder" in alert.text
+
+    # Accept the alert to close it
+    alert.accept()
