@@ -1,0 +1,101 @@
+<testsuite name="features.sort_table.Sort Tables" tests="2" errors="1" failures="1" skipped="0" time="0.009354" timestamp="2024-01-05T20:31:43.289390" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.sort_table.Sort Tables" name="Sort Table in Ascending Order" status="failed" time="0.003965"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am on the Compare Repository page ... failed in 0.004s
+Location: tests/acceptance/features/sort_table.feature:7
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\show_repo.py", line 12, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Sort Table in Ascending Order
+    Given I am on the Compare Repository page ... failed in 0.004s
+    When I press the column header Commit ... skipped in 0.000s
+    Then the table should be sorted in ascending order of Commit ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="features.sort_table.Sort Tables" name="Sort Table in Descending Order" status="failed" time="0.005389"><failure type="AssertionError" message="FAILED SUB-STEP: Given I am on the Compare Repository page&#10;Substep info: Traceback (most recent call last):&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py&quot;, line 72, in start&#10;    self.process = subprocess.Popen(cmd, env=self.env,&#10;                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py&quot;, line 1026, in __init__&#10;    self._execute_child(args, executable, preexec_fn, close_fds,&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py&quot;, line 1538, in _execute_child&#10;    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,&#10;                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&#10;FileNotFoundError: [WinError 2] The system cannot find the file specified&#10;&#10;During handling of the above exception, another exception occurred:&#10;&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py&quot;, line 1329, in run&#10;    match.run(runner.context)&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py&quot;, line 98, in run&#10;    self.func(context, *args, **kwargs)&#10;  File &quot;tests\acceptance\steps\show_repo.py&quot;, line 12, in step_impl&#10;    context.browser = webdriver.Chrome()&#10;                      ^^^^^^^^^^^^^^^^^^&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py&quot;, line 73, in __init__&#10;    self.service.start()&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py&quot;, line 81, in start&#10;    raise WebDriverException(&#10;selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;&#10;&#10;Traceback (of failed substep):&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py&quot;, line 1329, in run&#10;    match.run(runner.context)&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py&quot;, line 98, in run&#10;    self.func(context, *args, **kwargs)&#10;  File &quot;tests\acceptance\steps\show_repo.py&quot;, line 12, in step_impl&#10;    context.browser = webdriver.Chrome()&#10;                      ^^^^^^^^^^^^^^^^^^&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py&quot;, line 73, in __init__&#10;    self.service.start()&#10;  File &quot;C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py&quot;, line 81, in start&#10;    raise WebDriverException(&#10;">
+<![CDATA[
+Failing step: Given the table is sorted in ascending order of Commit ... failed in 0.005s
+Location: tests/acceptance/features/sort_table.feature:12
+Assertion Failed: FAILED SUB-STEP: Given I am on the Compare Repository page
+Substep info: Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\show_repo.py", line 12, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+
+Traceback (of failed substep):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\show_repo.py", line 12, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+]]>
+</failure><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Sort Table in Descending Order
+    Given the table is sorted in ascending order of Commit ... failed in 0.005s
+    When I press the column header Commit again ... skipped in 0.000s
+    Then the table should be sorted in descending order of Commit ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>

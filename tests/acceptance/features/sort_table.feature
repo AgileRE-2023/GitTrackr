@@ -4,11 +4,11 @@ Feature: Sort Tables
     So that it is easier for me to view and analyze the statistical comparisons.
 
     Scenario: Sort Table in Ascending Order
-        Given I am on a page with a sortable table, either "http://127.0.0.1:8000/utilities/add_repository/{folder_id}/" or "http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/"
-        When I press the column header "Column Name"
-        Then the table should be sorted in ascending order of "Column Name"
+        Given I am on the Compare Repository page
+        When I press the column header Commit
+        Then the table should be sorted in ascending order of Commit
 
     Scenario: Sort Table in Descending Order
-        Given the table is sorted in ascending order of "Column Name"
-        When I press the column header "Column Name" again
-        Then the table should be sorted in descending order of "Column Name"
+        Given the table is sorted in ascending order of Commit
+        When I press the column header Commit again
+        Then the table should be sorted in descending order of Commit

@@ -1,46 +1,61 @@
-# features/steps/login_steps.py
-from behave import given, when, then
+from behave import *
+from selenium import webdriver
+from msedge.selenium_tools import Edge, EdgeOptions
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from django.test import Client
+from django.contrib.auth.models import User
+from time import sleep
 
-@given('I am on "{url}" page')
-def step_impl(context, url):
-    context.browser.get(url)
+@given('I am on the GitTrackr homepage')
+def step_impl(context):
+    context.client = Client()
+    context.browser = webdriver.Chrome()
+    context.browser.get('http://127.0.0.1:8000/')
 
-@when('I click button either "{login_text}" or "{create_text}"')
-def step_impl(context, login_text, create_text):
-    try:
-        login_button = context.browser.find_element(By.XPATH, f"//button[contains(text(), '{login_text}')]")
-        login_button.click()
-    except:
-        create_button = context.browser.find_element(By.XPATH, f"//button[contains(text(), '{create_text}')]")
-        create_button.click()
+@when('I click the Login button')
+def step_impl(context):
+    redirectLogin_button = context.browser.find_element(By.ID, 'redirectLoginbutton')
+    redirectLogin_button.click()
 
-@then('I should be on "{expected_url}" page')
-def step_impl(context, expected_url):
-    WebDriverWait(context.browser, 10).until(EC.url_to_be(expected_url))
+@then('I should be redirected to the login page')
+def step_impl(context):
+    assert context.browser.current_url == 'http://127.0.0.1:8000/accounts/login/'
 
-@when('I click button "{button_text}" to login')
-def step_impl(context, button_text):
-    google_login_button = context.browser.find_element(By.XPATH, f"//button[contains(text(), '{button_text}')]")
-    google_login_button.click()
+@when('I click sign in with google button')
+def step_impl(context):
+    signGoogle_button = context.browser.find_element(By.ID, 'signGoogle')
+    signGoogle_button.click()
 
-@when('I press "{account_choice}"')
-def step_impl(context, account_choice):
-    # This step would require actual interaction with Google's OAuth page, which is complex and not typically done in E2E tests
-    # You would usually use a mock or bypass this step in real-world scenarios
-    pass
+@then('I should be redirected to google oauth choose account selection')
+def step_impl(context):
+    assert 'accounts.google.com' in context.browser.current_url
 
-@then('the response should{negation} contain "{message}"')
-def step_impl(context, negation, message):
-    if negation:
-        # Check for failure message or condition
-        pass
-    else:
-        # Check for success message or condition
-        pass
+@when('I fill the email address')
+def step_impl(context):
+    context.browser.find_element(By.ID, 'identifierId').send_keys('gittrackr@gmail.com')
+    context.browser.find_element(By.ID, 'identifierNext').click()
+    sleep(2)  # Adjust sleep time based on page load times
 
-@then('I should be back on "{expected_url}" page')
-def step_impl(context, expected_url):
-    WebDriverWait(context.browser, 10).until(EC.url_to_be(expected_url))
+@when('I fill the password')
+def step_impl(context):
+    context.browser.find_element(By.NAME, 'password').send_keys('correct_password')
+    sleep(2)  # Adjust sleep time based on page load times
+
+@when('I fill the wrong password')
+def step_impl(context):
+    context.browser.find_element(By.NAME, 'password').send_keys('incorrect_password')
+    sleep(2)  # Adjust sleep time based on page load times
+
+@when('I click next')
+def step_impl(context):
+    context.browser.find_element(By.ID, 'passwordNext').click()
+    sleep(2)  # Adjust sleep time based on page load times
+
+@then('I should be redirected to the GitTrackr dashboard')
+def step_impl(context):
+    assert context.browser.current_url == 'http://127.0.0.1:8000/logged/'
+
+@then('I should stay on the login page')
+def step_impl(context):
+    assert context.browser.current_url == 'http://127.0.0.1:8000/accounts/login/'

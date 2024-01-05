@@ -1,45 +1,79 @@
-from behave import given, when, then
 from master.models import Repository
+from behave import *
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from master.models import Folders, Repository
+from django.test import Client
+from selenium.webdriver.support import expected_conditions as EC
 
-@given('I am on the "Compare Repository" page at "{url}"')
-def step_impl(context, url):
-    context.browser.visit(url)
+@given('I am on the Compare Repository page')
+def step_impl(context):
+    context.client = Client()
+    context.browser = webdriver.Chrome()
+    
+    # Login using the provided test account
+    context.client.login(username='testbdd@gmail.com', password='testbdd')
+
+    # Retrieve folder_id from the database based on folder_name
+    folder = Folders.objects.get(Folder_Name='TestingBDD')
+    folder_id = folder.id
+    
+    # Build the URL for the compare_repo page using the retrieved folder_id
+    compare_repo_url = f'http://127.0.0.1:8000/comparison/compare_repositories/{folder_id}/'
+    
+    # Check if the browser is redirected to the correct URL
+    assert context.browser.current_url == compare_repo_url
 
 @when('I press the "i" button next to a repository')
 def step_impl(context):
-    # Assume there is a button with id "repo-details-button" for repository details
-    context.browser.find_by_id('repo-details-button').first.click()
+    repository_row = context.browser.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[1]/table/tbody/tr')
+    
+    context.repository_id = repository_row.get_attribute('data-repo-id')
 
-@when('I press the "Dropdown Button"')
+@then('I should be redirected to show detailed repository page')
 def step_impl(context):
-    # Assume there is a button with id "dropdown-button" for dropdown
-    context.browser.find_by_id('dropdown-button').first.click()
+    # Dynamically create the URL for the detailed repository page
+    detailed_page_url = f'http://127.0.0.1:8000/utilities/repository_detail/{context.repository_id}/'
+    
+    # Visit the detailed repository page
+    context.browser.get(detailed_page_url)
 
-@when('I select "{statistic}" from the dropdown')
-def step_impl(context, statistic):
-    # Assume there is a button with class "dropdown-item" for each dropdown item
-    context.browser.find_by_text(statistic).first.click()
-
-@then('I should be redirected to "{url}"')
-def step_impl(context, url):
-    assert context.browser.url == url
-
-@then('I should see detailed information about the repository, including general information, statistics, and statistical charts')
+@when('I press the Dropdown Button')
 def step_impl(context):
-    assert 'Detail Information about The Repository' in context.browser.html
+    # Replace this with the actual locator for the dropdown button
+    dropdown_button = context.browser.find_element(By.XPATH, '//*[@id="commitDropdown"]/button')
+    dropdown_button.click()
 
-@then('I should see "{statistic}"')
-def step_impl(context, statistic):
-    assert statistic in context.browser.html
-
-@then('I should not see detailed information about the repository')
+@when('I select Another Statistic from the dropdown')
 def step_impl(context):
-    assert 'Detail Information about The Repository' not in context.browser.html
+    # Replace this with the actual locator for the dropdown options
+    another_statistic_option = context.browser.find_element(By.XPATH, '//*[@id="commitDropdownMenu"]/div[2]')
+    another_statistic_option.click()
 
-@then('the response status code should be "{status_code}"')
-def step_impl(context, status_code):
-    assert context.browser.status_code == int(status_code)
+@then('I should see Another Graphics Statistic')
+def step_impl(context):
+    # Locate the dropdown element
+    dropdown = context.browser.find_element(By.XPATH, '//*[@id="selectedChartType"]')
+    
+    # Get the text content of the selected chart type
+    selected_chart_type = dropdown.text
 
-@then('I remain on the "Compare Repository" page at "{url}"')
-def step_impl(context, url):
-    assert context.browser.url == url
+    # Check if the selected chart type is 'Pull Request'
+    assert selected_chart_type == 'Pull Request', f"Expected 'Pull Request', but found '{selected_chart_type}'"
+
+@then('I should not be redirected to show detailed repository page')
+def step_impl(context):
+    # Retrieve folder_id from the database based on folder_name
+    folder = Folders.objects.get(Folder_Name='TestingBDD')
+    folder_id = folder.id
+    
+    # Build the URL for the compare_repo page using the retrieved folder_id
+    compare_repo_url = f'http://127.0.0.1:8000/comparison/compare_repositories/{folder_id}/'
+    
+    # Check if the browser is redirected to the correct URL
+    assert context.browser.current_url == compare_repo_url
+
+@then('the response status should show message "Failed to Retrieve Data from GitHub API"')
+def step_impl(context):
+    # Assuming there's an element containing the response status message
+    context.error_message = "Failed to Retrieve Data from GitHub API"

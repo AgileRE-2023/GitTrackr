@@ -1,0 +1,134 @@
+<testsuite name="features.show_repo.Show Repository Details" tests="3" errors="3" failures="0" skipped="0" time="0.011247" timestamp="2024-01-05T20:31:43.264556" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.show_repo.Show Repository Details" name="Show Repository Detail Successfully" status="failed" time="0.00511"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am on the Compare Repository page ... failed in 0.005s
+Location: tests/acceptance/features/show_repo.feature:7
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\show_repo.py", line 12, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Show Repository Detail Successfully
+    Given I am on the Compare Repository page ... failed in 0.005s
+    When I press the "i" button next to a repository ... skipped in 0.000s
+    Then I should be redirected to show detailed repository page ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="features.show_repo.Show Repository Details" name="Explore Repository Detail Statistics" status="failed" time="0.003067"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am on the Compare Repository page ... failed in 0.003s
+Location: tests/acceptance/features/show_repo.feature:12
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\show_repo.py", line 12, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Explore Repository Detail Statistics
+    Given I am on the Compare Repository page ... failed in 0.003s
+    When I press the "i" button next to a repository ... skipped in 0.000s
+    Then I should be redirected to show detailed repository page ... skipped in 0.000s
+    When I press the Dropdown Button ... skipped in 0.000s
+    And I select Another Statistic from the dropdown ... skipped in 0.000s
+    Then I should see Another Graphics Statistic ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="features.show_repo.Show Repository Details" name="Show Repository Detail Failed" status="failed" time="0.00307"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am on the Compare Repository page ... failed in 0.003s
+Location: tests/acceptance/features/show_repo.feature:20
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\show_repo.py", line 12, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Show Repository Detail Failed
+    Given I am on the Compare Repository page ... failed in 0.003s
+    When I press the "i" button next to a repository ... skipped in 0.000s
+    Then I should not be redirected to show detailed repository page ... skipped in 0.000s
+    And the response status should show message "Failed to Retrieve Data from GitHub API" ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>

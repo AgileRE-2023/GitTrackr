@@ -1,0 +1,135 @@
+<testsuite name="features.history.Show History of Folders" tests="3" errors="3" failures="0" skipped="0" time="0.012101" timestamp="2024-01-05T20:31:43.208401" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.history.Show History of Folders" name="Show History Successfully" status="failed" time="0.003357"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am logged in and on the page homepage GitTrackr ... failed in 0.003s
+Location: tests/acceptance/features/history.feature:7
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\create_folder.py", line 15, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Show History Successfully
+    Given I am logged in and on the page homepage GitTrackr ... failed in 0.003s
+    When I press My Username on the navigation bar ... skipped in 0.000s
+    And I press the History dropdown option ... skipped in 0.000s
+    Then I should be on the history page ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="features.history.Show History of Folders" name="Show History Unsuccessful" status="failed" time="0.004159"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am logged in and on the page homepage GitTrackr ... failed in 0.004s
+Location: tests/acceptance/features/history.feature:13
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\create_folder.py", line 15, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Show History Unsuccessful
+    Given I am logged in and on the page homepage GitTrackr ... failed in 0.004s
+    When I press My Username on the navigation bar ... skipped in 0.000s
+    And I fail to press the History dropdown option ... skipped in 0.000s
+    Then I should stay on homepage ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="features.history.Show History of Folders" name="Show History and Navigate to Next Folder" status="failed" time="0.004585"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am logged in and on the page homepage GitTrackr ... failed in 0.005s
+Location: tests/acceptance/features/history.feature:19
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\create_folder.py", line 15, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Show History and Navigate to Next Folder
+    Given I am logged in and on the page homepage GitTrackr ... failed in 0.005s
+    When I press My Username on the navigation bar ... skipped in 0.000s
+    And I press the History dropdown option ... skipped in 0.000s
+    Then I should be on the history page ... skipped in 0.000s
+    When I press one Folder ... skipped in 0.000s
+    Then I should be on the folder page ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>
