@@ -49,7 +49,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-NPM_BIN_PATH = "/usr/local/bin/npm" #masing masing direktori node.js
+NPM_BIN_PATH = "npm.cmd" #masing masing direktori node.js
 
 
 MIDDLEWARE = [
@@ -94,8 +94,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GitTrackr',
         'USER': 'root',
-        'PASSWORD': '',
-        'PORT': 3307,
+        'PASSWORD': 'JohanRN@70',
+        'PORT': 3306,
         'HOST': '127.0.0.1',
     }
 }
