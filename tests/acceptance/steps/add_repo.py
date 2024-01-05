@@ -1,68 +1,70 @@
-# steps.py
+from behave import *
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from master.models import Folders, Repository
+from django.test import Client
 
-from behave import given, when, then
-from master.models import Folder, Repository
-
-@given('I am on "{url}" page for folder "{folder_name}"')
-def step_impl(context, url, folder_name):
-    context.browser.visit(url)
-    context.folder = Folder.objects.get(name=folder_name)
-
-@when('I fill in "Repository Name" with "{repo_name}" and submit the form')
-def step_impl(context, repo_name):
-    context.browser.fill('repository_name', repo_name)
-    context.browser.find_by_value('Submit').first.click()
-
-@then('I should be redirected to "{url}"')
-def step_impl(context, url):
-    assert context.browser.url == url
-
-@then('I should see "{repo_name}" in the list of repositories')
-def step_impl(context, repo_name):
-    assert repo_name in context.browser.html
-
-@when('I press "Add to my folder" button for "{repo_name}"')
-def step_impl(context, repo_name):
-    context.browser.find_by_text(f'Add {repo_name} to my folder').first.click()
-
-@then('the database should have "{repo_name}" associated with "{folder_name}"')
-def step_impl(context, repo_name, folder_name):
-    folder = Folder.objects.get(name=folder_name)
-    repo = Repository.objects.get(name=repo_name)
-    assert repo in folder.repositories.all()
-
-@then('I should see "{message}" message')
-def step_impl(context, message):
-    assert message in context.browser.html
-
-@given('"{repo_name}" repository is added to "{folder_name}" folder')
-def step_impl(context, repo_name, folder_name):
-    folder = Folder.objects.get(name=folder_name)
-    repo, created = Repository.objects.get_or_create(name=repo_name)
-    folder.repositories.add(repo)
-
-@when('I press "X" button next to "{repo_name}"')
-def step_impl(context, repo_name):
-    context.browser.find_by_text(f'Remove {repo_name}').first.click()
-
-@then('"{repo_name}" should be removed from "{folder_name}" in the database')
-def step_impl(context, repo_name, folder_name):
-    folder = Folder.objects.get(name=folder_name)
-    repo = Repository.objects.get(name=repo_name)
-    assert repo not in folder.repositories.all()
-
-@when('I fill in "Repository Name" with "{repo_name}"')
-def step_impl(context, repo_name):
-    context.browser.fill('repository_name', repo_name)
-
-@when('I press "Add to my folder" button')
+@given('I am on TestingBDD folder page')
 def step_impl(context):
-    context.browser.find_by_value('Add to my folder').first.click()
+    context.client = Client()
+    context.browser = webdriver.Chrome()
+    
+    # Login using the provided test account
+    context.client.login(username='testbdd@gmail.com', password='testbdd')
 
-@then('the response should contain "{message}"')
-def step_impl(context, message):
-    assert message in context.browser.html
+    # Retrieve folder_id from the database based on folder_name
+    folder = Folders.objects.get(Folder_Name='TestingBDD')
+    folder_id = folder.id
+    
+    # Build the URL for the add repository page using the retrieved folder_id
+    add_repository_url = f'http://127.0.0.1:8000/utilities/add_repository/{folder_id}/'
+    
+    # Check if the browser is redirected to the correct URL
+    assert context.browser.current_url == add_repository_url
 
-@then('the "List Repository" field should not contain "{repo_name}"')
-def step_impl(context, repo_name):
-    assert repo_name not in context.browser.find_by_id('list_repository').text
+@when('I fill in Repository Name with GitTrackr')
+def step_impl(context):
+    # Find the Repository Name input field and enter the repository name
+    repository_name_input = context.browser.find_element(By.XPATH, '//*[@id="id_repository_name"]').send_keys('GitTrackr')
+
+@when('I submit the form button')
+def step_impl(context):
+    # Submit the form
+    submit_button = context.browser.find_element(By.XPATH, '/html/body/div[2]/div[1]/div[3]/form/input[3]')
+    submit_button.click()
+
+@then('I should see GitTrackr in the list of repositories')
+def step_impl(context):
+    # Assuming there is a list of repositories on the page
+    repository_list = context.browser.find_element(By.ID, 'repository_list')
+    assert 'GitTrackr' in repository_list.text
+
+@when('I press Add to my folder button for GitTrackr repository')
+def step_impl(context):
+    # Assuming there is a button to add the repository to the folder
+    add_button = context.browser.find_element(By.ID, 'addRepo')
+    add_button.click()
+
+@then('the database should have GitTrackr associated with TestingBDD folder')
+def step_impl(context):
+    # Verify that GitTrackr is associated with the TestingBDD folder in the database
+    folder = Folders.objects.get(Folder_Name='TestingBDD')
+    repository = Repository.objects.get(Repository_Name='GitTrackr', folder=folder)
+    assert repository is not None
+
+@given('GitTrackr repository is added to TestingBDD folder')
+def step_impl(context):
+    folder = Folders.objects.get(Folder_Name='TestingBDD')
+    repository = Repository.objects.create(Repository_Name='GitTrackr', folder=folder)
+
+@when('I press X button next to GitTrackr')
+def step_impl(context):
+    # Assuming there is a delete button next to the repository in the list
+    delete_button = context.browser.find_element(By.XPATH, '//*[@id="repositoryContainer"]/div/form/button')
+    delete_button.click()
+
+@then('GitTrackr should be removed from TestingBDD in the database')
+def step_impl(context):
+    # Verify that GitTrackr is removed from the TestingBDD folder in the database
+    folder = Folders.objects.get(Folder_Name='TestingBDD')
+    assert not Repository.objects.filter(Repository_Name='GitTrackr', folder=folder).exists()

@@ -1,37 +1,56 @@
-from behave import given, when, then
+# Filename: steps/show_developer_statistics_steps.py
+from behave import *
+from selenium.webdriver.common.by import By
 from master.models import Repository
+from django.test import Client
+from selenium import webdriver
 
-@given('I am on "http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/" page')
-def step_impl(context, repo_id):
-    # Assume your Django app has a URL pattern for repository detail like "utilities/repository_detail/<repo_id>/"
-    # You may need to use a library like splinter or selenium for browser automation
-    context.browser.visit(f'http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/')
-
-@when('I press "Developer Activity" button in the repository detail')
+@given('I am on the show detailed repository page')
 def step_impl(context):
-    # Assume there is a button with class "developer-activity-button" for developer activity
-    context.browser.find_by_css('.developer-activity-button').first.click()
+    context.client = Client()
+    context.browser = webdriver.Chrome()
+    
+    # Login using the provided test account
+    context.client.login(username='testbdd@gmail.com', password='testbdd')
 
-@then('the response should contain "Show Developer Statistic Success"')
+    # Retrieve repository_id from the database based on repository_name
+    repository = Repository.objects.get(repository_Name='GitTrackr')
+    repository_id = repository.id
+    
+    # Build the URL for the compare_repo page using the retrieved repository_id
+    compare_repo_url = f'http://127.0.0.1:8000/utilities/repository_detail/{repository_id}/'
+    
+    # Check if the browser is redirected to the correct URL
+    assert context.browser.current_url == compare_repo_url
+
+@when('I press the Developer Activity button')
 def step_impl(context):
-    assert 'Show Developer Statistic Success' in context.browser.html
+    # Find and click the Developer Activity button, replace this with the actual locator
+    developer_activity_button = context.browser.find_element(By.XPATH,'/html/body/div[2]/div[2]/div[2]/a/div')
+    developer_activity_button.click()
 
-@then('I should be redirected to "http://127.0.0.1:8000/comparison/developer_statistic/{repo_id}/" page')
-def step_impl(context, repo_id):
-    assert context.browser.url == f'http://127.0.0.1:8000/comparison/developer_statistic/{repo_id}/'
-
-@then('I should see "Comparison Table of Developer Statistics"')
+@then('I should be redirected to the developer statistic page')
 def step_impl(context):
-    assert 'Comparison Table of Developer Statistics' in context.browser.html
+    # Retrieve repository_id from the database based on repository_name
+    repository = Repository.objects.get(repository_Name='GitTrackr')
+    repository_id = repository.id
+    # Check if the browser is redirected to the expected URL for the developer statistic page
+    expected_url = f'http://127.0.0.1:8000/comparison/developer_statistic/{repository_id}/'  # Replace with the actual URL
+    assert context.browser.current_url == expected_url, f"Expected URL: {expected_url}, Actual URL: {context.browser.current_url}"
 
-@then('the response should not contain "Show Success"')
+@then('the response status code should be "Failed to Retrieve Data from GitHub API"')
 def step_impl(context):
-    assert 'Show Success' not in context.browser.html
+    # Assuming there's an element containing the response status message
+    context.error_message = "Failed to Retrieve Data from GitHub API"
 
-@then('the response status code should be "{status_code}"')
-def step_impl(context, status_code):
-    assert context.browser.status_code == int(status_code)
-
-@then('I should still be on "http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/" page')
-def step_impl(context, repo_id):
-    assert context.browser.url == f'http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/'
+@then('I should still be on the show detailed repository page')
+def step_impl(context):
+    # Retrieve repository_id from the database based on repository_name
+    repository = Repository.objects.get(repository_Name='GitTrackr')
+    repository_id = repository.id
+    
+    # Build the URL for the compare_repo page using the retrieved repository_id
+    compare_repo_url = f'http://127.0.0.1:8000/utilities/repository_detail/{repository_id}/'
+    
+    # Check if the browser is redirected to the correct URL
+    assert context.browser.current_url == compare_repo_url

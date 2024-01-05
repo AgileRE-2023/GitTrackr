@@ -4,15 +4,12 @@ Feature: Show Developer Statistics
     So that I can understand the contributions and activities of developers in that repository.
 
     Scenario: Show Developer Statistic Successfully
-        Given I am on "http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/" page
-        When I press "Developer Activity" button in the repository detail
-        Then the response should contain "Show Developer Statistic Success"
-        And I should be redirected to "http://127.0.0.1:8000/comparison/developer_statistic/{repo_id}/" page
-        And I should see "Comparison Table of Developer Statistics"
+        Given I am on the show detailed repository page
+        When I press the Developer Activity button
+        Then I should be redirected to the developer statistic page
 
     Scenario: Show Developer Statistic Failed
-        Given I am on "http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/" page
-        When I press "Developer Activity" button in the repository detail
-        Then the response should not contain "Show Success"
-        And the response status code should be "Failed to Retrieve Data from GitHub API"
-        And I should still be on "http://127.0.0.1:8000/utilities/repository_detail/{repo_id}/" page
+        Given I am on the show detailed repository page
+        When I press the Developer Activity button
+        Then the response status code should be "Failed to Retrieve Data from GitHub API"
+        And I should still be on the show detailed repository page

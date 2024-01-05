@@ -1,0 +1,78 @@
+<testsuite name="features.add_repo.Add Repositories" tests="2" errors="2" failures="0" skipped="0" time="0.029174" timestamp="2024-01-05T20:31:43.109999" hostname="DESKTOP-FHLCL6Q"><testcase classname="features.add_repo.Add Repositories" name="Add Repository Successfully" status="failed" time="0.020083"><error type="WebDriverException" message="Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home&#10;">
+<![CDATA[
+Failing step: Given I am on TestingBDD folder page ... failed in 0.020s
+Location: tests/acceptance/features/add_repo.feature:7
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\add_repo.py", line 10, in step_impl
+    context.browser = webdriver.Chrome()
+                      ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\service.py", line 81, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Add Repository Successfully
+    Given I am on TestingBDD folder page ... failed in 0.020s
+    When I fill in Repository Name with GitTrackr ... skipped in 0.000s
+    And I submit the form button ... skipped in 0.000s
+    Then I should see GitTrackr in the list of repositories ... skipped in 0.000s
+    When I press Add to my folder button for GitTrackr repository ... skipped in 0.000s
+    Then the database should have GitTrackr associated with TestingBDD folder ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="features.add_repo.Add Repositories" name="Remove Added Repository" status="failed" time="0.009092"><error type="DoesNotExist" message="Folders matching query does not exist.">
+<![CDATA[
+Failing step: Given GitTrackr repository is added to TestingBDD folder ... failed in 0.009s
+Location: tests/acceptance/features/add_repo.feature:15
+Traceback (most recent call last):
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\model.py", line 1329, in run
+    match.run(runner.context)
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\behave\matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "tests\acceptance\steps\add_repo.py", line 57, in step_impl
+    folder = Folders.objects.get(Folder_Name='TestingBDD')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Airlangga\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+master.models.Folders.DoesNotExist: Folders matching query does not exist.
+]]>
+</error><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Remove Added Repository
+    Given GitTrackr repository is added to TestingBDD folder ... failed in 0.009s
+    And I am on TestingBDD folder page ... skipped in 0.000s
+    When I press X button next to GitTrackr ... skipped in 0.000s
+    Then GitTrackr should be removed from TestingBDD in the database ... skipped in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>

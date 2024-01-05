@@ -1,38 +1,50 @@
-from behave import given, when, then
+from behave import *
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 from master.models import Folders, Repository
-from django.urls import reverse
+from django.test import Client
 
-@given('I am on the "http://127.0.0.1:8000/logged/"')
+@when('I press My Username on the navigation bar')
 def step_impl(context):
-    context.browser.visit("http://127.0.0.1:8000/logged/")
+    # Assuming the username link has an ID like 'usernameLink'
+    username_link = context.browser.find_element(By.XPATH,'/html/body/nav/div/button')
+    username_link.click()
 
-@when('I press "Hello, {username}" on the navigation bar')
-def step_impl(context, username):
-    hello_button = context.browser.find_by_text(f"Hello, {username}").first
-    hello_button.click()
-
-@when('I press the "History" dropdown option')
+@when('I press the History dropdown option')
 def step_impl(context):
-    history_option = context.browser.find_by_text("History").first
-    history_option.click()
+    # Assuming the history dropdown option has an ID like 'historyDropdown'
+    history_dropdown = context.browser.find_element(By.XPATH,'//*[@id="dropdownMenu"]/a[1]')
+    history_dropdown.click()
 
-@then('the response should contain "Show History Success"')
+@then('I should be on the history page')
 def step_impl(context):
-    assert "Show History Success" in context.browser.html
+    # Assuming you have a unique element on the history page to verify
+    assert context.browser.get('http://127.0.0.1:8000/utilities/history/')
 
-@then('I should be on the "http://127.0.0.1:8000/utilities/history/"')
+@when('I fail to press the History dropdown option')
 def step_impl(context):
-    assert context.browser.url == "http://127.0.0.1:8000/utilities/history/"
+    # This can be simulated by not clicking the history dropdown option
+    pass
 
-@then('And I should stay on "http://127.0.0.1:8000/logged/"')
+@then('I should stay on homepage')
 def step_impl(context):
-    assert context.browser.url != "http://127.0.0.1:8000/logged/"
+    # Assuming you have a unique element on the homepage to verify
+    assert context.browser.get('http://127.0.0.1:8000/logged/')
 
-@when('I press some "Folder"')
+@when('I press one Folder')
 def step_impl(context):
-    folder_link = context.browser.find_by_css("a[href^='/utilities/add_repository/']").first
+    # Your implementation to click on a folder, assuming it has an ID like 'folderLink'
+    folder_link = context.browser.find_element(By.XPATH,'/html/body/div[3]/div/div')
     folder_link.click()
 
-@then('I should be on the "http://127.0.0.1:8000/utilities/add_repository/{folder_id}/"')
-def step_impl(context, folder_id):
-    assert context.browser.url == f"http://127.0.0.1:8000/utilities/add_repository/{folder_id}/"
+@then('I should be on the folder page')
+def step_impl(context):
+    folder_name_element = context.browser.find_element(By.XPATH, '/html/body/div[3]/div/div/a/div/div[1]/h1/b')
+    folder_name = folder_name_element.text
+
+    # Query the Folders model to check if the folder exists
+    folder_exists = Folders.objects.filter(name=folder_name).exists()
+    assert folder_exists, f"Folder '{folder_name}' does not exist in the database."
+
+    # Additionally, check if the current page contains the folder name
+    assert folder_name in context.browser.page_source

@@ -104,7 +104,7 @@
                 <button type="button" class="bg-white border py-2 px-6 rounded-2xl border-black">
                     <p class="text-center text-black text-lg font-semibold">Cancel</p>
                 </button>
-                <button type="button" class="bg-black border py-2 px-4 rounded-2xl border-black">
+                <button id="compareButton" type="button" class="bg-black border py-2 px-4 rounded-2xl border-black">
                     <a href="{% url 'compare_repositories' folder.FolderID %}"
                         class="text-center text-white text-lg font-semibold">Compare</a>
                 </button>
@@ -125,7 +125,7 @@
                             <input type="hidden" name="repository_name" value="{{ repository.repository_name }}">
                             <input type="hidden" name="repository_owner" value="{{ repository.repository_owner }}">
                             <input type="hidden" name="repository_url" value="{{ repository.html_url }}">
-                            <button type="submit"
+                            <button id="addRepo" type="submit"
                                 class="my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500 add-to-folder-button">Add
                                 to My Folder</button>
                         </form>

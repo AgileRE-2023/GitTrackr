@@ -4,24 +4,21 @@ Feature: Show History of Folders
     So that I can revisit folders I've created.
 
     Scenario: Show History Successfully
-        Given I am on the "http://127.0.0.1:8000/logged/"
-        When I press "Hello, {username}" on the navigation bar
-        And I press the "History" dropdown option
-        Then the response should contain "Show History Success"
-        And I should be on the "http://127.0.0.1:8000/utilities/history/"
+        Given I am logged in and on the page homepage GitTrackr
+        When I press My Username on the navigation bar
+        And I press the History dropdown option
+        Then I should be on the history page
 
     Scenario: Show History Unsuccessful
-        Given I am on the "http://127.0.0.1:8000/logged/"
-        When I press "Hello, {username}" on the navigation bar
-        And I fail to press the "History" dropdown option
-        Then the response should not contain "Show History Success"
-        And I should stay on "http://127.0.0.1:8000/logged/"
+        Given I am logged in and on the page homepage GitTrackr
+        When I press My Username on the navigation bar
+        And I fail to press the History dropdown option
+        Then I should stay on homepage
 
     Scenario: Show History and Navigate to Next Folder
-        Given I am on the "http://127.0.0.1:8000/logged/"
-        When I press "Hello, {username}" on the navigation bar
-        And I press the "History" dropdown option
-        Then the response should contain "Show History Success"
-        And I should be on the "http://127.0.0.1:8000/utilities/history/"
-        When I press some "Folder"
-        Then I should be on the "http://127.0.0.1:8000/utilities/add_repository/{folder_id}/"
+        Given I am logged in and on the page homepage GitTrackr
+        When I press My Username on the navigation bar
+        And I press the History dropdown option
+        Then I should be on the history page
+        When I press one Folder
+        Then I should be on the folder page
