@@ -30,5 +30,4 @@ def create_folder(request):
         # Simpan FolderID ke dalam sesi
         request.session['current_folder_id'] = folders.FolderID
 
-        # Arahkan pengguna ke halaman 'add_repository' untuk folder baru
-        return redirect('add_repository_with_folder', folder_id=folders.FolderID)
+    return render(request, "utilities/add_repository.html", {'form': form})

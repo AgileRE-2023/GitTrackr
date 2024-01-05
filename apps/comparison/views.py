@@ -17,18 +17,21 @@ from github import Github
 
 @login_required
 def compare_repositories(request, folder_id):
-    # Membuat instance Github
     g = Github(settings.GITHUB_TOKEN)
+
+    if folder_id is not None:
+        request.session['current_folder_id'] = folder_id
+
+    folder_id = request.session.get('current_folder_id')
+    folder = Folders.objects.get(FolderID=folder_id)
 
     repositories = Repository.objects.filter(Folder_ID_id=folder_id)
 
     stats = []
 
     for repo in repositories:
-        # Mendapatkan repositori dari GitHub
         github_repo = g.get_repo(f"{repo.Owner}/{repo.Repository_Name}")
 
-        # Menghitung jumlah pull request yang sudah di-merge dan ditolak
         merged_pull_requests = 0
         rejected_pull_requests = 0
         for pr in github_repo.get_pulls(state='closed'):
@@ -37,10 +40,10 @@ def compare_repositories(request, folder_id):
             else:
                 rejected_pull_requests += 1
 
-        # Menambahkan data ke list stats
         stats.append({
             'repo': repo,  
             'Repository_Name': repo.Repository_Name,
+            'Owner_Name': repo.Owner,
             'Topics' : github_repo.get_topics(),
             'Commit': github_repo.get_commits().totalCount,
             'Merged_Pull_Request': merged_pull_requests,  
@@ -52,7 +55,7 @@ def compare_repositories(request, folder_id):
             'Last_Updated': github_repo.updated_at,
         })
 
-    return render(request, 'comparison/compare_repository.html', {'stats': stats})
+    return render(request, 'comparison/compare_repository.html', {'stats': stats, 'folder': folder})
 
 @login_required
 def developer_statistic(request, repository_id):

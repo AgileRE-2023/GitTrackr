@@ -19,9 +19,9 @@
   <!-- Navbar End -->
   <!-- Content Start -->
   <div class="absolute">
-    <div class=" mt-36 mx-32">
-      <div class=" text-gray-500 font-semibold text-sm hidden sm:block">
-        <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900"><i
+    <div class=" mt-36 mx-auto w-4/5 sm:mx-auto">
+      <div class=" text-gray-500 font-semibold text-sm">
+        <a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-900 hidden sm:block"><i
             class="fa fa-arrow-left text-base"></i> back </a>
         <div class="text-gray-700 font-bold text-xl mt-4">
           {{ details.Repository_Name }}
@@ -34,10 +34,10 @@
     </div>
   
   
-  <div class="flex flex-row">
+  <div class="flex flex-col-reverse sm:flex-row">
      <!-- Sidebar Start -->
-    <div class="sidebar mr-6">
-      <div class="flex flex-col ml-32">
+    <div class="sidebar mt-6 sm:mt-0">
+      <div class="flex flex-col ml-7 sm:ml-32 mr-7 sm:mr-6 mx-auto">
         <div class="font-semibold text-xl mb-5 ">
           About
         </div>
@@ -45,125 +45,123 @@
           {{ details.About }}
         </div>
         <hr class="mt-5">
-        <div class="font-semibold text-xl mb-5 mt-4">
-          <ul>
-            {% for lang, percentage in details.Languages.items %}
-                <li>{{ lang }}: {{ percentage }}%</li>
-            {% endfor %}
-          </ul>
-        </div>
-        <!-- <div class="flex flex-col">
-          <div class="flex flex- mb-2 mr-6">
-            <img class="mr-2 "src="{% static 'images/css.png' %}" alt="">
-            <div class="font-semibold mr-14">
-              CSS
+          <div class="flex flex-row sm:flex-col justify-between sm:justify-normal">
+            <div class="flex flex-col sm:flex-none">
+              <div class="font-semibold text-sm sm:text-xl mb-5 mt-4">
+                {{ details.Languages }}
+              </div>
+              <div class="flex flex-col">
+                <div class="flex flex- mb-2 mr-6">
+                  <img class="mr-2 "src="{% static 'images/css.png' %}" alt="">
+                  <div class="font-semibold mr-14">
+                    CSS
+                  </div>
+                  <div class="text-gray-500 font-semibold">
+                    20%
+                  </div>
+                </div>
+                <div class="flex flex- mb-2 mr-6">
+                  <img class="mr-2 "src="{% static 'images/html.png' %}" alt="">
+                  <div class="font-semibold mr-10">
+                    HTML
+                  </div>
+                  <div class="text-gray-500 font-semibold">
+                    30%
+                  </div>
+                </div>
+                <div class="flex flex- mb-2 mr-6">
+                  <img class="mr-2 "src="{% static 'images/js.png' %}" alt="">
+                  <div class="font-semibold mr-3">
+                    JavaScript
+                  </div>
+                  <div class="text-gray-500 font-semibold">
+                    10%
+                  </div>
+                </div>
+                <div class="flex flex- mb-2 mr-6">
+                  <img class="mr-2 w-6 h-6 "src="{% static 'images/python.png' %}" alt="">
+                  <div class="font-semibold mr-8">
+                    Python
+                  </div>
+                  <div class="text-gray-500 font-semibold">
+                    40%
+                  </div>
+                </div>
+              </div>
+              <hr class="mt-5">
+              <div class="font-semibold text-xl  mt-4">
+                File Size
+              </div>
+              <div class="font-normal ">
+                {{ details.File_Size }} KB
+              </div>
+              <hr class="mt-5"> 
+              <div class="font-semibold text-xl  mt-4">
+                Date Created
+              </div>
+              <div class="font-normal ">
+                {{ details.Date_Created }}
+              </div>
+              <hr class="mt-5">
             </div>
-            <div class="text-gray-500 font-semibold">
-              20%
+            <div class="flex flex-col sm:flex-none">
+              <div class="font-semibold text-xl  mt-4">
+                Topics
+              </div>
+              <div class="font-normal ">
+                {% for topic in details.Topics %}{{ topic }} {% endfor %}
+              </div>
+              <hr class="mt-5"> 
+              <div class="font-semibold text-xl  mt-4">
+                Branch
+              </div>
+              <div class="font-normal ">
+                {{ details.Branch }}
+              </div>
+              <hr class="mt-5"> 
+              <div class="font-semibold text-xl  mt-4">
+                Contributors
+              </div>
+              <div class="font-normal ">
+                {% for contributor in details.Contributors %}{{ contributor }} {% endfor %}
+              </div>
+              <hr class="mt-5"> 
+              <div class="font-semibold text-xl  mt-4">
+                Stars
+              </div>
+              <div class="font-normal ">
+                {{ details.Stars }}
+              </div>
+              <hr class="mt-5">
             </div>
           </div>
-          <div class="flex flex- mb-2 mr-6">
-            <img class="mr-2 "src="{% static 'images/html.png' %}" alt="">
-            <div class="font-semibold mr-10">
-              HTML
-            </div>
-            <div class="text-gray-500 font-semibold">
-              30%
-            </div>
-          </div>
-          <div class="flex flex- mb-2 mr-6">
-            <img class="mr-2 "src="{% static 'images/js.png' %}" alt="">
-            <div class="font-semibold mr-3">
-              JavaScript
-            </div>
-            <div class="text-gray-500 font-semibold">
-              10%
-            </div>
-          </div>
-          <div class="flex flex- mb-2 mr-6">
-            <img class="mr-2 w-6 h-6 "src="{% static 'images/python.png' %}" alt="">
-            <div class="font-semibold mr-8">
-              Python
-            </div>
-            <div class="text-gray-500 font-semibold">
-              40%
-            </div>
-          </div>
-        </div> -->
-        <hr class="mt-5">
-        <div class="font-semibold text-xl  mt-4">
-          File Size
-        </div>
-        <div class="font-normal ">
-          {{ details.File_Size }} KB
-        </div>
-        <hr class="mt-5"> 
-        <div class="font-semibold text-xl  mt-4">
-          Date Created
-        </div>
-        <div class="font-normal ">
-          {{ details.Date_Created }}
-        </div>
-        <hr class="mt-5"> 
-        <div class="font-semibold text-xl  mt-4">
-          Topics
-        </div>
-        <div class="font-normal ">
-          {% for topic in details.Topics %}{{ topic }} {% endfor %}
-        </div>
-        <hr class="mt-5"> 
-        <div class="font-semibold text-xl  mt-4">
-          Branch
-        </div>
-        <div class="font-normal ">
-          {{ details.Branch }}
-        </div>
-        <hr class="mt-5"> 
-        <div class="font-semibold text-xl  mt-4">
-          Contributors
-        </div>
-        <div class="font-normal ">
-          {% for contributor in details.Contributors %}{{ contributor }} {% endfor %}
-        </div>
-        <hr class="mt-5"> 
-        <div class="font-semibold text-xl  mt-4">
-          Stars
-        </div>
-        <div class="font-normal ">
-          {{ details.Stars }}
-        </div>
-        <hr class="mt-5"> 
       </div>
     </div>
     <!-- Sidebar End -->
-    <div class="content w-full mr-32 ">
-      <div class="flex justify-end mb-6">
-        <a  href="{% url 'developer_statistic' repository_id %}">
-          <p class="bg-black text-white rounded items-center px-5 font-semibold py-2">
-            Developers Activity
-          </p>
-        </a>
-      </div>
+    <div class="content w-4/5 sm:w-full mx-auto  sm:mr-32  sm:ml-3 ">
+     
+      <a  href="{% url 'developer_statistic' repository_id %}" class="flex flex-row justify-end mb-6">
+        <div class="bg-black text-white rounded items-center  px-5 font-semibold py-2">
+          Developers Activity
+        </div>
+      </a>
      <!-- Graph Start -->
     <div class="border-gray-400 border-2 rounded-xl p-6">
       <div class="flex flex-row justify-between mb-11">
         <div class="flex flex-col">
-          <div class="drop2">
+          <div class="drop2" id="commitDropdown">
             <button class=" flex flex-row  px-5 py-1 border-gray-400 border-2 rounded-xl w-fit">
-              <div class="font-bold text-sm mt-1">
+              <div class="font-bold text-sm mt-1" id="selectedChartType">
                 Commit
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
                 <path d="M7.56119 11.6105L15.1224 19.3508L22.6836 11.6105" stroke="#363062" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-            <div  class="menu2 absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mt-1 " id="dropdownMenu">
-              <div  class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> idk</div>
-              <div class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> idk</div>
+            <div  class="menu2 absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mt-1 " id="commitDropdownMenu">
+              <div  class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white" onclick="changeChartType('commit')"> Commit</div>
+              <div class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white" onclick="changeChartType('pullRequest')"> Pull Request</div>
             </div>
-          </div>
-          <div class="text-gray-500 font-semibold text-xs">
-            Lorem ipsum dolor sit amet, consectetur
           </div>
         </div>
           <div class="kosong">
@@ -171,16 +169,20 @@
           </div>
           <div class="drop relative">
             <button class=" flex flex-row  px-5 py-1 border-gray-400 border-2 rounded-full">
-              <div class="font-bold text-sm mt-1">
-                Monthly (2020)
+              <div id="selectedYear" class="font-bold text-xs sm:text-sm mt-1">
+                Monthly (2023)
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
                 <path d="M7.56119 11.6105L15.1224 19.3508L22.6836 11.6105" stroke="#363062" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
             <div  class="menu absolute hidden bg-white rounded-lg shadow w-36 border-2 border-gray-500 mt-1 " id="dropdownMenu">
-              <div  class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2021</div>
-              <div class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2023</div>
+              <div   onclick="changeYear(2017)"class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2017</div>
+              <div   onclick="changeYear(2018)" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2018</div>
+              <div   onclick="changeYear(2019)" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2019</div>
+              <div   onclick="changeYear(2020)" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2020</div>
+              <div   onclick="changeYear(2021)" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2021</div>
+              <div   onclick="changeYear(2023)" class="block px-4 py-3 text-md font-medium hover:bg-gray-700  dark:hover:bg-gray-600 dark:hover:text-white"> 2023</div>
             </div>
           </div>
           </div>
@@ -202,10 +204,7 @@
             </div>
           </div>
           
-        <canvas id="myChart" class="rounded">
-          <div class="bar" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></div>
-          <div class="bar" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></div>
-        </canvas>
+        <canvas id="myChart"> </canvas>
     </div>
       <!-- Graph End  -->
         </div>
@@ -214,11 +213,11 @@
 </div>
 
 
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const dropdownButton = document.querySelector(".group");
       const dropdownMenu = document.querySelector(".absolute");
-
       dropdownButton.addEventListener("click", function () {
         dropdownMenu.classList.toggle("hidden");
       });
@@ -226,63 +225,101 @@
     document.addEventListener("DOMContentLoaded", function () {
       const dropdownButton = document.querySelector(".drop");
       const dropdownMenu = document.querySelector(".menu");
-
+      updateChart(2023);
       dropdownButton.addEventListener("click", function () {
         dropdownMenu.classList.toggle("hidden");
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+          dropdownMenu.classList.add('hidden');
+    }
       });
     });
     document.addEventListener("DOMContentLoaded", function () {
-      const dropdownButton = document.querySelector(".drop2");
-      const dropdownMenu = document.querySelector(".menu2");
+    const commitDropdownButton = document.querySelector(".drop2");
+    const commitDropdownMenu = document.querySelector(".menu2");
 
-      dropdownButton.addEventListener("click", function () {
-        dropdownMenu.classList.toggle("hidden");
-      });
+     commitDropdownButton.addEventListener("click", function () {
+        commitDropdownMenu.classList.toggle("hidden");
+       });
     });
 
-    const xArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function changeChartType(chartType) {
+  const chartTypeLabel = chartType === 'commit' ? 'Commit' : 'Pull Request';
+  document.getElementById('selectedChartType').textContent = chartTypeLabel;
+  document.getElementById('selectedYear').textContent = `Monthly (2023)`;
 
+  if (chartType === 'commit') {
+    updateChart(2023);
+  } else if (chartType === 'pullRequest') {
+    ChartPullReq(2023);
+  }
+}
+
+
+    function changeYear(year) {
+    document.getElementById('selectedYear').textContent = `Monthly (${year})`;
+    document.getElementById('dropdownMenu').classList.add('hidden');
+    
+    
+    updateChart(year);
+  }
+  function updateChart(selectedYear) {
     const ctx = document.getElementById("myChart").getContext("2d");
+    const existingChart = Chart.getChart(ctx);
+    if (existingChart) {
+      existingChart.destroy();
+    }
+    const commitData = JSON.parse('{{ details.CountCommit|safe }}');
+    const datasets = [];
 
+    var labels = [
+      { label: "Jan", value: `${selectedYear}-01` },
+      { label: "Feb", value: `${selectedYear}-02` },
+      { label: "Mar", value: `${selectedYear}-03` },
+      { label: "Apr", value: `${selectedYear}-04` },
+      { label: "May", value: `${selectedYear}-05` },
+      { label: "Jun", value: `${selectedYear}-06` },
+      { label: "Jul", value: `${selectedYear}-07` },
+      { label: "Aug", value: `${selectedYear}-08` },
+      { label: "Sep", value: `${selectedYear}-09` },
+      { label: "Oct", value: `${selectedYear}-10` },
+      { label: "Nov", value: `${selectedYear}-11` },
+      { label: "Dec", value: `${selectedYear}-12` }
+    ];
+
+    datasets.push({
+        label: 'Total Commits',
+        backgroundColor: "black",
+        borderColor: "rgba(0,0,0, 1)",
+        data: labels.map(entry => commitData[entry.value]?.total || 0),
+        borderWidth: 2,
+        barThickness: 20,
+        barPercentage: 0.9,
+        categoryPercentage: 1.0,
+    });
+
+    
+    const contributors = Object.values(commitData)[0].contributors; 
+    for (const contributor in contributors) {
+        datasets.push({
+            label: contributor,
+            backgroundColor: getRandomColor(),
+            data: labels.map(entry => commitData[entry.value]?.contributors[contributor] || 0),
+            borderWidth: 2,
+            barThickness: 20,
+            barPercentage: 0.9,
+            categoryPercentage: 1.0,
+        });
+    }
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: xArray,
-        datasets: [
-          {
-            label: 'below',
-            backgroundColor: "black",
-            borderColor: "rgba(0,0,0, 1)",
-            data: [200, 250, 400, 800, 900, 750, 500, 600, 700, 220, 320, 420],
-            borderWidth: 2,
-            borderHeight: 10,
-            barThickness: 20,
-            borderSkipped: 20,
-            borderRadius: 10,
-            barPercentage: 0.9,
-            categoryPercentage: 1.0,
-          },
-          {
-            label: 'above',
-            backgroundColor: "rgba(163, 163, 163, 0.3)",
-            borderColor: "rgba(0, 0, 0, 0.3)",
-            data: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
-            borderWidth: 2,
-            borderHeight: 10,
-            barThickness: 20,
-            borderSkipped: 20,
-            borderRadius: 10,
-            barPercentage: 0.9,
-            categoryPercentage: 1.0,
-          },
-        ]
+        labels: labels.map(entry => entry.label),
+        datasets: datasets
       },
       options: {
         scales: {
           y: {
             beginAtZero: true,
-            suggestedMin: 0,
-            suggestedMax: 1000,
             stacked: false,
           },
           x: {
@@ -297,6 +334,89 @@
         responsive: true
       }
     });
+}
+
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function ChartPullReq(selectedYear){
+  const ctx = document.getElementById("myChart").getContext("2d");
+    const existingChart = Chart.getChart(ctx);
+    if (existingChart) {
+      existingChart.destroy();
+    }
+    const pullreqData = JSON.parse('{{ details.CountPullreq|safe }}');
+    const datasets = [];
+    var labels = [
+      { label: "Jan", value: `${selectedYear}-01` },
+      { label: "Feb", value: `${selectedYear}-02` },
+      { label: "Mar", value: `${selectedYear}-03` },
+      { label: "Apr", value: `${selectedYear}-04` },
+      { label: "May", value: `${selectedYear}-05` },
+      { label: "Jun", value: `${selectedYear}-06` },
+      { label: "Jul", value: `${selectedYear}-07` },
+      { label: "Aug", value: `${selectedYear}-08` },
+      { label: "Sep", value: `${selectedYear}-09` },
+      { label: "Oct", value: `${selectedYear}-10` },
+      { label: "Nov", value: `${selectedYear}-11` },
+      { label: "Dec", value: `${selectedYear}-12` }
+    ];
+
+    datasets.push({
+        label: 'Total Commits',
+        backgroundColor: "black",
+        borderColor: "rgba(0,0,0, 1)",
+        data: labels.map(entry => pullreqData[entry.value]?.total || 0),
+        borderWidth: 2,
+        barThickness: 20,
+        barPercentage: 0.9,
+        categoryPercentage: 1.0,
+    });
+
+    
+    const contributors = Object.values(pullreqData)[0].contributors; 
+    for (const contributor in contributors) {
+        datasets.push({
+            label: contributor,
+            backgroundColor: getRandomColor(),
+            data: labels.map(entry => pullreqData[entry.value]?.contributors[contributor] || 0),
+            borderWidth: 2,
+            barThickness: 20,
+            barPercentage: 0.9,
+            categoryPercentage: 1.0,
+        });
+    }
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: labels.map(entry => entry.label),
+        datasets: datasets
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            stacked: false,
+          },
+          x: {
+            stacked: true,
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        responsive: true
+      }
+    })
+}
   </script>
 </body>
 

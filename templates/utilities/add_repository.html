@@ -10,11 +10,12 @@
 </head>
 
 <body class="overflow-x-hidden">
-    <!-- Navbar Start -->
+
     {% block section %}
     {% include "component/navbar_logged.html" %}
     {% endblock %}
-    <!-- Navbar End -->
+
+    <div class="relative flex flex-row z-10 py-40 justify-center">
 
     <!-- Content Start -->
     <div class="grid lg:grid-cols-2 gap-10 lg:mx-28 flex flex-row z-10 py-40 justify-center">
@@ -22,7 +23,9 @@
             <div class="border-b-2 px-4 py-4">
                 <h1 class="text-black text-xl font-bold">{{ folder.Folder_Name }}'s Folder</h1>
             </div>
+
             <div class="flex items-center px-4 py-4">
+                <!-- SVG Icon -->
                 <svg width="44" height="53" viewBox="0 0 54 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M9.66992 49.8131V13.149C9.66992 11.7599 10.1364 10.4276 10.9669 9.44535C11.7973 8.46309 12.9236 7.91125 14.098 7.91125H43.7658C44.1181 7.91125 44.456 8.0768 44.7051 8.37148C44.9542 8.66616 45.0942 9.06583 45.0942 9.48257V43.8264"
@@ -34,6 +37,7 @@
                         d="M14.098 44.5753C12.9236 44.5753 11.7973 45.1271 10.9669 46.1094C10.1364 47.0917 9.66992 48.4239 9.66992 49.813C9.66992 51.2022 10.1364 52.5344 10.9669 53.5167C11.7973 54.4989 12.9236 55.0508 14.098 55.0508H26.275"
                         stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
+                <!-- Repository Title -->
                 <p class="px-2 text-center text-black text-xl font-semibold">Add repository</p>
             </div>
             <!-- Input Repository -->
@@ -45,7 +49,7 @@
                 </form>
             </div>
 
-            <!-- maks.5 repo blm jadi -->
+            <!-- Maximum 5 Repositories Display -->
             <div class="border-t-2 my-4 px-4 justify-center items-center">
                 <p class="my-4 mx-2 text-black text-xs font-extralight font-['Montserrat']">maks 5 repository</p>
                 <div id="" class="grid gap-2 md:grid-cols-3 grid-cols-2 col-auto row-auto auto-cols-max auto-rows-max">
@@ -60,42 +64,44 @@
                     <!-- endfor ajg babii -->
                 </div>
             </div>
-            <!-- maks repo blm jadi -->
 
-            <!-- Input Repository -->
+            <!-- Button Actions -->
             <div class="flex px-8 py-4 border-t-2 justify-between">
                 <button type="button" class="bg-white border py-2 px-6 rounded-2xl border-black">
-                    <p class="text-center text-black text-lg font-semibold ">
-                        Cancel
-                    </p>
+                    <p class="text-center text-black text-lg font-semibold">Cancel</p>
                 </button>
                 <button type="button" class="bg-black border py-2 px-4 rounded-2xl border-black">
-                    <a href="{% url 'compare_repositories' folder.FolderID %}" class="text-center text-white text-lg font-semibold">
-                        Compare
-                    </a>
+                    <a href="{% url 'compare_repositories' folder.FolderID %}"
+                        class="text-center text-white text-lg font-semibold">Compare</a>
                 </button>
             </div>
         </div>
+
+        <!-- Repository List -->
         <div>
             <ul class="grid grid-cols-2 mx-10">
                 {% for repository in repositories %}
-                    <li class="py-2 mx-2">
-                        <div class="bg-white shadow-lg rounded-lg p-2">
-                            <strong class="text-md py-1 px-2">{{ repository.repository_name }}</strong><br>
-                            <strong class="text-xs py-1 px-2">Owner:</strong><br>
-                            <strong class="text-xs py-1 px-2">{{ repository.repository_owner }}</strong>
-                            <form method="post" action="{% url 'save_repository' %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="repository_name" value="{{ repository.repository_name }}">
-                                <input type="hidden" name="repository_owner" value="{{ repository.repository_owner }}">
-                                <input type="hidden" name="repository_url" value="{{ repository.html_url }}">
-                                <button type="submit" class="my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500 add-to-folder-button">Add to My Folder</button>
-                            </form>
-                        </div>
-                    </li>
+                <li class="py-2 mx-2">
+                    <div class="bg-white shadow-lg rounded-lg p-2">
+                        <strong class="text-md py-1 px-2">{{ repository.repository_name }}</strong><br>
+                        <strong class="text-xs py-1 px-2">Owner:</strong><br>
+                        <strong class="text-xs py-1 px-2">{{ repository.repository_owner }}</strong>
+                        <form method="post" action="{% url 'save_repository' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="repository_name" value="{{ repository.repository_name }}">
+                            <input type="hidden" name="repository_owner" value="{{ repository.repository_owner }}">
+                            <input type="hidden" name="repository_url" value="{{ repository.html_url }}">
+                            <button type="submit"
+                                class="my-2 py-1 px-2 border text-xs border-black rounded-lg hover:bg-gray-100 hover:border-gray-500 add-to-folder-button">Add
+                                to My Folder</button>
+                        </form>
+                    </div>
+                </li>
                 {% endfor %}
             </ul>
         </div>
+
+        <!-- Display Messages -->
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -103,6 +109,7 @@
             {% endfor %}
         </ul>
         {% endif %}
+
     </div>
 
     
@@ -236,5 +243,4 @@
         }
     </script>
 </body>
-
 </html>

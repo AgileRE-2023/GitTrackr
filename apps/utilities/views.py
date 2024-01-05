@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse
+from datetime import datetime, timedelta
 from github import Github
 
 from .forms import AddRepositoryForm
@@ -13,30 +14,75 @@ import json
 
 @login_required
 def repository_detail(request, repository_id):
-    # Mendapatkan repositori dari database
     repo = Repository.objects.get(RepositoryID=repository_id)
 
-    # Membuat instance Github
     g = Github(settings.GITHUB_TOKEN)
 
-    # Mendapatkan repositori dari GitHub
     github_repo = g.get_repo(f"{repo.Owner}/{repo.Repository_Name}")
 
-    # Mendapatkan detail repositori
+    languages = github_repo.get_languages()
+    total_bytes = sum(languages.values())
+    formatted_languages = {lang: f"{(bytes / total_bytes) * 100:.1f}%" for lang, bytes in languages.items()}
+
     details = {
         'Repository_Name': repo.Repository_Name,
         'Owner_Name': repo.Owner,
         'About': github_repo.description,
-        'Languages': github_repo.get_languages(),
+        'Languages': formatted_languages,
         'File_Size': github_repo.size,
         'Date_Created': github_repo.created_at,
         'Topics': github_repo.get_topics(),
         'Branch': github_repo.default_branch,
         'Contributors': [contributor.login for contributor in github_repo.get_contributors()],
         'Stars': github_repo.stargazers_count,
+        'CountCommit': json.dumps(get_github_data(github_repo)),
+        'CountPullreq': json.dumps(count_pull_requests(github_repo)),
     }
 
     return render(request, 'utilities/repository_detail.html', {'details': details, 'repository_id': repository_id})
+
+
+def get_github_data(repo):
+    commit_count_data = {}
+
+    for commit in repo.get_commits():
+        timestamp = commit.commit.author.date.timestamp()
+        commit_date = datetime.fromtimestamp(timestamp)
+        month_year = commit_date.strftime('%Y-%m')
+        contributor = commit.commit.author.name
+
+        if month_year not in commit_count_data:
+            commit_count_data[month_year] = {'total': 0, 'contributors': {}}
+
+        commit_count_data[month_year]['total'] += 1
+
+        if contributor not in commit_count_data[month_year]['contributors']:
+            commit_count_data[month_year]['contributors'][contributor] = 1
+        else:
+            commit_count_data[month_year]['contributors'][contributor] += 1
+        
+    return commit_count_data
+
+def count_pull_requests(repo):
+    pull_requests = repo.get_pulls(state='all')
+    pull_request_count_data = {}
+
+    for pull_request in pull_requests:
+        timestamp = pull_request.created_at.timestamp()
+        pull_request_date = datetime.fromtimestamp(timestamp)
+        month_year = pull_request_date.strftime('%Y-%m')
+        contributor = pull_request.user.login
+
+        if month_year not in pull_request_count_data:
+            pull_request_count_data[month_year] = {'total': 0, 'contributors': {}}
+        pull_request_count_data[month_year]['total'] += 1
+
+        if contributor not in pull_request_count_data[month_year]['contributors']:
+            pull_request_count_data[month_year]['contributors'][contributor] = 1
+        else:
+            pull_request_count_data[month_year]['contributors'][contributor] += 1
+
+    return pull_request_count_data
 
 @login_required
 def history(request):
@@ -72,7 +118,6 @@ def search_repository(request):
                 data = response.json()
                 repositories = data.get('items', [])
 
-                # Split full_name into owner and repository_name
                 for repository in repositories:
                     repository['repository_owner'], repository['repository_name'] = repository['full_name'].split('/')
 
@@ -105,6 +150,7 @@ def save_repository(request):
 
     return redirect('add_repository_with_folder', folder_id=folder_id)
 
+
 def five_repository(request):
-    saved_repositories = Repository.objects.all()[:5]  # Retrieve the first 5 repositories
+    saved_repositories = Repository.objects.all()[:5]
     return render(request, 'add_repository.html', {'saved_repositories': saved_repositories})
